@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | Berita Teknologi Kurasi dan Ringkasan AI",
+    "description": "Ikuti pembaruan teknologi penting tanpa menonton setiap video. Frontier News mengubah konten YouTube terpercaya menjadi ringkasan dan newsletter yang ringkas.",
+    "ogLocale": "id_ID"
+  },
+  "brand": "Frontier News",
+  "brandByline": "oleh Hyperjump",
+  "nav": {
+    "latest": "Berita terbaru",
+    "topics": "Topik",
+    "how": "Cara kerja",
+    "about": "Tentang",
+    "subscribe": "Berlangganan gratis",
+    "menuOpen": "Buka menu",
+    "menuClose": "Tutup menu",
+    "language": "Bahasa"
+  },
+  "hero": {
+    "h1": "Berita teknologi yang layak perhatian Anda",
+    "lead": "Frontier News memantau saluran teknologi terpercaya dan mengubah video terbaru mereka menjadi ringkasan yang ringkas dan berguna. Dapatkan ide, alat, dan teknik penting tanpa menghabiskan berjam-jam menonton.",
+    "ctaPrimary": "Dapatkan Frontier News",
+    "ctaSecondary": "Baca digest terbaru",
+    "support": "Apdét harian gratis. Pilih bahasa yang Anda inginkan."
+  },
+  "value": {
+    "h2": "Ikuti teknologi tanpa kebisingan",
+    "body": "Teknologi bergerak cepat, tetapi informasi berguna tersebar di video panjang, pengumuman produk, dan saluran kreator. Frontier News mengikuti sumber teknologi pilihan, mengekstrak poin utama, dan mengaturnya menjadi digest yang dapat dibaca dalam hitungan menit. Setiap ringkasan mencakup detail praktis: apa yang berubah, mengapa penting, alat mana yang disebutkan, dan apa yang dapat Anda terapkan.",
+    "cards": [
+      {
+        "h3": "Hemat waktu",
+        "text": "Pahami video teknologi panjang melalui ringkasan yang padat."
+      },
+      {
+        "h3": "Temukan alat berguna",
+        "text": "Temukan perangkat lunak, framework, dan layanan yang disebutkan kreator terpercaya."
+      },
+      {
+        "h3": "Ambil pelajaran praktis",
+        "text": "Fokus pada teknik dan ide yang bisa dipakai, bukan judul kosong."
+      }
+    ]
+  },
+  "latest": {
+    "h2": "Berita dan ringkasan teknologi terbaru",
+    "readSummary": "Baca ringkasan",
+    "source": "Sumber",
+    "published": "Dipublikasikan",
+    "updated": "Diperbarui"
+  },
+  "topics": {
+    "h2": "Topik teknologi yang kami ikuti",
+    "intro": "Frontier News mengikuti perkembangan yang penting bagi developer, pemimpin teknis, dan orang yang membangun produk perangkat lunak.",
+    "viewTopic": "Lihat topik",
+    "articlesInTopic": "ringkasan di topik ini",
+    "empty": "Ringkasan baru untuk topik ini akan muncul di sini saat dipublikasikan."
+  },
+  "how": {
+    "h2": "Dari video teknologi menjadi berita berguna",
+    "steps": [
+      {
+        "title": "Kami memantau saluran pilihan",
+        "text": "Frontier News memeriksa kreator teknologi terpercaya untuk video baru."
+      },
+      {
+        "title": "Kami menganalisis konten",
+        "text": "Transkrip diproses untuk mengidentifikasi poin kunci, alat, teknik, dan pelajaran praktis."
+      },
+      {
+        "title": "Anda menerima digest yang ringkas",
+        "text": "Baca ringkasan di web atau terima lewat email, Substack, atau Microsoft Teams."
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "Dapatkan pembaruan teknologi penting di inbox Anda",
+    "intro": "Terima Frontier News setiap hari dalam bahasa pilihan Anda.",
+    "email": "Alamat email",
+    "emailPlaceholder": "Masukkan email kamu",
+    "language": "Bahasa digest",
+    "submit": "Berlangganan",
+    "submitting": "Berlangganan…",
+    "trust": "Tanpa spam. Konfirmasikan email sebelum menerima edisi pertama. Berhenti berlangganan kapan saja.",
+    "success": "Hampir selesai! Cek email kamu untuk konfirmasi langganan.",
+    "error": "Terjadi kesalahan. Silakan coba lagi.",
+    "errorEmail": "Masukkan alamat email yang valid.",
+    "captchaError": "Mohon selesaikan verifikasi CAPTCHA terlebih dahulu."
+  },
+  "audience": {
+    "h2": "Dibuat untuk orang yang bekerja di teknologi",
+    "intro": "Frontier News berguna bagi:",
+    "list": [
+      "Software developer",
+      "Pemimpin engineering",
+      "Tim DevOps dan platform",
+      "Founder teknologi",
+      "Product manager",
+      "Peneliti teknis"
+    ]
+  },
+  "about": {
+    "h2": "Diterbitkan oleh Hyperjump Technology",
+    "body": "Frontier News dibuat oleh Hyperjump Technology untuk membantu tim teknis mengikuti perkembangan bermakna di perangkat lunak, AI, infrastruktur, dan tooling developer.",
+    "link": "Kunjungi Hyperjump Technology",
+    "title": "Tentang Frontier News | Hyperjump Technology",
+    "description": "Frontier News diterbitkan oleh Hyperjump Technology — berita teknologi kurasi dan ringkasan AI dari saluran YouTube terpercaya.",
+    "h1": "Diterbitkan oleh Hyperjump Technology",
+    "intro": "Frontier News dibuat oleh Hyperjump Technology untuk membantu tim teknis mengikuti perkembangan bermakna di perangkat lunak, AI, infrastruktur, dan tooling developer."
+  },
+  "faq": {
+    "h2": "Pertanyaan yang sering diajukan",
+    "items": [
+      {
+        "q": "Apa itu Frontier News?",
+        "a": "Frontier News adalah layanan pemantauan teknologi dan newsletter yang mengubah video dari saluran YouTube pilihan menjadi ringkasan terstruktur yang ringkas."
+      },
+      {
+        "q": "Apakah Frontier News gratis?",
+        "a": "Ya. Frontier News gratis untuk berlangganan. Anda dapat menerima digest harian atau mingguan tanpa biaya. Saluran pengiriman premium mungkin ditambahkan nanti tanpa mengubah tingkat web dan email gratis."
+      },
+      {
+        "q": "Seberapa sering saya akan menerima newsletter?",
+        "a": "Frontier News dikirim setiap hari."
+      },
+      {
+        "q": "Topik teknologi apa yang dicakup Frontier News?",
+        "a": "Cakupan meliputi AI, pengembangan perangkat lunak, infrastruktur cloud, DevOps, keamanan siber, open source, dan alat developer."
+      },
+      {
+        "q": "Apakah ringkasan ditulis oleh AI?",
+        "a": "Frontier News menggunakan model bahasa untuk menganalisis transkrip dan menghasilkan ringkasan terstruktur. Setiap ringkasan menautkan kembali ke sumber aslinya agar pembaca dapat memverifikasi konteks."
+      },
+      {
+        "q": "Bahasa apa saja yang tersedia?",
+        "a": "Frontier News mendukung bahasa Inggris, Indonesia, Jerman, Italia, Prancis, Arab, Jepang, dan Sunda."
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "Lebih sedikit waktu mencari. Tetap ikuti yang penting.",
+    "text": "Dapatkan berita teknologi ringkas dan ringkasan praktis sesuai jadwal Anda.",
+    "cta": "Berlangganan Frontier News"
+  },
+  "footer": {
+    "latest": "Berita terbaru",
+    "digests": "Arsip digest",
+    "topics": "Topik",
+    "about": "Tentang Hyperjump",
+    "privacy": "Kebijakan privasi",
+    "terms": "Ketentuan",
+    "contact": "Kontak",
+    "preferences": "Preferensi langganan",
+    "publisher": "Frontier News oleh Hyperjump Technology",
+    "rights": "Hak cipta dilindungi."
+  },
+  "article": {
+    "backLatest": "Kembali ke berita terbaru",
+    "watchSource": "Tonton video asli",
+    "relatedTopic": "Topik",
+    "readAlso": "Ringkasan lainnya"
+  },
+  "digests": {
+    "title": "Arsip digest | Frontier News",
+    "description": "Jelajahi arsip digest Frontier News — ringkasan teknologi kurasi dari saluran YouTube terpercaya.",
+    "h1": "Arsip digest",
+    "intro": "Semua ringkasan yang dipublikasikan di satu tempat, terbaru dulu."
+  },
+  "privacy": {
+    "title": "Kebijakan privasi | Frontier News",
+    "description": "Bagaimana Frontier News oleh Hyperjump Technology mengumpulkan, menggunakan, dan melindungi informasi pelanggan.",
+    "h1": "Kebijakan privasi",
+    "updated": "Terakhir diperbarui: 15 Juli 2026",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Ketentuan penggunaan | Frontier News",
+    "description": "Ketentuan penggunaan Frontier News, publikasi Hyperjump Technology.",
+    "h1": "Ketentuan penggunaan",
+    "updated": "Terakhir diperbarui: 15 Juli 2026",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontak | Frontier News",
+    "description": "Hubungi tim Frontier News di Hyperjump Technology.",
+    "h1": "Kontak",
+    "intro": "Hubungi tim Frontier News untuk kemitraan, pers, atau dukungan.",
+    "emailLabel": "Email",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "Preferensi langganan | Frontier News",
+    "description": "Perbarui frekuensi, bahasa, atau berhenti berlangganan Frontier News.",
+    "h1": "Preferensi langganan",
+    "intro": "Ubah cara Anda menerima Frontier News, atau hentikan email sepenuhnya.",
+    "note": "Perubahan preferensi memerlukan email pelanggan yang dikonfirmasi. Gunakan tautan di setiap pesan Frontier News untuk membuka tampilan preferensi yang dipersonalisasi."
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan | Frontier News",
+    "h1": "Halaman tidak ditemukan",
+    "text": "Halaman itu tidak tersedia. Kembali ke beranda untuk terus membaca Frontier News.",
+    "cta": "Kembali ke Frontier News"
+  }
+}

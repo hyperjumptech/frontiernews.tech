@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "openai-realtime-api-developer-preview",
+    "topic": "artificial-intelligence",
+    "date": "2026-07-14",
+    "updated": "2026-07-14",
+    "source": {
+      "name": "AI Explained",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/ai-realtime.svg",
+    "en": {
+      "title": "OpenAI Realtime API: what developers can ship today",
+      "description": "A concise summary of the Realtime API developer preview — latency, tool calling, and when voice-first interfaces make sense.",
+      "summary": "The Realtime API preview shows how low-latency speech-to-speech models can power live assistants. Key takeaways: WebSocket streaming, function calling mid-conversation, and careful cost controls for production.",
+      "body": [
+        "The Realtime API is aimed at builders who need conversational voice with near-human turn-taking, not batch transcription.",
+        "Practical details covered: establishing a WebSocket session, streaming audio frames, and invoking tools while the model is still speaking.",
+        "Why it matters: product teams can prototype voice UX without stitching STT, LLM, and TTS into a fragile pipeline.",
+        "Tools mentioned include session configuration for voice, VAD settings, and server-side event handlers for function results.",
+        "Apply this by starting with a narrow assistant (support FAQ or coding copilot) and measuring latency and cost per minute before scaling."
+      ]
+    }
+  },
+  {
+    "slug": "kubernetes-1-33-release-highlights",
+    "topic": "cloud-infrastructure",
+    "date": "2026-07-12",
+    "updated": "2026-07-13",
+    "source": {
+      "name": "TechWorld with Nana",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/k8s-release.svg",
+    "en": {
+      "title": "Kubernetes 1.33 release highlights for platform teams",
+      "description": "What changed in Kubernetes 1.33 for scheduling, security, and operational reliability — distilled for platform engineers.",
+      "summary": "Kubernetes 1.33 focuses on safer defaults, clearer scheduling signals, and incremental improvements that reduce toil for platform teams running multi-tenant clusters.",
+      "body": [
+        "The release notes emphasize stability over flashy features, which is exactly what production clusters need.",
+        "Notable themes: refined pod scheduling hints, continued tightening of insecure legacy behaviors, and better observability hooks for controllers.",
+        "Why it matters: upgrade planning gets easier when you know which beta features flipped and which deprecations finally land.",
+        "Tools and components called out include kube-scheduler, kubelet configuration knobs, and admission webhook patterns.",
+        "Apply this by mapping the deprecation list to your cluster add-ons before booking the upgrade window."
+      ]
+    }
+  },
+  {
+    "slug": "rust-async-patterns-for-backend-services",
+    "topic": "software-development",
+    "date": "2026-07-10",
+    "updated": "2026-07-10",
+    "source": {
+      "name": "No Boilerplate",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/rust-async.svg",
+    "en": {
+      "title": "Rust async patterns that hold up in backend services",
+      "description": "Practical async Rust patterns for backends: structured concurrency, cancellation, and avoiding common Tokio pitfalls.",
+      "summary": "A walkthrough of async Rust patterns that keep backend services predictable under load — structured tasks, clean cancellation, and disciplined use of channels.",
+      "body": [
+        "Async Rust rewards explicit ownership of tasks. Spawning without joining is a common source of silent failures.",
+        "The video covers JoinSet-style structured concurrency, select with bias awareness, and when blocking pools are the right escape hatch.",
+        "Why it matters: many services look fine in demos and then stall under cancellation or partial outages.",
+        "Tools mentioned: Tokio, tracing for span-based diagnostics, and tower middleware for timeouts.",
+        "Apply this by auditing every spawn site for a clear owner and a cancellation path before your next load test."
+      ]
+    }
+  },
+  {
+    "slug": "github-actions-oidc-aws-hardening",
+    "topic": "devops",
+    "date": "2026-07-08",
+    "updated": "2026-07-09",
+    "source": {
+      "name": "DevOps Toolkit",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/oidc-aws.svg",
+    "en": {
+      "title": "Hardening GitHub Actions OIDC for AWS deployments",
+      "description": "How to replace long-lived AWS keys in CI with OIDC federation, least-privilege roles, and auditable trust policies.",
+      "summary": "Replace static AWS credentials in GitHub Actions with OIDC. The summary covers trust policies, environment protection rules, and least-privilege IAM roles.",
+      "body": [
+        "Long-lived access keys in CI remain a frequent breach path. OIDC removes the secret from the repository entirely.",
+        "Setup steps: create an IAM OIDC provider for GitHub, bind roles with sub and repository conditions, and scope permissions to deploy targets only.",
+        "Why it matters: credential rotation disappears, and every assume-role event is attributable to a workflow run.",
+        "Tools mentioned: GitHub Environments, aws-actions/configure-aws-credentials, and IAM condition keys.",
+        "Apply this by migrating one production deploy workflow first, then deleting the leftover IAM user keys."
+      ]
+    }
+  },
+  {
+    "slug": "zero-trust-for-internal-developer-platforms",
+    "topic": "cybersecurity",
+    "date": "2026-07-06",
+    "updated": "2026-07-06",
+    "source": {
+      "name": "NetworkChuck",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/zero-trust.svg",
+    "en": {
+      "title": "Zero trust patterns for internal developer platforms",
+      "description": "Applying zero trust to IDPs: identity-aware proxies, short-lived credentials, and segmented access to internal tools.",
+      "summary": "Zero trust for developer platforms means every internal dashboard and API is identity-aware, credentials are short-lived, and lateral movement is constrained by design.",
+      "body": [
+        "Internal tools are often trusted by network location alone. That assumption fails the moment a laptop or token is compromised.",
+        "Patterns covered: identity-aware proxies in front of admin UIs, workload identity for services, and policy-as-code for who can reach what.",
+        "Why it matters: platform teams concentrate privileged access; hardening the IDP protects every product team behind it.",
+        "Tools mentioned include Tailscale/Funnel-style access patterns, OPA-style policy checks, and short-lived cloud credentials.",
+        "Apply this by inventorying internal apps still reachable only via VPN IP allowlists, then putting identity in front of the highest-risk ones first."
+      ]
+    }
+  },
+  {
+    "slug": "sqlite-in-production-edge-workloads",
+    "topic": "developer-tools",
+    "date": "2026-07-03",
+    "updated": "2026-07-04",
+    "source": {
+      "name": "ThePrimeagen",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "image": "/assets/articles/sqlite-edge.svg",
+    "en": {
+      "title": "SQLite in production for edge and single-node workloads",
+      "description": "When SQLite is the right production database: edge caches, single-region apps, and Litestream-style replication.",
+      "summary": "SQLite is no longer just for local demos. For the right topologies — single writer, read replicas, or edge caches — it can be simpler and faster than a networked database.",
+      "body": [
+        "The case for SQLite starts with operational honesty: if you do not need multi-writer consensus, a file-backed database removes a network hop.",
+        "Production patterns: WAL mode, careful backup/replication (e.g. continuous shipping), and clear rules for where the primary lives.",
+        "Why it matters: many SaaS features are single-tenant or region-pinned and overpay for distributed SQL.",
+        "Tools mentioned: SQLite, Litestream-style replication, and ORMs that treat SQLite as a first-class target.",
+        "Apply this by identifying services with a single writer and predictable growth, then prototyping SQLite with restore drills before cutting over."
+      ]
+    }
+  }
+]

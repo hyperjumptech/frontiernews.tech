@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | أخبار تقنية مختارة وملخصات بالذكاء الاصطناعي",
+    "description": "تابع تحديثات التكنولوجيا المهمة دون مشاهدة كل فيديو. يحول Frontier News محتوى يوتيوب الموثوق إلى ملخصات ونشرات موجزة.",
+    "ogLocale": "ar_SA"
+  },
+  "brand": "Frontier News",
+  "brandByline": "من Hyperjump",
+  "nav": {
+    "latest": "أحدث الأخبار",
+    "topics": "المواضيع",
+    "how": "كيف يعمل",
+    "about": "حول",
+    "subscribe": "اشترك مجاناً",
+    "menuOpen": "فتح القائمة",
+    "menuClose": "إغلاق القائمة",
+    "language": "اللغة"
+  },
+  "hero": {
+    "h1": "أخبار التقنية التي تستحق انتباهك",
+    "lead": "يراقب Frontier News قنوات تقنية موثوقة ويحوّل أحدث فيديوهاتها إلى ملخصات موجزة ومفيدة. احصل على الأفكار والأدوات والتقنيات المهمة دون قضاء ساعات في المشاهدة.",
+    "ctaPrimary": "احصل على Frontier News",
+    "ctaSecondary": "اقرأ أحدث ملخص",
+    "support": "تحديثات يومية مجانية. اختر لغتك المفضلة."
+  },
+  "value": {
+    "h2": "واكب التكنولوجيا دون الضوضاء",
+    "body": "تتحرك التكنولوجيا بسرعة، لكن المعلومات المفيدة موزعة عبر فيديوهات طويلة وإعلانات منتجات وقنوات منشئين. يتابع Frontier News مصادر تقنية مختارة، ويستخرج النقاط الرئيسية، وينظمها في ملخص يمكن قراءته في دقائق. يغطي كل ملخص التفاصيل العملية: ما الذي تغير، ولماذا يهم، وأي أدوات ذُكرت، وما يمكنك تطبيقه.",
+    "cards": [
+      {
+        "h3": "وفر الوقت",
+        "text": "افهم فيديوهات التكنولوجيا الطويلة عبر ملخصات موجزة."
+      },
+      {
+        "h3": "اعثر على أدوات مفيدة",
+        "text": "اكتشف برمجيات وأطر عمل وخدمات يذكرها منشئون موثوقون."
+      },
+      {
+        "h3": "احصل على دروس عملية",
+        "text": "ركز على تقنيات وأفكار يمكنك استخدامها، لا على عناوين فارغة."
+      }
+    ]
+  },
+  "latest": {
+    "h2": "أحدث أخبار وملخصات التكنولوجيا",
+    "readSummary": "اقرأ الملخص",
+    "source": "المصدر",
+    "published": "نُشر",
+    "updated": "حُدث"
+  },
+  "topics": {
+    "h2": "مواضيع التكنولوجيا التي نتابعها",
+    "intro": "يتابع Frontier News التطورات التي تهم المطورين والقادة التقنيين ومن يبنون منتجات برمجية.",
+    "viewTopic": "عرض الموضوع",
+    "articlesInTopic": "ملخصات في هذا الموضوع",
+    "empty": "ستظهر ملخصات جديدة لهذا الموضوع هنا عند نشرها."
+  },
+  "how": {
+    "h2": "من فيديوهات التكنولوجيا إلى أخبار مفيدة",
+    "steps": [
+      {
+        "title": "نراقب قنوات مختارة",
+        "text": "يتحقق Frontier News من منشئي محتوى تقني موثوقين بحثاً عن فيديوهات جديدة."
+      },
+      {
+        "title": "نحلل المحتوى",
+        "text": "تُعالَج النصوص المكتوبة لتحديد النقاط الرئيسية والأدوات والتقنيات والدروس العملية."
+      },
+      {
+        "title": "تتلقى ملخصاً موجزاً",
+        "text": "اقرأ الملخصات على الويب أو استلمها عبر البريد أو Substack أو Microsoft Teams."
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "احصل على تحديثات التكنولوجيا المهمة في بريدك",
+    "intro": "استلم Frontier News يومياً بلغتك المفضلة.",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "language": "لغة الملخص",
+    "submit": "اشترك",
+    "submitting": "جارٍ الاشتراك…",
+    "trust": "بدون رسائل مزعجة. أكّد بريدك قبل العدد الأول. يمكنك إلغاء الاشتراك في أي وقت.",
+    "success": "تقريباً جاهز! تحقق من بريدك لتأكيد الاشتراك.",
+    "error": "حدث خطأ. حاول مرة أخرى.",
+    "errorEmail": "أدخل بريداً إلكترونياً صالحاً.",
+    "captchaError": "يرجى إكمال التحقق CAPTCHA."
+  },
+  "audience": {
+    "h2": "مبني لمن يعملون في التكنولوجيا",
+    "intro": "Frontier News مفيد لـ:",
+    "list": [
+      "مطورو البرمجيات",
+      "قادة الهندسة",
+      "فرق DevOps والمنصات",
+      "مؤسسو شركات التقنية",
+      "مديرو المنتجات",
+      "الباحثون التقنيون"
+    ]
+  },
+  "about": {
+    "h2": "يُنشر بواسطة Hyperjump Technology",
+    "body": "يُنشأ Frontier News بواسطة Hyperjump Technology لمساعدة الفرق التقنية على متابعة التطورات المهمة في البرمجيات والذكاء الاصطناعي والبنية التحتية وأدوات المطورين.",
+    "link": "زيارة Hyperjump Technology",
+    "title": "حول Frontier News | Hyperjump Technology",
+    "description": "يُنشر Frontier News بواسطة Hyperjump Technology.",
+    "h1": "يُنشر بواسطة Hyperjump Technology",
+    "intro": "يُنشأ Frontier News بواسطة Hyperjump Technology لمساعدة الفرق التقنية على متابعة التطورات المهمة في البرمجيات والذكاء الاصطناعي والبنية التحتية وأدوات المطورين."
+  },
+  "faq": {
+    "h2": "الأسئلة الشائعة",
+    "items": [
+      {
+        "q": "ما هو Frontier News؟",
+        "a": "Frontier News خدمة مراقبة تقنية ونشرة تحول فيديوهات من قنوات يوتيوب مختارة إلى ملخصات منظمة وموجزة."
+      },
+      {
+        "q": "هل Frontier News مجاني؟",
+        "a": "نعم. الاشتراك في Frontier News مجاني. يمكنك تلقي ملخصات يومية أو أسبوعية دون تكلفة."
+      },
+      {
+        "q": "كم مرة سأتلقى النشرة؟",
+        "a": "يُرسل Frontier News يومياً."
+      },
+      {
+        "q": "ما مواضيع التكنولوجيا التي يغطيها Frontier News؟",
+        "a": "تشمل التغطية الذكاء الاصطناعي وتطوير البرمجيات والبنية السحابية وDevOps والأمن السيبراني والمصادر المفتوحة وأدوات المطورين."
+      },
+      {
+        "q": "هل تُكتب الملخصات بالذكاء الاصطناعي؟",
+        "a": "يستخدم Frontier News نماذج لغوية لتحليل النصوص وإنتاج ملخصات منظمة. يرتبط كل ملخص بمصدره الأصلي."
+      },
+      {
+        "q": "ما اللغات المتاحة؟",
+        "a": "يدعم Frontier News الإنجليزية والإندونيسية والألمانية والإيطالية والفرنسية والعربية واليابانية والسوندانية."
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "وقت أقل في البحث. واكب ما يهم.",
+    "text": "احصل على أخبار تقنية موجزة وملخصات عملية حسب جدولك.",
+    "cta": "اشترك في Frontier News"
+  },
+  "footer": {
+    "latest": "أحدث الأخبار",
+    "digests": "أرشيف الملخصات",
+    "topics": "المواضيع",
+    "about": "حول Hyperjump",
+    "privacy": "سياسة الخصوصية",
+    "terms": "الشروط",
+    "contact": "اتصل بنا",
+    "preferences": "تفضيلات الاشتراك",
+    "publisher": "Frontier News بواسطة Hyperjump Technology",
+    "rights": "جميع الحقوق محفوظة."
+  },
+  "article": {
+    "backLatest": "العودة إلى أحدث الأخبار",
+    "watchSource": "شاهد الفيديو الأصلي",
+    "relatedTopic": "الموضوع",
+    "readAlso": "مزيد من الملخصات"
+  },
+  "digests": {
+    "title": "أرشيف الملخصات | Frontier News",
+    "description": "تصفح أرشيف ملخصات Frontier News.",
+    "h1": "أرشيف الملخصات",
+    "intro": "كل الملخصات المنشورة في مكان واحد، الأحدث أولاً."
+  },
+  "privacy": {
+    "title": "سياسة الخصوصية | Frontier News",
+    "description": "كيف يتعامل Frontier News مع البيانات.",
+    "h1": "سياسة الخصوصية",
+    "updated": "آخر تحديث: 15 يوليو 2026",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "شروط الاستخدام | Frontier News",
+    "description": "شروط استخدام Frontier News.",
+    "h1": "شروط الاستخدام",
+    "updated": "آخر تحديث: 15 يوليو 2026",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "اتصل بنا | Frontier News",
+    "description": "تواصل مع فريق Frontier News.",
+    "h1": "اتصل بنا",
+    "intro": "تواصل مع فريق Frontier News للشراكات أو الصحافة أو الدعم.",
+    "emailLabel": "البريد",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "تفضيلات الاشتراك | Frontier News",
+    "description": "حدّث التكرار أو اللغة أو ألغِ الاشتراك.",
+    "h1": "تفضيلات الاشتراك",
+    "intro": "غيّر طريقة استلام Frontier News أو أوقف الرسائل.",
+    "note": "تتطلب التغييرات بريداً مؤكداً للمشترك."
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة | Frontier News",
+    "h1": "الصفحة غير موجودة",
+    "text": "هذه الصفحة غير متاحة.",
+    "cta": "العودة إلى Frontier News"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "artificial-intelligence",
+    "en": {
+      "name": "Artificial intelligence",
+      "description": "Model releases, applied AI systems, and practical techniques for building with language models."
+    }
+  },
+  {
+    "slug": "software-development",
+    "en": {
+      "name": "Software development",
+      "description": "Languages, frameworks, architecture patterns, and engineering practices for teams shipping software."
+    }
+  },
+  {
+    "slug": "cloud-infrastructure",
+    "en": {
+      "name": "Cloud infrastructure",
+      "description": "Cloud platforms, Kubernetes, networking, and the foundations that keep production systems running."
+    }
+  },
+  {
+    "slug": "devops",
+    "en": {
+      "name": "DevOps",
+      "description": "CI/CD, platform engineering, observability, and the workflows that connect code to production."
+    }
+  },
+  {
+    "slug": "cybersecurity",
+    "en": {
+      "name": "Cybersecurity",
+      "description": "Threat models, secure defaults, identity, and defensive practices for modern software teams."
+    }
+  },
+  {
+    "slug": "developer-tools",
+    "en": {
+      "name": "Developer tools",
+      "description": "Editors, CLIs, databases, and productivity tools that change how developers build day to day."
+    }
+  },
+  {
+    "slug": "open-source-software",
+    "en": {
+      "name": "Open-source software",
+      "description": "Notable open-source projects, licensing shifts, and community releases worth following."
+    }
+  },
+  {
+    "slug": "technology-business",
+    "en": {
+      "name": "Technology business",
+      "description": "Industry moves, product strategy, and business context that shapes technology decisions."
+    }
+  }
+]

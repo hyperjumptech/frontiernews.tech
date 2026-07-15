@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | Kuratierte Tech-News und KI-Zusammenfassungen",
+    "description": "Verfolgen Sie wichtige Technologie-Updates, ohne jedes Video anzusehen. Frontier News verwandelt vertrauenswürdige YouTube-Inhalte in knappe Zusammenfassungen und Newsletter.",
+    "ogLocale": "de_DE"
+  },
+  "brand": "Frontier News",
+  "brandByline": "von Hyperjump",
+  "nav": {
+    "latest": "Neueste Nachrichten",
+    "topics": "Themen",
+    "how": "So funktioniert es",
+    "about": "Über uns",
+    "subscribe": "Kostenlos abonnieren",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "language": "Sprache"
+  },
+  "hero": {
+    "h1": "Die Tech-News, die Ihre Aufmerksamkeit verdienen",
+    "lead": "Frontier News überwacht vertrauenswürdige Technologiekanäle und verwandelt ihre neuesten Videos in knappe, nützliche Zusammenfassungen. Erhalten Sie die wichtigen Ideen, Tools und Techniken, ohne Stunden zu schauen.",
+    "ctaPrimary": "Frontier News holen",
+    "ctaSecondary": "Neuesten Digest lesen",
+    "support": "Kostenlose tägliche Updates. Wählen Sie Ihre bevorzugte Sprache."
+  },
+  "value": {
+    "h2": "Technologie folgen ohne den Lärm",
+    "body": "Technologie bewegt sich schnell, aber nützliche Informationen sind über lange Videos, Produktankündigungen und Creator-Kanäle verstreut. Frontier News folgt ausgewählten Technologiequellen, extrahiert die Hauptpunkte und ordnet sie in einen Digest, den Sie in Minuten lesen können. Jede Zusammenfassung deckt die praktischen Details ab: was sich geändert hat, warum es wichtig ist, welche Tools genannt wurden und was Sie anwenden können.",
+    "cards": [
+      {
+        "h3": "Zeit sparen",
+        "text": "Verstehen Sie lange Technologievideos durch knappe Zusammenfassungen."
+      },
+      {
+        "h3": "Nützliche Tools finden",
+        "text": "Entdecken Sie Software, Frameworks und Dienste, die vertrauenswürdige Creator nennen."
+      },
+      {
+        "h3": "Praktische Erkenntnisse",
+        "text": "Fokus auf Techniken und Ideen, die Sie nutzen können — nicht auf leere Schlagzeilen."
+      }
+    ]
+  },
+  "latest": {
+    "h2": "Neueste Technologiemeldungen und Zusammenfassungen",
+    "readSummary": "Zusammenfassung lesen",
+    "source": "Quelle",
+    "published": "Veröffentlicht",
+    "updated": "Aktualisiert"
+  },
+  "topics": {
+    "h2": "Technologiethemen, denen wir folgen",
+    "intro": "Frontier News folgt Entwicklungen, die für Entwickler, technische Führungskräfte und Menschen, die Softwareprodukte bauen, wichtig sind.",
+    "viewTopic": "Thema ansehen",
+    "articlesInTopic": "Zusammenfassungen in diesem Thema",
+    "empty": "Neue Zusammenfassungen zu diesem Thema erscheinen hier, sobald sie veröffentlicht werden."
+  },
+  "how": {
+    "h2": "Von Technologievideos zu nützlichen Nachrichten",
+    "steps": [
+      {
+        "title": "Wir überwachen ausgewählte Kanäle",
+        "text": "Frontier News prüft vertrauenswürdige Technologie-Creator auf neue Videos."
+      },
+      {
+        "title": "Wir analysieren den Inhalt",
+        "text": "Transkripte werden verarbeitet, um Schlüsselpunkte, Tools, Techniken und praktische Erkenntnisse zu identifizieren."
+      },
+      {
+        "title": "Sie erhalten einen knappen Digest",
+        "text": "Lesen Sie Zusammenfassungen im Web oder erhalten Sie sie per E-Mail, Substack oder Microsoft Teams."
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "Die wichtigen Technologie-Updates in Ihrem Posteingang",
+    "intro": "Erhalten Sie Frontier News täglich in Ihrer bevorzugten Sprache.",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "E-Mail-Adresse eingeben",
+    "language": "Digest-Sprache",
+    "submit": "Abonnieren",
+    "submitting": "Wird abonniert…",
+    "trust": "Kein Spam. Bestätigen Sie Ihre E-Mail vor der ersten Ausgabe. Jederzeit abbestellbar.",
+    "success": "Fast geschafft! Bestätige dein Abonnement über den Link in deinem Postfach.",
+    "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "errorEmail": "Geben Sie eine gültige E-Mail-Adresse ein.",
+    "captchaError": "Bitte schließe die CAPTCHA-Verifizierung ab."
+  },
+  "audience": {
+    "h2": "Für Menschen, die in der Technologie arbeiten",
+    "intro": "Frontier News ist nützlich für:",
+    "list": [
+      "Softwareentwickler",
+      "Engineering-Führungskräfte",
+      "DevOps- und Plattformteams",
+      "Technologie-Gründer",
+      "Product Manager",
+      "Technische Forscher"
+    ]
+  },
+  "about": {
+    "h2": "Herausgegeben von Hyperjump Technology",
+    "body": "Frontier News wird von Hyperjump Technology erstellt, um technischen Teams zu helfen, bedeutsame Entwicklungen in Software, KI, Infrastruktur und Entwickler-Tooling zu verfolgen.",
+    "link": "Hyperjump Technology besuchen",
+    "title": "Über Frontier News | Hyperjump Technology",
+    "description": "Frontier News wird von Hyperjump Technology herausgegeben — kuratierte Tech-News und KI-Zusammenfassungen.",
+    "h1": "Herausgegeben von Hyperjump Technology",
+    "intro": "Frontier News wird von Hyperjump Technology erstellt, um technischen Teams zu helfen, bedeutsame Entwicklungen in Software, KI, Infrastruktur und Entwickler-Tooling zu verfolgen."
+  },
+  "faq": {
+    "h2": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Was ist Frontier News?",
+        "a": "Frontier News ist ein Technologie-Monitoring- und Newsletter-Dienst, der Videos ausgewählter YouTube-Kanäle in knappe, strukturierte Zusammenfassungen verwandelt."
+      },
+      {
+        "q": "Ist Frontier News kostenlos?",
+        "a": "Ja. Frontier News ist kostenlos zu abonnieren. Sie können tägliche oder wöchentliche Digests ohne Kosten erhalten. Premium-Kanäle können später hinzukommen, ohne die kostenlosen Web- und E-Mail-Stufen zu ändern."
+      },
+      {
+        "q": "Wie oft erhalte ich den Newsletter?",
+        "a": "Frontier News wird täglich zugestellt."
+      },
+      {
+        "q": "Welche Technologiethemen deckt Frontier News ab?",
+        "a": "Die Abdeckung umfasst KI, Softwareentwicklung, Cloud-Infrastruktur, DevOps, Cybersicherheit, Open Source und Entwicklertools."
+      },
+      {
+        "q": "Werden die Zusammenfassungen von KI geschrieben?",
+        "a": "Frontier News nutzt Sprachmodelle, um Transkripte zu analysieren und strukturierte Zusammenfassungen zu erzeugen. Jede Zusammenfassung verlinkt zurück zur Originalquelle."
+      },
+      {
+        "q": "Welche Sprachen sind verfügbar?",
+        "a": "Frontier News unterstützt Englisch, Indonesisch, Deutsch, Italienisch, Französisch, Arabisch, Japanisch und Sundanesisch."
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "Weniger Zeit mit Suchen. Bleiben Sie bei dem, was zählt.",
+    "text": "Erhalten Sie knappe Technologiemeldungen und praktische Zusammenfassungen nach Ihrem Zeitplan.",
+    "cta": "Frontier News abonnieren"
+  },
+  "footer": {
+    "latest": "Neueste Nachrichten",
+    "digests": "Digest-Archiv",
+    "topics": "Themen",
+    "about": "Über Hyperjump",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
+    "preferences": "Abo-Einstellungen",
+    "publisher": "Frontier News von Hyperjump Technology",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "article": {
+    "backLatest": "Zurück zu den neuesten Nachrichten",
+    "watchSource": "Originalvideo ansehen",
+    "relatedTopic": "Thema",
+    "readAlso": "Weitere Zusammenfassungen"
+  },
+  "digests": {
+    "title": "Digest-Archiv | Frontier News",
+    "description": "Durchsuchen Sie das Frontier-News-Digest-Archiv.",
+    "h1": "Digest-Archiv",
+    "intro": "Alle veröffentlichten Zusammenfassungen an einem Ort, neueste zuerst."
+  },
+  "privacy": {
+    "title": "Datenschutzrichtlinie | Frontier News",
+    "description": "Wie Frontier News personenbezogene Daten handhabt.",
+    "h1": "Datenschutzrichtlinie",
+    "updated": "Zuletzt aktualisiert: 15. Juli 2026",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen | Frontier News",
+    "description": "Nutzungsbedingungen für Frontier News.",
+    "h1": "Nutzungsbedingungen",
+    "updated": "Zuletzt aktualisiert: 15. Juli 2026",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt | Frontier News",
+    "description": "Kontaktieren Sie das Frontier-News-Team.",
+    "h1": "Kontakt",
+    "intro": "Erreichen Sie das Frontier-News-Team für Partnerschaft, Presse oder Support.",
+    "emailLabel": "E-Mail",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "Abo-Einstellungen | Frontier News",
+    "description": "Aktualisieren Sie Frequenz, Sprache oder kündigen Sie.",
+    "h1": "Abo-Einstellungen",
+    "intro": "Ändern Sie, wie Sie Frontier News erhalten, oder stoppen Sie E-Mails.",
+    "note": "Änderungen erfordern eine bestätigte Abonnenten-E-Mail. Nutzen Sie den Link in jeder Frontier-News-Nachricht."
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden | Frontier News",
+    "h1": "Seite nicht gefunden",
+    "text": "Diese Seite ist nicht verfügbar.",
+    "cta": "Zurück zu Frontier News"
+  }
+}

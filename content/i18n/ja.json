@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | 厳選テックニュースとAI要約",
+    "description": "すべての動画を見なくても、重要な技術アップデートを把握。Frontier Newsは信頼できるYouTubeコンテンツを簡潔な要約とニュースレターに変えます。",
+    "ogLocale": "ja_JP"
+  },
+  "brand": "Frontier News",
+  "brandByline": "by Hyperjump",
+  "nav": {
+    "latest": "最新ニュース",
+    "topics": "トピック",
+    "how": "仕組み",
+    "about": "について",
+    "subscribe": "無料で購読",
+    "menuOpen": "メニューを開く",
+    "menuClose": "メニューを閉じる",
+    "language": "言語"
+  },
+  "hero": {
+    "h1": "注目すべきテックニュース",
+    "lead": "Frontier Newsは信頼できるテクノロジーチャンネルを監視し、最新動画を簡潔で役立つ要約に変えます。何時間も視聴せずに、重要なアイデア、ツール、手法を得られます。",
+    "ctaPrimary": "Frontier Newsを入手",
+    "ctaSecondary": "最新ダイジェストを読む",
+    "support": "無料の毎日の更新。希望の言語を選べます。"
+  },
+  "value": {
+    "h2": "ノイズなくテクノロジーを追う",
+    "body": "テクノロジーは速く動きますが、有用な情報は長い動画、製品発表、クリエイターチャンネルに散らばっています。Frontier Newsは厳選した技術ソースを追い、要点を抽出し、数分で読めるダイジェストにまとめます。各要約は実践的な詳細をカバーします。何が変わったか、なぜ重要か、どのツールが言及されたか、何を適用できるか。",
+    "cards": [
+      {
+        "h3": "時間を節約",
+        "text": "長い技術動画を簡潔な要約で理解。"
+      },
+      {
+        "h3": "有用なツールを見つける",
+        "text": "信頼できるクリエイターが言及するソフトウェア、フレームワーク、サービスを発見。"
+      },
+      {
+        "h3": "実践的な学び",
+        "text": "空虚な見出しではなく、使える手法とアイデアに焦点。"
+      }
+    ]
+  },
+  "latest": {
+    "h2": "最新の技術ニュースと要約",
+    "readSummary": "要約を読む",
+    "source": "ソース",
+    "published": "公開",
+    "updated": "更新"
+  },
+  "topics": {
+    "h2": "追っている技術トピック",
+    "intro": "Frontier Newsは、開発者、技術リーダー、ソフトウェア製品を作る人にとって重要な動きを追います。",
+    "viewTopic": "トピックを見る",
+    "articlesInTopic": "件の要約",
+    "empty": "このトピックの新しい要約は公開され次第ここに表示されます。"
+  },
+  "how": {
+    "h2": "技術動画から役立つニュースへ",
+    "steps": [
+      {
+        "title": "厳選チャンネルを監視",
+        "text": "Frontier Newsは信頼できる技術クリエイターの新着動画を確認します。"
+      },
+      {
+        "title": "コンテンツを分析",
+        "text": "文字起こしを処理し、要点、ツール、手法、実践的な学びを特定します。"
+      },
+      {
+        "title": "簡潔なダイジェストを受け取る",
+        "text": "Webで読むか、メール、Substack、Microsoft Teamsで受け取ります。"
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "重要な技術アップデートを受信箱へ",
+    "intro": "希望の言語で毎日 Frontier News を受け取れます。",
+    "email": "メールアドレス",
+    "emailPlaceholder": "メールアドレスを入力",
+    "language": "ダイジェスト言語",
+    "submit": "購読する",
+    "submitting": "購読中…",
+    "trust": "スパムなし。初号の前にメール確認。いつでも解除可能。",
+    "success": "あと一歩！受信箱で購読を確認してください。",
+    "error": "問題が発生しました。もう一度お試しください。",
+    "errorEmail": "有効なメールアドレスを入力してください。",
+    "captchaError": "CAPTCHA認証を完了してください。"
+  },
+  "audience": {
+    "h2": "テクノロジーに携わる人のために",
+    "intro": "Frontier Newsが役立つ対象:",
+    "list": [
+      "ソフトウェア開発者",
+      "エンジニアリングリーダー",
+      "DevOps・プラットフォームチーム",
+      "テクノロジー創業者",
+      "プロダクトマネージャー",
+      "技術研究者"
+    ]
+  },
+  "about": {
+    "h2": "Hyperjump Technologyが発行",
+    "body": "Frontier Newsは、ソフトウェア、AI、インフラ、開発者ツールにおける意味のある動きを技術チームが追えるよう、Hyperjump Technologyが制作しています。",
+    "link": "Hyperjump Technologyを訪問",
+    "title": "Frontier Newsについて | Hyperjump Technology",
+    "description": "Frontier NewsはHyperjump Technologyが発行しています。",
+    "h1": "Hyperjump Technologyが発行",
+    "intro": "Frontier Newsは、ソフトウェア、AI、インフラ、開発者ツールにおける意味のある動きを技術チームが追えるよう、Hyperjump Technologyが制作しています。"
+  },
+  "faq": {
+    "h2": "よくある質問",
+    "items": [
+      {
+        "q": "Frontier Newsとは？",
+        "a": "Frontier Newsは、厳選したYouTubeチャンネルの動画を簡潔で構造化された要約に変える技術モニタリング＆ニュースレターサービスです。"
+      },
+      {
+        "q": "Frontier Newsは無料ですか？",
+        "a": "はい。Frontier Newsは無料で購読できます。日次または週次ダイジェストを費用なしで受け取れます。"
+      },
+      {
+        "q": "ニュースレターはどのくらいの頻度？",
+        "a": "Frontier News は毎日配信されます。"
+      },
+      {
+        "q": "どの技術トピックを扱いますか？",
+        "a": "AI、ソフトウェア開発、クラウドインフラ、DevOps、サイバーセキュリティ、オープンソース、開発者ツールを含みます。"
+      },
+      {
+        "q": "要約はAIが書いていますか？",
+        "a": "Frontier Newsは言語モデルで文字起こしを分析し構造化要約を生成します。各要約は元ソースへリンクします。"
+      },
+      {
+        "q": "利用可能な言語は？",
+        "a": "英語、インドネシア語、ドイツ語、イタリア語、フランス語、アラビア語、日本語、スンダ語に対応しています。"
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "探す時間を減らし、重要なことを追い続ける。",
+    "text": "簡潔な技術ニュースと実践的な要約を、あなたのペースで。",
+    "cta": "Frontier Newsを購読"
+  },
+  "footer": {
+    "latest": "最新ニュース",
+    "digests": "ダイジェスト一覧",
+    "topics": "トピック",
+    "about": "Hyperjumpについて",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "contact": "お問い合わせ",
+    "preferences": "購読設定",
+    "publisher": "Frontier News by Hyperjump Technology",
+    "rights": "All rights reserved."
+  },
+  "article": {
+    "backLatest": "最新ニュースに戻る",
+    "watchSource": "元の動画を見る",
+    "relatedTopic": "トピック",
+    "readAlso": "その他の要約"
+  },
+  "digests": {
+    "title": "ダイジェスト一覧 | Frontier News",
+    "description": "Frontier Newsのダイジェストアーカイブ。",
+    "h1": "ダイジェスト一覧",
+    "intro": "公開済み要約をすべて、新しい順に。"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー | Frontier News",
+    "description": "Frontier Newsのデータ取り扱い。",
+    "h1": "プライバシーポリシー",
+    "updated": "最終更新: 2026年7月15日",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "利用規約 | Frontier News",
+    "description": "Frontier Newsの利用規約。",
+    "h1": "利用規約",
+    "updated": "最終更新: 2026年7月15日",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "お問い合わせ | Frontier News",
+    "description": "Frontier Newsチームへの連絡。",
+    "h1": "お問い合わせ",
+    "intro": "パートナーシップ、プレス、サポートはFrontier Newsチームへ。",
+    "emailLabel": "メール",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "購読設定 | Frontier News",
+    "description": "頻度・言語の変更、または購読解除。",
+    "h1": "購読設定",
+    "intro": "受信方法を変更するか、メールを停止します。",
+    "note": "変更には確認済み購読者メールが必要です。"
+  },
+  "notFound": {
+    "title": "ページが見つかりません | Frontier News",
+    "h1": "ページが見つかりません",
+    "text": "そのページは利用できません。",
+    "cta": "Frontier Newsに戻る"
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | Warta Téknologi Kurasi jeung Ringkesan AI",
+    "description": "Tuturkeun apdét téknologi penting tanpa nonton unggal vidéo. Frontier News ngarobah eusi YouTube anu dipercaya jadi ringkesan jeung newsletter anu ringkes.",
+    "ogLocale": "su_ID"
+  },
+  "brand": "Frontier News",
+  "brandByline": "ku Hyperjump",
+  "nav": {
+    "latest": "Warta panganyarna",
+    "topics": "Topik",
+    "how": "Cara digawé",
+    "about": "Ngeunaan",
+    "subscribe": "Langganan gratis",
+    "menuOpen": "Buka ménu",
+    "menuClose": "Tutup ménu",
+    "language": "Basa"
+  },
+  "hero": {
+    "h1": "Warta téknologi anu patut diperhatikeun",
+    "lead": "Frontier News ngawas saluran téknologi anu dipercaya sarta ngarobah vidéo panganyarna jadi ringkesan anu ringkes jeung mangpaat. Meunangkeun gagasan, parabot, jeung téknik penting tanpa méakkeun jam-jaman nonton.",
+    "ctaPrimary": "Meunangkeun Frontier News",
+    "ctaSecondary": "Baca digest panganyarna",
+    "support": "Apdét poean gratis. Pilih basa anu dipikahoyong."
+  },
+  "value": {
+    "h2": "Tuturkeun téknologi tanpa riuh",
+    "body": "Téknologi gerak gancang, tapi inpormasi mangpaat sumebar dina vidéo panjang, pangumuman produk, jeung saluran kreator. Frontier News nuturkeun sumber téknologi pilihan, nyokot poin utama, sarta ngatur jadi digest anu bisa dibaca dina sababaraha menit. Unggal ringkesan ngawengku detil praktis: naon anu robah, naha penting, parabot mana anu disebut, jeung naon anu bisa diterapkeun.",
+    "cards": [
+      {
+        "h3": "Hémat waktos",
+        "text": "Ngarti vidéo téknologi panjang ngaliwatan ringkesan anu padet."
+      },
+      {
+        "h3": "Manggihan parabot mangpaat",
+        "text": "Manggihan software, framework, jeung jasa anu disebut kreator anu dipercaya."
+      },
+      {
+        "h3": "Meunang takeaway praktis",
+        "text": "Fokus kana téknik jeung gagasan anu bisa dipaké, lain judul kosong."
+      }
+    ]
+  },
+  "latest": {
+    "h2": "Warta jeung ringkesan téknologi panganyarna",
+    "readSummary": "Baca ringkesan",
+    "source": "Sumber",
+    "published": "Diterbitkeun",
+    "updated": "Diapdét"
+  },
+  "topics": {
+    "h2": "Topik téknologi anu urang turutan",
+    "intro": "Frontier News nuturkeun kamajuan anu penting pikeun developer, pamimpin téknis, jeung jalma anu ngawangun produk software.",
+    "viewTopic": "Témbongkeun topik",
+    "articlesInTopic": "ringkesan dina topik ieu",
+    "empty": "Ringkesan anyar pikeun topik ieu bakal muncul di dieu nalika diterbitkeun."
+  },
+  "how": {
+    "h2": "Ti vidéo téknologi jadi warta mangpaat",
+    "steps": [
+      {
+        "title": "Urang ngawas saluran pilihan",
+        "text": "Frontier News mariksa kreator téknologi anu dipercaya pikeun vidéo anyar."
+      },
+      {
+        "title": "Urang nganalisis eusi",
+        "text": "Transkrip diolah pikeun nangtukeun poin konci, parabot, téknik, jeung takeaway praktis."
+      },
+      {
+        "title": "Anjeun nampi digest anu ringkes",
+        "text": "Baca ringkesan di wéb atawa nampi ngaliwatan email, Substack, atawa Microsoft Teams."
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "Meunangkeun apdét téknologi penting dina inbox",
+    "intro": "Nampi Frontier News unggal poé dina basa pilihan anjeun.",
+    "email": "Alamat email",
+    "emailPlaceholder": "Lebetkeun email anjeun",
+    "language": "Basa digest",
+    "submit": "Langganan",
+    "submitting": "Ngalanggan…",
+    "trust": "Euweuh spam. Konfirmasikeun email saméméh édisi munggaran. Bisa unsubscribe iraha waé.",
+    "success": "Ampir rengse! Pariksa email anjeun kanggo konfirmasi langganan.",
+    "error": "Aya kasalahan. Mangga cobian deui.",
+    "errorEmail": "Lebetkeun alamat email anu valid.",
+    "captchaError": "Mangga lengkepan verifikasi CAPTCHA heula."
+  },
+  "audience": {
+    "h2": "Diwangun pikeun jalma anu digawé di téknologi",
+    "intro": "Frontier News mangpaat pikeun:",
+    "list": [
+      "Software developer",
+      "Pamimpin engineering",
+      "Tim DevOps jeung platform",
+      "Founder téknologi",
+      "Product manager",
+      "Panalungtik téknis"
+    ]
+  },
+  "about": {
+    "h2": "Diterbitkeun ku Hyperjump Technology",
+    "body": "Frontier News dijieun ku Hyperjump Technology pikeun nulungan tim téknis nuturkeun kamajuan bermakna dina software, AI, infrastruktur, jeung tooling developer.",
+    "link": "Datang ka Hyperjump Technology",
+    "title": "Ngeunaan Frontier News | Hyperjump Technology",
+    "description": "Frontier News diterbitkeun ku Hyperjump Technology.",
+    "h1": "Diterbitkeun ku Hyperjump Technology",
+    "intro": "Frontier News dijieun ku Hyperjump Technology pikeun nulungan tim téknis nuturkeun kamajuan bermakna dina software, AI, infrastruktur, jeung tooling developer."
+  },
+  "faq": {
+    "h2": "Patarosan anu sering ditaroskeun",
+    "items": [
+      {
+        "q": "Naon éta Frontier News?",
+        "a": "Frontier News mangrupa layanan monitoring téknologi jeung newsletter anu ngarobah vidéo ti saluran YouTube pilihan jadi ringkesan terstruktur anu ringkes."
+      },
+      {
+        "q": "Naha Frontier News gratis?",
+        "a": "Sumuhun. Frontier News gratis pikeun ngalanggan. Anjeun tiasa nampi digest poean atawa minggon tanpa biaya."
+      },
+      {
+        "q": "Sabaraha sering abdi nampi newsletter?",
+        "a": "Frontier News dikirim unggal poé."
+      },
+      {
+        "q": "Topik téknologi naon anu dicakup Frontier News?",
+        "a": "Cakupan ngawengku AI, pamekaran software, infrastruktur cloud, DevOps, cybersecurity, open source, jeung parabot developer."
+      },
+      {
+        "q": "Naha ringkesan ditulis ku AI?",
+        "a": "Frontier News ngagunakeun model basa pikeun nganalisis transkrip sarta ngahasilkeun ringkesan terstruktur. Unggal ringkesan numbu deui ka sumber aslina."
+      },
+      {
+        "q": "Basa naon waé anu sayogi?",
+        "a": "Frontier News ngarojong basa Inggris, Indonesia, Jérman, Italia, Perancis, Arab, Jepang, jeung Sunda."
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "Leuwih saeutik waktos milarian. Tetep tuturkeun anu penting.",
+    "text": "Meunangkeun warta téknologi ringkes jeung ringkesan praktis nurutkeun jadwal anjeun.",
+    "cta": "Langganan Frontier News"
+  },
+  "footer": {
+    "latest": "Warta panganyarna",
+    "digests": "Arsip digest",
+    "topics": "Topik",
+    "about": "Ngeunaan Hyperjump",
+    "privacy": "Kawijakan privasi",
+    "terms": "Katangtuan",
+    "contact": "Kontak",
+    "preferences": "Preferensi langganan",
+    "publisher": "Frontier News ku Hyperjump Technology",
+    "rights": "Hak cipta ditangtayungan."
+  },
+  "article": {
+    "backLatest": "Balik ka warta panganyarna",
+    "watchSource": "Tonton vidéo asli",
+    "relatedTopic": "Topik",
+    "readAlso": "Ringkesan séjén"
+  },
+  "digests": {
+    "title": "Arsip digest | Frontier News",
+    "description": "Jelajah arsip digest Frontier News.",
+    "h1": "Arsip digest",
+    "intro": "Sadaya ringkesan anu diterbitkeun dina hiji tempat, panganyarna heula."
+  },
+  "privacy": {
+    "title": "Kawijakan privasi | Frontier News",
+    "description": "Kumaha Frontier News ngolah data.",
+    "h1": "Kawijakan privasi",
+    "updated": "Panganyarna diapdét: 15 Juli 2026",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Katangtuan pamakéan | Frontier News",
+    "description": "Katangtuan pamakéan Frontier News.",
+    "h1": "Katangtuan pamakéan",
+    "updated": "Panganyarna diapdét: 15 Juli 2026",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontak | Frontier News",
+    "description": "Hubungi tim Frontier News.",
+    "h1": "Kontak",
+    "intro": "Hubungi tim Frontier News pikeun partnership, pers, atawa dukungan.",
+    "emailLabel": "Email",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "Preferensi langganan | Frontier News",
+    "description": "Apdét frékuénsi, basa, atawa unsuhscribe.",
+    "h1": "Preferensi langganan",
+    "intro": "Robah cara nampi Frontier News, atawa eureunkeun email.",
+    "note": "Parobahan merlukeun email pelanggan anu dikonfirmasi."
+  },
+  "notFound": {
+    "title": "Kaca teu kapanggih | Frontier News",
+    "h1": "Kaca teu kapanggih",
+    "text": "Kaca éta teu sayogi.",
+    "cta": "Balik ka Frontier News"
+  }
+}

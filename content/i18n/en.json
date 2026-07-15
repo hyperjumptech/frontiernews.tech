@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "Frontier News | Curated Tech News and AI Summaries",
+    "description": "Follow important technology updates without watching every video. Frontier News turns trusted YouTube content into concise summaries and newsletters.",
+    "ogLocale": "en_US"
+  },
+  "brand": "Frontier News",
+  "brandByline": "by Hyperjump",
+  "nav": {
+    "latest": "Latest news",
+    "topics": "Topics",
+    "how": "How it works",
+    "about": "About",
+    "subscribe": "Subscribe free",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "language": "Language"
+  },
+  "hero": {
+    "h1": "The tech news worth your attention",
+    "lead": "Frontier News monitors trusted technology channels and turns their latest videos into concise, useful summaries. Get the important ideas, tools, and techniques without spending hours watching.",
+    "ctaPrimary": "Get Frontier News",
+    "ctaSecondary": "Read the latest digest",
+    "support": "Free daily updates. Choose your preferred language."
+  },
+  "value": {
+    "h2": "Keep up with technology without the noise",
+    "body": "Technology moves quickly, but useful information is scattered across long videos, product announcements, and creator channels. Frontier News follows selected technology sources, extracts the main points, and organizes them into a digest you can read in minutes. Each summary covers the practical details: what changed, why it matters, which tools were mentioned, and what you can apply.",
+    "cards": [
+      {
+        "h3": "Save time",
+        "text": "Understand long technology videos through concise summaries."
+      },
+      {
+        "h3": "Find useful tools",
+        "text": "Discover software, frameworks, and services mentioned by trusted creators."
+      },
+      {
+        "h3": "Get practical takeaways",
+        "text": "Focus on techniques and ideas you can use, rather than empty headlines."
+      }
+    ]
+  },
+  "latest": {
+    "h2": "Latest technology news and summaries",
+    "readSummary": "Read the summary",
+    "source": "Source",
+    "published": "Published",
+    "updated": "Updated"
+  },
+  "topics": {
+    "h2": "Technology topics we follow",
+    "intro": "Frontier News follows developments that matter to developers, technical leaders, and people building software products.",
+    "viewTopic": "View topic",
+    "articlesInTopic": "summaries in this topic",
+    "empty": "New summaries for this topic will appear here as they are published."
+  },
+  "how": {
+    "h2": "From technology videos to useful news",
+    "steps": [
+      {
+        "title": "We monitor selected channels",
+        "text": "Frontier News checks trusted technology creators for new videos."
+      },
+      {
+        "title": "We analyze the content",
+        "text": "Transcripts are processed to identify key points, tools, techniques, and practical takeaways."
+      },
+      {
+        "title": "You receive a concise digest",
+        "text": "Read summaries on the web or receive them by email, Substack, or Microsoft Teams."
+      }
+    ]
+  },
+  "newsletter": {
+    "h2": "Get the important technology updates in your inbox",
+    "intro": "Receive Frontier News daily in your preferred language.",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "language": "Digest language",
+    "submit": "Subscribe",
+    "submitting": "Subscribing…",
+    "trust": "No spam. Confirm your email before receiving your first issue. Unsubscribe at any time.",
+    "success": "Almost there! Check your inbox to confirm your subscription.",
+    "error": "Something went wrong. Please try again.",
+    "errorEmail": "Enter a valid email address.",
+    "captchaError": "Please complete the CAPTCHA verification."
+  },
+  "audience": {
+    "h2": "Built for people who work in technology",
+    "intro": "Frontier News is useful for:",
+    "list": [
+      "Software developers",
+      "Engineering leaders",
+      "DevOps and platform teams",
+      "Technology founders",
+      "Product managers",
+      "Technical researchers"
+    ]
+  },
+  "about": {
+    "h2": "Published by Hyperjump Technology",
+    "body": "Frontier News is created by Hyperjump Technology to help technical teams follow meaningful developments across software, AI, infrastructure, and developer tooling.",
+    "link": "Visit Hyperjump Technology",
+    "title": "About Frontier News | Hyperjump Technology",
+    "description": "Frontier News is published by Hyperjump Technology — curated tech news and AI summaries from trusted YouTube channels.",
+    "h1": "About Frontier News",
+    "intro": "Frontier News is created by Hyperjump Technology to help technical teams follow meaningful developments across software, AI, infrastructure, and developer tooling."
+  },
+  "faq": {
+    "h2": "Frequently asked questions",
+    "items": [
+      {
+        "q": "What is Frontier News?",
+        "a": "Frontier News is a technology monitoring and newsletter service that turns videos from selected YouTube channels into concise, structured summaries."
+      },
+      {
+        "q": "Is Frontier News free?",
+        "a": "Yes. Frontier News is free to subscribe. You can receive daily or weekly digests at no cost. Premium delivery channels may be introduced later without changing the free web and email tiers."
+      },
+      {
+        "q": "How often will I receive the newsletter?",
+        "a": "Frontier News is delivered daily."
+      },
+      {
+        "q": "Which technology topics does Frontier News cover?",
+        "a": "Coverage includes AI, software development, cloud infrastructure, DevOps, cybersecurity, open source, and developer tools."
+      },
+      {
+        "q": "Are the summaries written by AI?",
+        "a": "Frontier News uses language models to analyze transcripts and produce structured summaries. Each summary links back to its original source so readers can verify the context."
+      },
+      {
+        "q": "Which languages are available?",
+        "a": "Frontier News supports English, Indonesian, German, Italian, French, Arabic, Japanese, and Sundanese."
+      }
+    ]
+  },
+  "finalCta": {
+    "h2": "Spend less time searching. Keep up with what matters.",
+    "text": "Get concise technology news and practical summaries delivered on your schedule.",
+    "cta": "Subscribe to Frontier News"
+  },
+  "footer": {
+    "latest": "Latest news",
+    "digests": "Digest archive",
+    "topics": "Topics",
+    "about": "About Hyperjump",
+    "privacy": "Privacy policy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "preferences": "Subscription preferences",
+    "publisher": "Frontier News by Hyperjump Technology",
+    "rights": "All rights reserved."
+  },
+  "article": {
+    "backLatest": "Back to latest news",
+    "watchSource": "Watch the original video",
+    "relatedTopic": "Topic",
+    "readAlso": "More summaries"
+  },
+  "digests": {
+    "title": "Digest archive | Frontier News",
+    "description": "Browse the Frontier News digest archive — curated technology summaries from trusted YouTube channels.",
+    "h1": "Digest archive",
+    "intro": "Every published summary in one place, newest first."
+  },
+  "privacy": {
+    "title": "Privacy policy | Frontier News",
+    "description": "How Frontier News by Hyperjump Technology collects, uses, and protects subscriber information.",
+    "h1": "Privacy policy",
+    "updated": "Last updated: July 15, 2026",
+    "sections": [
+      {
+        "h2": "Who we are",
+        "p": "Frontier News is published by Hyperjump Technology. This policy explains how we handle information when you browse the site or subscribe to the newsletter."
+      },
+      {
+        "h2": "Information we collect",
+        "p": "When you subscribe, we collect your email address, preferred delivery frequency, preferred language, and your consent record. Server logs may include IP address and basic device information for security and performance."
+      },
+      {
+        "h2": "How we use information",
+        "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Email confirmation and unsubscribe",
+        "p": "You must confirm your email before receiving the first issue. You can unsubscribe at any time using the link in every email or the subscription preferences page."
+      },
+      {
+        "h2": "Contact",
+        "p": "Privacy questions: privacy@hyperjump.tech"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of use | Frontier News",
+    "description": "Terms of use for Frontier News, a publication of Hyperjump Technology.",
+    "h1": "Terms of use",
+    "updated": "Last updated: July 15, 2026",
+    "sections": [
+      {
+        "h2": "Service description",
+        "p": "Frontier News provides curated technology summaries and newsletter delivery based on publicly available video content. Summaries are informational and may be generated with language models."
+      },
+      {
+        "h2": "No professional advice",
+        "p": "Content is not legal, financial, or professional advice. Always verify critical decisions against primary sources linked in each summary."
+      },
+      {
+        "h2": "Acceptable use",
+        "p": "Do not abuse subscription forms, scrape the service in ways that degrade availability, or redistribute content in violation of applicable law or source rights."
+      },
+      {
+        "h2": "Contact",
+        "p": "Questions about these terms: legal@hyperjump.tech"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact | Frontier News",
+    "description": "Contact the Frontier News team at Hyperjump Technology.",
+    "h1": "Contact",
+    "intro": "Reach the Frontier News team for partnership, press, or support questions.",
+    "emailLabel": "Email",
+    "email": "frontiernews@hyperjump.tech",
+    "company": "Hyperjump Technology"
+  },
+  "preferences": {
+    "title": "Subscription preferences | Frontier News",
+    "description": "Update your Frontier News delivery frequency, language, or unsubscribe.",
+    "h1": "Subscription preferences",
+    "intro": "Change how you receive Frontier News, or stop emails entirely.",
+    "note": "Preference changes require a confirmed subscriber email. Use the link in any Frontier News message to open a personalized preferences view."
+  },
+  "notFound": {
+    "title": "Page not found | Frontier News",
+    "h1": "Page not found",
+    "text": "That page is not available. Return to the homepage to continue reading Frontier News.",
+    "cta": "Back to Frontier News"
+  }
+}
