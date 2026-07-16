@@ -9,8 +9,8 @@
 function getConfig() {
   const config = window.__FN_CONFIG__ || {};
   return {
-    apiUrl: config.apiUrl || "https://tech-monitor.fly.dev",
-    turnstileSiteKey: config.turnstileSiteKey || "",
+    apiUrl: config.apiUrl || 'https://app.frontiernews.tech',
+    turnstileSiteKey: config.turnstileSiteKey || '',
   };
 }
 
@@ -30,9 +30,9 @@ function initSite() {
  * @returns {void}
  */
 function initMobileNav() {
-  const header = document.querySelector("[data-site-header]");
-  const toggle = document.querySelector("[data-menu-toggle]");
-  const panel = document.querySelector("[data-mobile-nav]");
+  const header = document.querySelector('[data-site-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const panel = document.querySelector('[data-mobile-nav]');
   if (!header || !toggle || !panel) return;
 
   /**
@@ -40,21 +40,21 @@ function initMobileNav() {
    * @returns {void}
    */
   const setOpen = (open) => {
-    header.classList.toggle("nav-open", open);
-    document.body.style.overflow = open ? "hidden" : "";
-    toggle.setAttribute("aria-expanded", String(open));
+    header.classList.toggle('nav-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    toggle.setAttribute('aria-expanded', String(open));
   };
 
-  toggle.addEventListener("click", () => {
-    setOpen(!header.classList.contains("nav-open"));
+  toggle.addEventListener('click', () => {
+    setOpen(!header.classList.contains('nav-open'));
   });
 
-  panel.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setOpen(false));
+  panel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setOpen(false);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
   });
 }
 
@@ -67,12 +67,11 @@ function loadTurnstileScript() {
   if (window.__FN_TURNSTILE_LOADING__) return window.__FN_TURNSTILE_LOADING__;
 
   window.__FN_TURNSTILE_LOADING__ = new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src =
-      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
     script.async = true;
     script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Failed to load Turnstile"));
+    script.onerror = () => reject(new Error('Failed to load Turnstile'));
     document.head.appendChild(script);
   });
 
@@ -85,7 +84,7 @@ function loadTurnstileScript() {
  */
 function initNewsletterForms() {
   const { apiUrl, turnstileSiteKey } = getConfig();
-  const forms = Array.from(document.querySelectorAll("[data-newsletter-form]"));
+  const forms = Array.from(document.querySelectorAll('[data-newsletter-form]'));
   if (!forms.length) return;
 
   forms.forEach((form) => {
@@ -93,25 +92,16 @@ function initNewsletterForms() {
     let captchaToken = null;
     /** @type {string|null} */
     let widgetId = null;
-    const message = form.querySelector("[data-form-message]");
-    const submit = /** @type {HTMLButtonElement|null} */ (
-      form.querySelector('[type="submit"]')
-    );
-    const captchaHost = form.querySelector("[data-turnstile]");
-    const defaultLabel = submit?.textContent?.trim() || "Subscribe";
+    const message = form.querySelector('[data-form-message]');
+    const submit = /** @type {HTMLButtonElement|null} */ (form.querySelector('[type="submit"]'));
+    const captchaHost = form.querySelector('[data-turnstile]');
+    const defaultLabel = submit?.textContent?.trim() || 'Subscribe';
     const strings = {
-      errorEmail:
-        form.getAttribute("data-error-email") || "Enter a valid email address.",
-      error:
-        form.getAttribute("data-error") ||
-        "Something went wrong. Please try again.",
-      success:
-        form.getAttribute("data-success") ||
-        "Almost there! Check your inbox to confirm your subscription.",
-      captchaError:
-        form.getAttribute("data-captcha-error") ||
-        "Please complete the CAPTCHA verification.",
-      submitting: form.getAttribute("data-submitting") || "Subscribing…",
+      errorEmail: form.getAttribute('data-error-email') || 'Enter a valid email address.',
+      error: form.getAttribute('data-error') || 'Something went wrong. Please try again.',
+      success: form.getAttribute('data-success') || 'Almost there! Check your inbox to confirm your subscription.',
+      captchaError: form.getAttribute('data-captcha-error') || 'Please complete the CAPTCHA verification.',
+      submitting: form.getAttribute('data-submitting') || 'Subscribing…',
     };
 
     /**
@@ -122,8 +112,8 @@ function initNewsletterForms() {
     const show = (text, state) => {
       if (!message) return;
       message.textContent = text;
-      if (state) message.setAttribute("data-state", state);
-      else message.removeAttribute("data-state");
+      if (state) message.setAttribute('data-state', state);
+      else message.removeAttribute('data-state');
     };
 
     /**
@@ -131,10 +121,7 @@ function initNewsletterForms() {
      */
     const syncSubmitEnabled = () => {
       if (!submit) return;
-      const disabled =
-        submit.dataset.loading === "true" ||
-        submit.dataset.success === "true" ||
-        !captchaToken;
+      const disabled = submit.dataset.loading === 'true' || submit.dataset.success === 'true' || !captchaToken;
       submit.disabled = disabled;
     };
 
@@ -154,16 +141,16 @@ function initNewsletterForms() {
         .then(() => {
           widgetId = window.turnstile.render(captchaHost, {
             sitekey: turnstileSiteKey,
-            theme: "light",
+            theme: 'light',
             callback: (token) => {
               captchaToken = token;
               syncSubmitEnabled();
             },
-            "expired-callback": () => {
+            'expired-callback': () => {
               captchaToken = null;
               syncSubmitEnabled();
             },
-            "error-callback": () => {
+            'error-callback': () => {
               captchaToken = null;
               syncSubmitEnabled();
             },
@@ -171,67 +158,63 @@ function initNewsletterForms() {
           syncSubmitEnabled();
         })
         .catch(() => {
-          show(strings.error, "error");
+          show(strings.error, 'error');
         });
     }
 
     syncSubmitEnabled();
 
-    form.addEventListener("submit", async (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const email = /** @type {HTMLInputElement|null} */ (
-        form.querySelector('[name="email"]')
-      );
-      const language = /** @type {HTMLSelectElement|null} */ (
-        form.querySelector('[name="language"]')
-      );
-      const trimmed = email?.value.trim() || "";
+      const email = /** @type {HTMLInputElement|null} */ (form.querySelector('[name="email"]'));
+      const language = /** @type {HTMLSelectElement|null} */ (form.querySelector('[name="language"]'));
+      const trimmed = email?.value.trim() || '';
 
       if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-        show(strings.errorEmail, "error");
+        show(strings.errorEmail, 'error');
         email?.focus();
         return;
       }
 
       if (!captchaToken) {
-        show(strings.captchaError, "error");
+        show(strings.captchaError, 'error');
         return;
       }
 
       if (submit) {
-        submit.dataset.loading = "true";
+        submit.dataset.loading = 'true';
         submit.textContent = strings.submitting;
         syncSubmitEnabled();
       }
-      show("", "");
+      show('', '');
 
       try {
-        const res = await fetch(`${apiUrl.replace(/\/$/, "")}/api/subscribe`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch(`${apiUrl.replace(/\/$/, '')}/api/subscribe`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: trimmed,
-            language: language?.value || "en",
+            language: language?.value || 'en',
             turnstileToken: captchaToken,
           }),
         });
 
         if (res.ok) {
-          show(strings.success, "success");
+          show(strings.success, 'success');
           form.reset();
           if (submit) {
-            submit.dataset.success = "true";
+            submit.dataset.success = 'true';
             submit.textContent = defaultLabel;
           }
         } else {
-          show(strings.error, "error");
+          show(strings.error, 'error');
           if (submit) submit.textContent = defaultLabel;
         }
       } catch {
-        show(strings.error, "error");
+        show(strings.error, 'error');
         if (submit) submit.textContent = defaultLabel;
       } finally {
-        if (submit) submit.dataset.loading = "false";
+        if (submit) submit.dataset.loading = 'false';
         resetCaptcha();
       }
     });
@@ -243,11 +226,11 @@ function initNewsletterForms() {
  * @returns {void}
  */
 function initReveal() {
-  const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
+  const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
   if (!nodes.length) return;
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    nodes.forEach((node) => node.classList.add("is-visible"));
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    nodes.forEach((node) => node.classList.add('is-visible'));
     return;
   }
 
@@ -255,15 +238,15 @@ function initReveal() {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
+        entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
     },
-    { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
   );
 
   nodes.forEach((node) => {
-    node.classList.add("reveal");
+    node.classList.add('reveal');
     observer.observe(node);
   });
 }
@@ -273,10 +256,10 @@ function initReveal() {
  * @returns {void}
  */
 function initLanguageSelect() {
-  document.querySelectorAll("[data-lang-select]").forEach((select) => {
-    select.addEventListener("change", () => {
+  document.querySelectorAll('[data-lang-select]').forEach((select) => {
+    select.addEventListener('change', () => {
       const value = /** @type {HTMLSelectElement} */ (select).value;
-      const map = JSON.parse(select.getAttribute("data-lang-map") || "{}");
+      const map = JSON.parse(select.getAttribute('data-lang-map') || '{}');
       if (map[value]) {
         window.location.href = map[value];
       }
@@ -284,8 +267,8 @@ function initLanguageSelect() {
   });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initSite);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSite);
 } else {
   initSite();
 }
