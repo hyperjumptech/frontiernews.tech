@@ -303,11 +303,15 @@ function renderHead(options) {
     <meta property="og:description" content="${escapeHtml(description)}">
     <meta property="og:url" content="${canonical}">
     <meta property="og:locale" content="${escapeHtml(options.ogLocale || "en_US")}">
-    <meta property="og:image" content="${SITE_URL}/assets/og-cover.svg">
+    <meta property="og:image" content="${SITE_URL}/assets/og-cover.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Frontier News — curated tech news and AI summaries">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(title)}">
     <meta name="twitter:description" content="${escapeHtml(description)}">
-    <meta name="twitter:image" content="${SITE_URL}/assets/og-cover.svg">
+    <meta name="twitter:image" content="${SITE_URL}/assets/og-cover.png">
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1309,11 +1313,6 @@ function build() {
   <rect x="5.8" y="26.8" width="3.6" height="3.6" rx="1" fill="#3975F4"></rect>
   <rect x="10.0" y="26.8" width="3.6" height="3.6" rx="1" fill="#3975F4"></rect>
 </svg>`,
-  );
-
-  writeFile(
-    path.join(DIST, "assets/og-cover.svg"),
-    articleSvg("Curated Tech News"),
   );
 
   writeFile(
