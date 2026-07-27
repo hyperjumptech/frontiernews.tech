@@ -17,8 +17,9 @@
     "language": "Bahasa"
   },
   "hero": {
+    "kicker": "Laporan Sinyal",
     "h1": "Berita teknologi yang layak perhatian Anda",
-    "lead": "Frontier News memantau **saluran** teknologi terpercaya dan mengubah **video** terbaru mereka menjadi ringkasan yang ringkas dan berguna. Dapatkan ide, alat, dan teknik penting tanpa menghabiskan berjam-jam menonton.",
+    "lead": "**Saluran** teknologi terpercaya, diringkas jadi ringkasan singkat dari **video** terbaru mereka. Ide dan alat yang bisa dipakai, tanpa jam-jaman menonton.",
     "ctaPrimary": "Dapatkan Frontier News",
     "ctaSecondary": "Baca digest terbaru",
     "support": "Apdét harian gratis. Pilih bahasa yang Anda inginkan."

@@ -17,8 +17,9 @@
     "language": "Sprache"
   },
   "hero": {
+    "kicker": "Signalbericht",
     "h1": "Die Tech-News, die Ihre Aufmerksamkeit verdienen",
-    "lead": "Frontier News überwacht vertrauenswürdige **Technologiekanäle** und verwandelt ihre neuesten **Videos** in knappe, nützliche Zusammenfassungen. Erhalten Sie die wichtigen Ideen, Tools und Techniken, ohne Stunden zu schauen.",
+    "lead": "Vertrauenswürdige **Technologiekanäle**, verdichtet zu knappen Zusammenfassungen ihrer neuesten **Videos**. Ideen und Tools zum Anwenden, ohne Stunden zu schauen.",
     "ctaPrimary": "Frontier News holen",
     "ctaSecondary": "Neuesten Digest lesen",
     "support": "Kostenlose tägliche Updates. Wählen Sie Ihre bevorzugte Sprache."

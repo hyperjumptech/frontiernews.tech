@@ -347,59 +347,70 @@ function hyperjumpMark(size = 22) {
 
 /**
  * Decorative hero illustration: long videos compress into a short digest.
+ * Drawn as a large atmospheric plane for the full-bleed hero composition.
  * @returns {string}
  */
 function heroIllustration() {
-  return `<svg class="hero-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 360" role="img" aria-hidden="true" focusable="false">
+  return `<svg class="hero-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="hero-flow" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#8b2a2a" stop-opacity="0.12"/>
-      <stop offset="45%" stop-color="#8b2a2a" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#8b2a2a" stop-opacity="0.12"/>
+      <stop offset="0%" stop-color="#8b2a2a" stop-opacity="0.08"/>
+      <stop offset="40%" stop-color="#8b2a2a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8b2a2a" stop-opacity="0.1"/>
     </linearGradient>
+    <linearGradient id="hero-paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7f3ec"/>
+    </linearGradient>
+    <filter id="hero-soft" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1a1a1a" flood-opacity="0.07"/>
+    </filter>
   </defs>
 
-  <!-- Stacked long videos (time sink) -->
-  <g class="hero-illu-videos">
-    <rect x="28" y="78" width="168" height="108" rx="6" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
-    <rect x="36" y="92" width="168" height="108" rx="6" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
+  <ellipse class="hero-illu-bloom" cx="300" cy="210" rx="210" ry="160" fill="#8b2a2a" opacity="0.045"/>
+
+  <!-- Stacked long videos -->
+  <g class="hero-illu-videos" filter="url(#hero-soft)">
+    <rect x="36" y="96" width="198" height="128" rx="7" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
+    <rect x="48" y="112" width="198" height="128" rx="7" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
     <g class="hero-illu-video-front">
-      <rect x="44" y="106" width="168" height="108" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.75"/>
-      <rect x="44" y="106" width="168" height="8" rx="6" fill="#f3efe8"/>
-      <circle class="hero-illu-play" cx="128" cy="160" r="22" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.5"/>
-      <path d="M122 148 L142 160 L122 172 Z" fill="#8b2a2a"/>
-      <rect x="56" y="196" width="144" height="4" rx="2" fill="#e4e0d8"/>
-      <rect class="hero-illu-scrub" x="56" y="196" width="118" height="4" rx="2" fill="#8b2a2a"/>
-      <circle cx="174" cy="198" r="4.5" fill="#1a1a1a"/>
+      <rect x="60" y="128" width="198" height="128" rx="7" fill="url(#hero-paper)" stroke="#1a1a1a" stroke-width="1.75"/>
+      <rect x="60" y="128" width="198" height="10" rx="7" fill="#efe8df"/>
+      <circle class="hero-illu-play" cx="159" cy="192" r="26" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.5"/>
+      <path d="M152 178 L172 192 L152 206 Z" fill="#8b2a2a"/>
+      <rect x="76" y="232" width="166" height="5" rx="2.5" fill="#e4e0d8"/>
+      <rect class="hero-illu-scrub" x="76" y="232" width="128" height="5" rx="2.5" fill="#8b2a2a"/>
+      <circle cx="204" cy="234.5" r="5" fill="#1a1a1a"/>
     </g>
   </g>
-  <text class="hero-illu-label" x="128" y="72" text-anchor="middle" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="11" font-weight="700" letter-spacing="0.08em">10 mins watch</text>
+  <text class="hero-illu-label" x="159" y="84" text-anchor="middle" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="12" font-weight="700" letter-spacing="0.1em">10 MINS WATCH</text>
 
-  <!-- Compression flow -->
-  <g class="hero-illu-flow" fill="none" stroke="url(#hero-flow)" stroke-width="2.25" stroke-linecap="round">
-    <path class="hero-illu-stream" d="M220 140 C248 140, 248 128, 276 128"/>
-    <path class="hero-illu-stream" d="M220 160 C252 160, 252 160, 276 160"/>
-    <path class="hero-illu-stream" d="M220 180 C248 180, 248 192, 276 192"/>
+  <!-- Compression stream -->
+  <g class="hero-illu-flow" fill="none" stroke="url(#hero-flow)" stroke-width="2.4" stroke-linecap="round">
+    <path class="hero-illu-stream" d="M268 168 C302 168, 302 152, 336 152"/>
+    <path class="hero-illu-stream" d="M268 192 C308 192, 308 192, 336 192"/>
+    <path class="hero-illu-stream" d="M268 216 C302 216, 302 232, 336 232"/>
   </g>
-  <path class="hero-illu-arrow" d="M268 152 L284 160 L268 168" fill="none" stroke="#8b2a2a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="hero-illu-arrow" d="M326 184 L346 192 L326 200" fill="none" stroke="#8b2a2a" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Concise digest (saved time) -->
-  <g class="hero-illu-digest">
-    <rect x="292" y="88" width="118" height="148" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.75"/>
-    <rect x="292" y="88" width="118" height="18" rx="4" fill="#8b2a2a"/>
-    <rect x="292" y="100" width="118" height="6" fill="#8b2a2a"/>
-    <rect x="308" y="125" width="6" height="6" rx="1" fill="#3975F4"/>
-    <rect x="308" y="145" width="6" height="6" rx="1" fill="#41A8FB"/>
-    <rect x="308" y="165" width="6" height="6" rx="1" fill="#3AD6FC"/>
-    <g class="hero-illu-lines" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round">
-      <line x1="320" y1="128" x2="386" y2="128"/>
-      <line x1="320" y1="148" x2="372" y2="148" stroke="#6b6b6b"/>
-      <line x1="320" y1="168" x2="380" y2="168" stroke="#6b6b6b"/>
-      <line x1="308" y1="188" x2="360" y2="188" stroke="#6b6b6b"/>
-      <line x1="308" y1="208" x2="376" y2="208" stroke="#6b6b6b"/>
+  <!-- Concise digest -->
+  <g class="hero-illu-digest" filter="url(#hero-soft)">
+    <rect x="348" y="108" width="138" height="172" rx="5" fill="url(#hero-paper)" stroke="#1a1a1a" stroke-width="1.75"/>
+    <rect x="348" y="108" width="138" height="22" rx="5" fill="#8b2a2a"/>
+    <rect x="348" y="124" width="138" height="6" fill="#8b2a2a"/>
+    <text x="417" y="124" text-anchor="middle" fill="#ffffff" font-family="Courier New, Courier, monospace" font-size="9" font-weight="700" letter-spacing="0.12em">DIGEST</text>
+    <rect x="368" y="152" width="7" height="7" rx="1.5" fill="#3975F4"/>
+    <rect x="368" y="176" width="7" height="7" rx="1.5" fill="#41A8FB"/>
+    <rect x="368" y="200" width="7" height="7" rx="1.5" fill="#3AD6FC"/>
+    <g class="hero-illu-lines" stroke="#1a1a1a" stroke-width="2.1" stroke-linecap="round">
+      <line x1="384" y1="155.5" x2="462" y2="155.5"/>
+      <line x1="384" y1="179.5" x2="448" y2="179.5" stroke="#6b6b6b"/>
+      <line x1="384" y1="203.5" x2="456" y2="203.5" stroke="#6b6b6b"/>
+      <line x1="368" y1="232" x2="430" y2="232" stroke="#6b6b6b"/>
+      <line x1="368" y1="252" x2="450" y2="252" stroke="#6b6b6b"/>
     </g>
   </g>
-  <text class="hero-illu-label" x="351" y="72" text-anchor="middle" fill="#3f7a3a" font-family="Courier New, Courier, monospace" font-size="11" font-weight="700" letter-spacing="0.08em">1 minute read</text>
+  <text class="hero-illu-label hero-illu-label-ok" x="417" y="84" text-anchor="middle" fill="#3f7a3a" font-family="Courier New, Courier, monospace" font-size="12" font-weight="700" letter-spacing="0.1em">1 MIN READ</text>
 </svg>`;
 }
 
@@ -546,10 +557,12 @@ function layout(options) {
 <html lang="${locale}" dir="${dir}">
   <head>
     ${head}
-    <script>window.__FN_CONFIG__=${JSON.stringify({
-      apiUrl: API_URL,
-      turnstileSiteKey: TURNSTILE_SITE_KEY,
-    })};</script>
+    <script>document.documentElement.classList.add("js");window.__FN_CONFIG__=${JSON.stringify(
+      {
+        apiUrl: API_URL,
+        turnstileSiteKey: TURNSTILE_SITE_KEY,
+      },
+    )};</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -635,20 +648,28 @@ function renderHome(ctx) {
     .join("\n");
 
   const body = `
-      <section class="hero">
+      <section class="hero" data-hero>
+        <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="wrap hero-grid">
           <div class="hero-content">
-            <p class="hero-eyebrow">${escapeHtml(t.brandByline)} · Signal Report</p>
-            <p class="brand-mark">${escapeHtml(t.brand)}</p>
-            <h1>${escapeHtml(t.hero.h1)}</h1>
-            <p class="hero-lead">${formatInlineEmphasis(t.hero.lead)}</p>
-            <div class="hero-ctas">
-              <a class="btn btn-primary" href="#subscribe">${escapeHtml(t.hero.ctaPrimary)}</a>
+            <p class="hero-eyebrow" data-hero-enter style="--hero-i:0">${escapeHtml(t.brandByline)} · ${escapeHtml(t.hero.kicker)}</p>
+            <p class="brand-mark" data-hero-enter style="--hero-i:1">${escapeHtml(t.brand)}</p>
+            <h1 data-hero-enter style="--hero-i:2">${escapeHtml(t.hero.h1)}</h1>
+            <p class="hero-lead" data-hero-enter style="--hero-i:3">${formatInlineEmphasis(t.hero.lead)}</p>
+            <div class="hero-ctas" data-hero-enter style="--hero-i:4">
+              <a class="btn btn-primary" href="#subscribe">
+                <span>${escapeHtml(t.hero.ctaPrimary)}</span>
+                <span class="btn-trail" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7h8M7.5 3.5 11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </span>
+              </a>
               <a class="btn btn-secondary" href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.hero.ctaSecondary)}</a>
             </div>
-            <p class="hero-support">${escapeHtml(t.hero.support)}</p>
+            <p class="hero-support" data-hero-enter style="--hero-i:5">${escapeHtml(t.hero.support)}</p>
           </div>
-          <div class="hero-visual" data-reveal>
+          <div class="hero-visual" data-hero-enter style="--hero-i:2" aria-hidden="true">
             ${heroIllustration()}
           </div>
         </div>

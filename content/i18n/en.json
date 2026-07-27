@@ -17,8 +17,9 @@
     "language": "Language"
   },
   "hero": {
+    "kicker": "Signal Report",
     "h1": "The tech news worth your attention",
-    "lead": "Frontier News monitors trusted technology **channels** and turns their latest **videos** into concise, useful summaries. Get the important ideas, tools, and techniques without spending hours watching.",
+    "lead": "Trusted technology **channels**, distilled into concise summaries of their latest **videos**. Ideas and tools you can use, without the hours of watching.",
     "ctaPrimary": "Get Frontier News",
     "ctaSecondary": "Read the latest digest",
     "support": "Free daily updates. Choose your preferred language."

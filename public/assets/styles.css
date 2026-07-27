@@ -381,10 +381,36 @@ a:hover {
   color: #fff;
 }
 
+.btn-primary:has(.btn-trail) {
+  padding-inline-end: 0.55rem;
+}
+
 .btn-primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
   color: #fff;
+}
+
+.btn-trail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-inline-start: 0.15rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, #fff 16%, transparent);
+  transition: transform 200ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover .btn-trail {
+    transform: translateX(2px);
+  }
+
+  [dir="rtl"] .btn-primary:hover .btn-trail {
+    transform: translateX(-2px);
+  }
 }
 
 .btn-secondary {
@@ -414,24 +440,68 @@ a:hover {
   font-size: 0.72rem;
 }
 
-/* Hero — masthead / signal-report composition */
+/* Hero — full-bleed atmosphere, contained illustration */
 .hero {
   position: relative;
-  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  align-items: center;
+  min-height: calc(100dvh - var(--header-h));
+  padding: clamp(2.75rem, 7vw, 4.75rem) 0 clamp(3.25rem, 8vw, 5.5rem);
   border-bottom: 1px solid var(--line);
 }
 
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 58% 72% at 88% 40%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 42% 48% at 6% 88%,
+      color-mix(in srgb, var(--accent-2) 5%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--paper) 70%, #f0ebe3) 0%,
+      var(--paper) 48%,
+      color-mix(in srgb, var(--paper) 88%, #f5f0e8) 100%
+    );
+}
+
+.hero-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 4.5rem;
+  background: linear-gradient(180deg, transparent, var(--paper));
+  opacity: 0.55;
+}
+
 .hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
-  gap: clamp(2rem, 5vw, 3rem);
+  gap: clamp(1.75rem, 4vw, 3rem);
   align-items: center;
 }
 
+.hero-content {
+  position: relative;
+  max-width: 36rem;
+}
+
 .hero-visual {
+  position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(100%, 26rem);
+  width: min(100%, 28rem);
   margin-inline: auto;
   pointer-events: none;
   user-select: none;
@@ -440,13 +510,8 @@ a:hover {
 .hero-illustration {
   width: 100%;
   height: auto;
-  max-width: 26rem;
+  max-width: 32rem;
   overflow: visible;
-}
-
-.hero-content {
-  position: relative;
-  max-width: 40rem;
 }
 
 @media (min-width: 900px) {
@@ -461,8 +526,14 @@ a:hover {
 
   .hero-visual {
     width: 100%;
+    max-width: none;
     margin-inline: 0;
     justify-content: end;
+    padding-inline: 0.25rem;
+  }
+
+  .hero-illustration {
+    max-width: 34rem;
   }
 
   [dir="rtl"] .hero-visual {
@@ -480,9 +551,41 @@ a:hover {
   }
 }
 
+@media (max-width: 899px) {
+  .hero {
+    min-height: 0;
+    align-items: stretch;
+    padding-top: clamp(2.25rem, 6vw, 3rem);
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    order: -1;
+    opacity: 0.96;
+  }
+}
+
+/* Hero entrance stagger — gated on html.js so content stays visible without JS */
+html.js [data-hero-enter] {
+  opacity: 0;
+  transform: translateY(0.9rem);
+  transition:
+    opacity 720ms var(--ease),
+    transform 720ms var(--ease);
+  transition-delay: calc(var(--hero-i, 0) * 75ms);
+}
+
+html.js .hero.is-ready [data-hero-enter] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Hero illustration motion */
 .hero-illu-play {
-  transform-origin: 128px 160px;
+  transform-origin: 159px 192px;
   animation: hero-play-pulse 2.8s var(--ease) infinite;
 }
 
@@ -492,8 +595,12 @@ a:hover {
 }
 
 .hero-illu-digest {
-  transform-origin: 351px 162px;
+  transform-origin: 417px 194px;
   animation: hero-digest-settle 4.5s var(--ease) infinite;
+}
+
+.hero-illu-bloom {
+  animation: hero-bloom 6s var(--ease) infinite;
 }
 
 @keyframes hero-play-pulse {
@@ -518,13 +625,25 @@ a:hover {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes hero-bloom {
+  0%,
+  100% {
+    opacity: 0.04;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.07;
+    transform: scale(1.04);
   }
 }
 
 .hero-eyebrow {
   display: inline-block;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.15rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
@@ -534,32 +653,37 @@ a:hover {
 }
 
 .brand-mark {
-  margin: 0 0 1.35rem;
-  padding-block: 0.85rem;
+  margin: 0 0 1.15rem;
+  padding-block: clamp(0.85rem, 2vw, 1.1rem);
   border-block: 2px solid var(--line-strong);
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: clamp(2.4rem, 7vw, 3.5rem);
-  letter-spacing: -0.01em;
-  line-height: 1.05;
+  font-size: clamp(2.65rem, 8vw, 4.15rem);
+  letter-spacing: -0.025em;
+  line-height: 0.98;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 .hero h1 {
   margin: 0 0 1rem;
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
-  letter-spacing: -0.01em;
-  line-height: 1.35;
+  font-size: clamp(1.28rem, 2.6vw, 1.7rem);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
   color: var(--ink);
+  text-wrap: balance;
+  max-width: 22ch;
 }
 
 .hero-lead {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.85rem;
   color: var(--ink-muted);
-  font-size: 1.05rem;
-  max-width: 36rem;
+  font-size: clamp(1.02rem, 1.5vw, 1.12rem);
+  line-height: 1.7;
+  max-width: 34rem;
+  text-wrap: pretty;
 }
 
 .hero-lead mark {
@@ -598,8 +722,8 @@ a:hover {
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-bottom: 1.15rem;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
 }
 
 .hero-support {
@@ -1403,13 +1527,16 @@ a:hover {
   .reveal,
   .btn,
   .mobile-nav a,
+  [data-hero-enter],
   .hero-illu-play,
   .hero-illu-stream,
-  .hero-illu-digest {
+  .hero-illu-digest,
+  .hero-illu-bloom {
     transition: none !important;
     animation: none !important;
   }
-  .reveal {
+  .reveal,
+  [data-hero-enter] {
     opacity: 1;
     transform: none;
   }

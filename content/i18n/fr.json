@@ -17,8 +17,9 @@
     "language": "Langue"
   },
   "hero": {
+    "kicker": "Rapport signal",
     "h1": "L’actualité tech qui mérite votre attention",
-    "lead": "Frontier News surveille des **chaînes** technologiques de confiance et transforme leurs dernières **vidéos** en résumés concis et utiles. Obtenez les idées, outils et techniques importants sans passer des heures à regarder.",
+    "lead": "Des **chaînes** tech de confiance, distillées en résumés concis de leurs dernières **vidéos**. Idées et outils utiles, sans des heures de visionnage.",
     "ctaPrimary": "Obtenir Frontier News",
     "ctaSecondary": "Lire le dernier digest",
     "support": "Mises à jour quotidiennes gratuites. Choisissez votre langue."

@@ -17,8 +17,9 @@
     "language": "Lingua"
   },
   "hero": {
+    "kicker": "Report segnale",
     "h1": "Le notizie tech che meritano la tua attenzione",
-    "lead": "Frontier News monitora **canali** tecnologici affidabili e trasforma i loro ultimi **video** in riassunti concisi e utili. Ottieni idee, strumenti e tecniche importanti senza passare ore a guardare.",
+    "lead": "**Canali** tecnologici affidabili, distillati in riassunti concisi dei loro ultimi **video**. Idee e strumenti da usare, senza ore a guardare.",
     "ctaPrimary": "Ottieni Frontier News",
     "ctaSecondary": "Leggi l’ultimo digest",
     "support": "Aggiornamenti giornalieri gratuiti. Scegli la tua lingua."
