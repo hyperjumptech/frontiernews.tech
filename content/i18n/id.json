@@ -18,14 +18,14 @@
   },
   "hero": {
     "h1": "Berita teknologi yang layak perhatian Anda",
-    "lead": "Frontier News memantau saluran teknologi terpercaya dan mengubah video terbaru mereka menjadi ringkasan yang ringkas dan berguna. Dapatkan ide, alat, dan teknik penting tanpa menghabiskan berjam-jam menonton.",
+    "lead": "Frontier News memantau **saluran** teknologi terpercaya dan mengubah **video** terbaru mereka menjadi ringkasan yang ringkas dan berguna. Dapatkan ide, alat, dan teknik penting tanpa menghabiskan berjam-jam menonton.",
     "ctaPrimary": "Dapatkan Frontier News",
     "ctaSecondary": "Baca digest terbaru",
     "support": "Apdét harian gratis. Pilih bahasa yang Anda inginkan."
   },
   "value": {
     "h2": "Ikuti teknologi tanpa kebisingan",
-    "body": "Teknologi bergerak cepat, tetapi informasi berguna tersebar di video panjang, pengumuman produk, dan saluran kreator. Frontier News mengikuti sumber teknologi pilihan, mengekstrak poin utama, dan mengaturnya menjadi digest yang dapat dibaca dalam hitungan menit. Setiap ringkasan mencakup detail praktis: apa yang berubah, mengapa penting, alat mana yang disebutkan, dan apa yang dapat Anda terapkan.",
+    "body": "Teknologi bergerak cepat, tetapi informasi berguna tersebar di video panjang, pengumuman produk, dan saluran kreator. Frontier News mengikuti sumber teknologi pilihan, mengekstrak poin utama, dan mengaturnya menjadi digest yang dapat __dibaca dalam hitungan menit__. Setiap ringkasan mencakup detail praktis: apa yang berubah, mengapa penting, alat mana yang disebutkan, dan apa yang dapat Anda terapkan.",
     "cards": [
       {
         "h3": "Hemat waktu",

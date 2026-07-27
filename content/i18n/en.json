@@ -18,14 +18,14 @@
   },
   "hero": {
     "h1": "The tech news worth your attention",
-    "lead": "Frontier News monitors trusted technology channels and turns their latest videos into concise, useful summaries. Get the important ideas, tools, and techniques without spending hours watching.",
+    "lead": "Frontier News monitors trusted technology **channels** and turns their latest **videos** into concise, useful summaries. Get the important ideas, tools, and techniques without spending hours watching.",
     "ctaPrimary": "Get Frontier News",
     "ctaSecondary": "Read the latest digest",
     "support": "Free daily updates. Choose your preferred language."
   },
   "value": {
     "h2": "Keep up with technology without the noise",
-    "body": "Technology moves quickly, but useful information is scattered across long videos, product announcements, and creator channels. Frontier News follows selected technology sources, extracts the main points, and organizes them into a digest you can read in minutes. Each summary covers the practical details: what changed, why it matters, which tools were mentioned, and what you can apply.",
+    "body": "Technology moves quickly, but useful information is scattered across long videos, product announcements, and creator channels. Frontier News follows selected technology sources, extracts the main points, and organizes them into a digest you can __read in minutes__. Each summary covers the practical details: what changed, why it matters, which tools were mentioned, and what you can apply.",
     "cards": [
       {
         "h3": "Save time",
@@ -137,7 +137,7 @@
     ]
   },
   "finalCta": {
-    "h2": "Spend less time searching. Keep up with what matters.",
+    "h2": "Spend less time searching and watching.",
     "text": "Get concise technology news and practical summaries delivered on your schedule.",
     "cta": "Subscribe to Frontier News"
   },

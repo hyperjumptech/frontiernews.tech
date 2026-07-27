@@ -18,14 +18,14 @@
   },
   "hero": {
     "h1": "L’actualité tech qui mérite votre attention",
-    "lead": "Frontier News surveille des chaînes technologiques de confiance et transforme leurs dernières vidéos en résumés concis et utiles. Obtenez les idées, outils et techniques importants sans passer des heures à regarder.",
+    "lead": "Frontier News surveille des **chaînes** technologiques de confiance et transforme leurs dernières **vidéos** en résumés concis et utiles. Obtenez les idées, outils et techniques importants sans passer des heures à regarder.",
     "ctaPrimary": "Obtenir Frontier News",
     "ctaSecondary": "Lire le dernier digest",
     "support": "Mises à jour quotidiennes gratuites. Choisissez votre langue."
   },
   "value": {
     "h2": "Suivre la technologie sans le bruit",
-    "body": "La technologie évolue vite, mais l’information utile est dispersée entre longues vidéos, annonces produits et chaînes de créateurs. Frontier News suit des sources technologiques sélectionnées, en extrait les points essentiels et les organise en un digest lisible en quelques minutes. Chaque résumé couvre les détails pratiques : ce qui a changé, pourquoi c’est important, quels outils ont été mentionnés, et ce que vous pouvez appliquer.",
+    "body": "La technologie évolue vite, mais l’information utile est dispersée entre longues vidéos, annonces produits et chaînes de créateurs. Frontier News suit des sources technologiques sélectionnées, en extrait les points essentiels et les organise en un digest __lisible en quelques minutes__. Chaque résumé couvre les détails pratiques : ce qui a changé, pourquoi c’est important, quels outils ont été mentionnés, et ce que vous pouvez appliquer.",
     "cards": [
       {
         "h3": "Gagner du temps",

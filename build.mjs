@@ -4,29 +4,32 @@
  * Generates localized HTML, sitemap, robots.txt, and 404 page.
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
-const DIST = path.join(ROOT, 'dist');
+const DIST = path.join(ROOT, "dist");
 
 /**
  * Loads key=value pairs from .env into process.env when unset.
  * @returns {void}
  */
 function loadEnvFile() {
-  const envPath = path.join(ROOT, '.env');
+  const envPath = path.join(ROOT, ".env");
   if (!fs.existsSync(envPath)) return;
-  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+  for (const line of fs.readFileSync(envPath, "utf8").split("\n")) {
     const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const eq = trimmed.indexOf('=');
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
     if (eq === -1) continue;
     const key = trimmed.slice(0, eq).trim();
     let value = trimmed.slice(eq + 1).trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     if (key && process.env[key] === undefined) process.env[key] = value;
@@ -35,11 +38,16 @@ function loadEnvFile() {
 
 loadEnvFile();
 
-const SITE_URL = 'https://frontiernews.tech';
-const HYPERJUMP_URL = 'https://hyperjump.tech';
+const SITE_URL = "https://frontiernews.tech";
+const HYPERJUMP_URL = "https://hyperjump.tech";
 const API_URL =
-  process.env.NEXT_PUBLIC_FRONTIERNOTES_API_URL || process.env.FRONTIERNOTES_API_URL || 'https://app.frontiernews.tech';
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process.env.TURNSTILE_SITE_KEY || '';
+  process.env.NEXT_PUBLIC_FRONTIERNOTES_API_URL ||
+  process.env.FRONTIERNOTES_API_URL ||
+  "https://app.frontiernews.tech";
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+  process.env.TURNSTILE_SITE_KEY ||
+  "";
 
 /**
  * Where "Latest news" (and related digest CTAs) point.
@@ -47,25 +55,27 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process
  * Override at build time with LATEST_NEWS_URL.
  */
 const LATEST_NEWS_URL =
-  process.env.LATEST_NEWS_URL !== undefined ? process.env.LATEST_NEWS_URL : 'https://app.frontiernews.tech/digest';
+  process.env.LATEST_NEWS_URL !== undefined
+    ? process.env.LATEST_NEWS_URL
+    : "https://app.frontiernews.tech/digest";
 /** Digest languages accepted by the subscribe API (matches Hyperjump). */
 const DIGEST_LOCALES = [
-  { code: 'en', name: 'English' },
-  { code: 'id', name: 'Bahasa Indonesia' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'su', name: 'Basa Sunda' },
+  { code: "en", name: "English" },
+  { code: "id", name: "Bahasa Indonesia" },
+  { code: "de", name: "Deutsch" },
+  { code: "su", name: "Basa Sunda" },
 ];
 
 /** @type {{ code: string, name: string, dir: "ltr"|"rtl", default?: boolean }[]} */
 const LOCALES = [
-  { code: 'en', name: 'English', dir: 'ltr', default: true },
-  { code: 'id', name: 'Bahasa Indonesia', dir: 'ltr' },
-  { code: 'de', name: 'Deutsch', dir: 'ltr' },
-  { code: 'it', name: 'Italiano', dir: 'ltr' },
-  { code: 'fr', name: 'Français', dir: 'ltr' },
-  { code: 'ar', name: 'العربية', dir: 'rtl' },
-  { code: 'ja', name: '日本語', dir: 'ltr' },
-  { code: 'su', name: 'Basa Sunda', dir: 'ltr' },
+  { code: "en", name: "English", dir: "ltr", default: true },
+  { code: "id", name: "Bahasa Indonesia", dir: "ltr" },
+  { code: "de", name: "Deutsch", dir: "ltr" },
+  { code: "it", name: "Italiano", dir: "ltr" },
+  { code: "fr", name: "Français", dir: "ltr" },
+  { code: "ar", name: "العربية", dir: "rtl" },
+  { code: "ja", name: "日本語", dir: "ltr" },
+  { code: "su", name: "Basa Sunda", dir: "ltr" },
 ];
 
 /**
@@ -75,10 +85,30 @@ const LOCALES = [
  */
 function escapeHtml(value) {
   return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;');
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+/**
+ * Escapes text and turns emphasis markers into inline HTML.
+ * `**phrase**` → highlighter `<mark>`; `__phrase__` → editorial `<em class="inline-promise">`.
+ * @param {string} value
+ * @returns {string}
+ */
+function formatInlineEmphasis(value) {
+  const parts = String(value).split(/(\*\*[^*]+\*\*|__[^_]+__)/g);
+  return parts
+    .map((part) => {
+      const mark = part.match(/^\*\*([^*]+)\*\*$/);
+      if (mark) return `<mark>${escapeHtml(mark[1])}</mark>`;
+      const promise = part.match(/^__([^_]+)__$/);
+      if (promise)
+        return `<em class="inline-promise">${escapeHtml(promise[1])}</em>`;
+      return escapeHtml(part);
+    })
+    .join("");
 }
 
 /**
@@ -87,7 +117,7 @@ function escapeHtml(value) {
  * @returns {any}
  */
 function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
 /**
@@ -132,7 +162,7 @@ function copyDir(src, dest) {
  * @returns {string}
  */
 function localePrefix(locale) {
-  return locale === 'en' ? '' : `/${locale}`;
+  return locale === "en" ? "" : `/${locale}`;
 }
 
 /**
@@ -141,10 +171,10 @@ function localePrefix(locale) {
  * @param {string} pathname
  * @returns {string}
  */
-function absoluteUrl(locale, pathname = '/') {
+function absoluteUrl(locale, pathname = "/") {
   const prefix = localePrefix(locale);
-  const clean = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  if (clean === '/') return `${SITE_URL}${prefix}/`;
+  const clean = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  if (clean === "/") return `${SITE_URL}${prefix}/`;
   return `${SITE_URL}${prefix}${clean}`;
 }
 
@@ -154,10 +184,10 @@ function absoluteUrl(locale, pathname = '/') {
  * @param {string} pathname
  * @returns {string}
  */
-function href(locale, pathname = '/') {
+function href(locale, pathname = "/") {
   const prefix = localePrefix(locale);
-  const clean = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  if (clean === '/') return `${prefix}/` || '/';
+  const clean = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  if (clean === "/") return `${prefix}/` || "/";
   return `${prefix}${clean}`;
 }
 
@@ -167,7 +197,7 @@ function href(locale, pathname = '/') {
  * @returns {string}
  */
 function latestNewsHref(locale) {
-  return LATEST_NEWS_URL || href(locale, '/digests/');
+  return LATEST_NEWS_URL || href(locale, "/digests/");
 }
 
 /**
@@ -175,7 +205,7 @@ function latestNewsHref(locale) {
  * @returns {string}
  */
 function latestNewsExternalAttrs() {
-  return LATEST_NEWS_URL ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return LATEST_NEWS_URL ? ' target="_blank" rel="noopener noreferrer"' : "";
 }
 
 /**
@@ -188,8 +218,10 @@ function hreflangTags(pathForLocale) {
     const url = `${SITE_URL}${pathForLocale(locale.code)}`;
     return `<link rel="alternate" hreflang="${locale.code}" href="${url}">`;
   });
-  tags.push(`<link rel="alternate" hreflang="x-default" href="${SITE_URL}${pathForLocale('en')}">`);
-  return tags.join('\n    ');
+  tags.push(
+    `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${pathForLocale("en")}">`,
+  );
+  return tags.join("\n    ");
 }
 
 /**
@@ -201,9 +233,9 @@ function hreflangTags(pathForLocale) {
 function formatDate(iso, locale) {
   try {
     return new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     }).format(new Date(`${iso}T12:00:00Z`));
   } catch {
     return iso;
@@ -236,7 +268,9 @@ function topicCopy(topic, locale) {
  * @returns {string}
  */
 function langMapAttr(pathForLocale) {
-  const map = Object.fromEntries(LOCALES.map((locale) => [locale.code, pathForLocale(locale.code)]));
+  const map = Object.fromEntries(
+    LOCALES.map((locale) => [locale.code, pathForLocale(locale.code)]),
+  );
   return escapeHtml(JSON.stringify(map));
 }
 
@@ -246,7 +280,15 @@ function langMapAttr(pathForLocale) {
  * @returns {string}
  */
 function renderHead(options) {
-  const { locale, title, description, canonical, hreflang, ogType = 'website', jsonLd = [] } = options;
+  const {
+    locale,
+    title,
+    description,
+    canonical,
+    hreflang,
+    ogType = "website",
+    jsonLd = [],
+  } = options;
 
   return `<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -260,7 +302,7 @@ function renderHead(options) {
     <meta property="og:title" content="${escapeHtml(title)}">
     <meta property="og:description" content="${escapeHtml(description)}">
     <meta property="og:url" content="${canonical}">
-    <meta property="og:locale" content="${escapeHtml(options.ogLocale || 'en_US')}">
+    <meta property="og:locale" content="${escapeHtml(options.ogLocale || "en_US")}">
     <meta property="og:image" content="${SITE_URL}/assets/og-cover.svg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(title)}">
@@ -269,9 +311,9 @@ function renderHead(options) {
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/styles.css">
-    ${jsonLd.map((data) => `<script type="application/ld+json">${JSON.stringify(data)}</script>`).join('\n    ')}`;
+    ${jsonLd.map((data) => `<script type="application/ld+json">${JSON.stringify(data)}</script>`).join("\n    ")}`;
 }
 
 /**
@@ -303,8 +345,66 @@ function hyperjumpMark(size = 22) {
 </svg>`;
 }
 
+/**
+ * Decorative hero illustration: long videos compress into a short digest.
+ * @returns {string}
+ */
+function heroIllustration() {
+  return `<svg class="hero-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 360" role="img" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="hero-flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b2a2a" stop-opacity="0.12"/>
+      <stop offset="45%" stop-color="#8b2a2a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#8b2a2a" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stacked long videos (time sink) -->
+  <g class="hero-illu-videos">
+    <rect x="28" y="78" width="168" height="108" rx="6" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
+    <rect x="36" y="92" width="168" height="108" rx="6" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.5"/>
+    <g class="hero-illu-video-front">
+      <rect x="44" y="106" width="168" height="108" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.75"/>
+      <rect x="44" y="106" width="168" height="8" rx="6" fill="#f3efe8"/>
+      <circle class="hero-illu-play" cx="128" cy="160" r="22" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.5"/>
+      <path d="M122 148 L142 160 L122 172 Z" fill="#8b2a2a"/>
+      <rect x="56" y="196" width="144" height="4" rx="2" fill="#e4e0d8"/>
+      <rect class="hero-illu-scrub" x="56" y="196" width="118" height="4" rx="2" fill="#8b2a2a"/>
+      <circle cx="174" cy="198" r="4.5" fill="#1a1a1a"/>
+    </g>
+  </g>
+  <text class="hero-illu-label" x="128" y="72" text-anchor="middle" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="11" font-weight="700" letter-spacing="0.08em">10 mins watch</text>
+
+  <!-- Compression flow -->
+  <g class="hero-illu-flow" fill="none" stroke="url(#hero-flow)" stroke-width="2.25" stroke-linecap="round">
+    <path class="hero-illu-stream" d="M220 140 C248 140, 248 128, 276 128"/>
+    <path class="hero-illu-stream" d="M220 160 C252 160, 252 160, 276 160"/>
+    <path class="hero-illu-stream" d="M220 180 C248 180, 248 192, 276 192"/>
+  </g>
+  <path class="hero-illu-arrow" d="M268 152 L284 160 L268 168" fill="none" stroke="#8b2a2a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Concise digest (saved time) -->
+  <g class="hero-illu-digest">
+    <rect x="292" y="88" width="118" height="148" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.75"/>
+    <rect x="292" y="88" width="118" height="18" rx="4" fill="#8b2a2a"/>
+    <rect x="292" y="100" width="118" height="6" fill="#8b2a2a"/>
+    <rect x="308" y="125" width="6" height="6" rx="1" fill="#3975F4"/>
+    <rect x="308" y="145" width="6" height="6" rx="1" fill="#41A8FB"/>
+    <rect x="308" y="165" width="6" height="6" rx="1" fill="#3AD6FC"/>
+    <g class="hero-illu-lines" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round">
+      <line x1="320" y1="128" x2="386" y2="128"/>
+      <line x1="320" y1="148" x2="372" y2="148" stroke="#6b6b6b"/>
+      <line x1="320" y1="168" x2="380" y2="168" stroke="#6b6b6b"/>
+      <line x1="308" y1="188" x2="360" y2="188" stroke="#6b6b6b"/>
+      <line x1="308" y1="208" x2="376" y2="208" stroke="#6b6b6b"/>
+    </g>
+  </g>
+  <text class="hero-illu-label" x="351" y="72" text-anchor="middle" fill="#3f7a3a" font-family="Courier New, Courier, monospace" font-size="11" font-weight="700" letter-spacing="0.08em">1 minute read</text>
+</svg>`;
+}
+
 function renderHeader({ t, locale, pathForLocale, active }) {
-  const home = href(locale, '/');
+  const home = href(locale, "/");
   return `<header class="site-header" data-site-header>
       <div class="nav-island">
         <a class="brand" href="${home}" aria-label="Frontier News home">
@@ -316,18 +416,18 @@ function renderHeader({ t, locale, pathForLocale, active }) {
         </a>
         <nav aria-label="Primary">
           <ul class="nav-links">
-            <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}${!LATEST_NEWS_URL && active === 'latest' ? ' aria-current="page"' : ''}>${escapeHtml(t.nav.latest)}</a></li>
-            <li><a href="${href(locale, '/#topics')}" ${active === 'topics' ? 'aria-current="page"' : ''}>${escapeHtml(t.nav.topics)}</a></li>
-            <li><a href="${href(locale, '/#how-it-works')}" ${active === 'how' ? 'aria-current="page"' : ''}>${escapeHtml(t.nav.how)}</a></li>
-            <li><a href="${href(locale, '/about/')}">${escapeHtml(t.nav.about)}</a></li>
+            <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}${!LATEST_NEWS_URL && active === "latest" ? ' aria-current="page"' : ""}>${escapeHtml(t.nav.latest)}</a></li>
+            <li><a href="${href(locale, "/#topics")}" ${active === "topics" ? 'aria-current="page"' : ""}>${escapeHtml(t.nav.topics)}</a></li>
+            <li><a href="${href(locale, "/#how-it-works")}" ${active === "how" ? 'aria-current="page"' : ""}>${escapeHtml(t.nav.how)}</a></li>
+            <li><a href="${href(locale, "/about/")}">${escapeHtml(t.nav.about)}</a></li>
           </ul>
         </nav>
         <div class="nav-actions">
-          <label class="visually-hidden" for="lang-${locale}-${active || 'page'}">${escapeHtml(t.nav.language)}</label>
-          <select id="lang-${locale}-${active || 'page'}" class="lang-select" data-lang-select data-lang-map='${langMapAttr(pathForLocale)}' aria-label="${escapeHtml(t.nav.language)}">
-            ${LOCALES.map((item) => `<option value="${item.code}" ${item.code === locale ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('')}
+          <label class="visually-hidden" for="lang-${locale}-${active || "page"}">${escapeHtml(t.nav.language)}</label>
+          <select id="lang-${locale}-${active || "page"}" class="lang-select" data-lang-select data-lang-map='${langMapAttr(pathForLocale)}' aria-label="${escapeHtml(t.nav.language)}">
+            ${LOCALES.map((item) => `<option value="${item.code}" ${item.code === locale ? "selected" : ""}>${escapeHtml(item.name)}</option>`).join("")}
           </select>
-          <a class="btn btn-primary btn-sm" href="${href(locale, '/#subscribe')}">${escapeHtml(t.nav.subscribe)}</a>
+          <a class="btn btn-primary btn-sm" href="${href(locale, "/#subscribe")}">${escapeHtml(t.nav.subscribe)}</a>
           <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="${escapeHtml(t.nav.menuOpen)}">
             <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
           </button>
@@ -336,10 +436,10 @@ function renderHeader({ t, locale, pathForLocale, active }) {
       <div class="mobile-nav" id="mobile-nav" data-mobile-nav>
         <ul>
           <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.nav.latest)}</a></li>
-          <li><a href="${href(locale, '/#topics')}">${escapeHtml(t.nav.topics)}</a></li>
-          <li><a href="${href(locale, '/#how-it-works')}">${escapeHtml(t.nav.how)}</a></li>
-          <li><a href="${href(locale, '/about/')}">${escapeHtml(t.nav.about)}</a></li>
-          <li><a href="${href(locale, '/#subscribe')}">${escapeHtml(t.nav.subscribe)}</a></li>
+          <li><a href="${href(locale, "/#topics")}">${escapeHtml(t.nav.topics)}</a></li>
+          <li><a href="${href(locale, "/#how-it-works")}">${escapeHtml(t.nav.how)}</a></li>
+          <li><a href="${href(locale, "/about/")}">${escapeHtml(t.nav.about)}</a></li>
+          <li><a href="${href(locale, "/#subscribe")}">${escapeHtml(t.nav.subscribe)}</a></li>
         </ul>
       </div>
     </header>`;
@@ -363,23 +463,23 @@ function renderFooter({ t, locale }) {
             <ul>
               <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.latest)}</a></li>
               <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.digests)}</a></li>
-              <li><a href="${href(locale, '/#topics')}">${escapeHtml(t.footer.topics)}</a></li>
+              <li><a href="${href(locale, "/#topics")}">${escapeHtml(t.footer.topics)}</a></li>
             </ul>
           </div>
           <div>
             <h3>${escapeHtml(t.nav.about)}</h3>
             <ul>
-              <li><a href="${href(locale, '/about/')}">${escapeHtml(t.footer.about)}</a></li>
+              <li><a href="${href(locale, "/about/")}">${escapeHtml(t.footer.about)}</a></li>
               <li><a href="${HYPERJUMP_URL}" rel="noopener noreferrer">Hyperjump</a></li>
-              <li><a href="${href(locale, '/contact/')}">${escapeHtml(t.footer.contact)}</a></li>
+              <li><a href="${href(locale, "/contact/")}">${escapeHtml(t.footer.contact)}</a></li>
             </ul>
           </div>
           <div>
             <h3>Legal</h3>
             <ul>
-              <li><a href="${href(locale, '/privacy/')}">${escapeHtml(t.footer.privacy)}</a></li>
-              <li><a href="${href(locale, '/terms/')}">${escapeHtml(t.footer.terms)}</a></li>
-              <li><a href="${href(locale, '/preferences/')}">${escapeHtml(t.footer.preferences)}</a></li>
+              <li><a href="${href(locale, "/privacy/")}">${escapeHtml(t.footer.privacy)}</a></li>
+              <li><a href="${href(locale, "/terms/")}">${escapeHtml(t.footer.terms)}</a></li>
+              <li><a href="${href(locale, "/preferences/")}">${escapeHtml(t.footer.preferences)}</a></li>
             </ul>
           </div>
         </div>
@@ -396,7 +496,7 @@ function renderFooter({ t, locale }) {
  * @returns {string}
  */
 function digestLanguage(locale) {
-  return DIGEST_LOCALES.some((item) => item.code === locale) ? locale : 'en';
+  return DIGEST_LOCALES.some((item) => item.code === locale) ? locale : "en";
 }
 
 /**
@@ -406,7 +506,7 @@ function digestLanguage(locale) {
  * @param {string} [idPrefix]
  * @returns {string}
  */
-function renderNewsletterForm(t, locale, idPrefix = 'nl') {
+function renderNewsletterForm(t, locale, idPrefix = "nl") {
   const selected = digestLanguage(locale);
   return `<div class="form-shell" data-reveal>
         <form class="form-panel" data-newsletter-form
@@ -419,7 +519,7 @@ function renderNewsletterForm(t, locale, idPrefix = 'nl') {
           <div class="newsletter-lang">
             <label for="${idPrefix}-language">${escapeHtml(t.newsletter.language)}</label>
             <select id="${idPrefix}-language" name="language">
-              ${DIGEST_LOCALES.map((item) => `<option value="${item.code}" ${item.code === selected ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('')}
+              ${DIGEST_LOCALES.map((item) => `<option value="${item.code}" ${item.code === selected ? "selected" : ""}>${escapeHtml(item.name)}</option>`).join("")}
             </select>
           </div>
           <div class="newsletter-row">
@@ -473,30 +573,30 @@ function layout(options) {
 function baseJsonLd(locale, t) {
   return [
     {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Hyperjump Technology',
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Hyperjump Technology",
       url: HYPERJUMP_URL,
       logo: `${SITE_URL}/assets/favicon.svg`,
       sameAs: [HYPERJUMP_URL],
-      publishingPrinciples: absoluteUrl(locale, '/about/'),
+      publishingPrinciples: absoluteUrl(locale, "/about/"),
     },
     {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Frontier News',
-      alternateName: 'Frontier News by Hyperjump',
-      url: absoluteUrl(locale, '/'),
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Frontier News",
+      alternateName: "Frontier News by Hyperjump",
+      url: absoluteUrl(locale, "/"),
       description: t.meta.description,
       inLanguage: locale,
       publisher: {
-        '@type': 'Organization',
-        name: 'Hyperjump Technology',
+        "@type": "Organization",
+        name: "Hyperjump Technology",
         url: HYPERJUMP_URL,
       },
       potentialAction: {
-        '@type': 'SubscribeAction',
-        target: absoluteUrl(locale, '/#subscribe'),
+        "@type": "SubscribeAction",
+        target: absoluteUrl(locale, "/#subscribe"),
         name: t.nav.subscribe,
       },
     },
@@ -512,38 +612,45 @@ function renderHome(ctx) {
   const { locale, t, articles, topics, localeMeta } = ctx;
   const pathForLocale = (code) => `${localePrefix(code)}/`;
   const faqLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: t.faq.items.map((item) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
+      acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
 
   const topicLinks = topics
     .map((topic) => {
       const copy = topicCopy(topic, locale);
-      const count = articles.filter((article) => article.topic === topic.slug).length;
+      const count = articles.filter(
+        (article) => article.topic === topic.slug,
+      ).length;
       return `<a class="topic-link" href="${href(locale, `/topics/${topic.slug}/`)}" data-reveal>
             <strong>${escapeHtml(copy.name)}</strong>
             <span>${count} ${escapeHtml(t.topics.articlesInTopic)}</span>
           </a>`;
     })
-    .join('\n');
+    .join("\n");
 
   const body = `
       <section class="hero">
-        <div class="wrap hero-content">
-          <p class="hero-eyebrow">${escapeHtml(t.brandByline)} · Signal Report</p>
-          <p class="brand-mark">${escapeHtml(t.brand)}</p>
-          <h1>${escapeHtml(t.hero.h1)}</h1>
-          <p class="hero-lead">${escapeHtml(t.hero.lead)}</p>
-          <div class="hero-ctas">
-            <a class="btn btn-primary" href="#subscribe">${escapeHtml(t.hero.ctaPrimary)}</a>
-            <a class="btn btn-secondary" href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.hero.ctaSecondary)}</a>
+        <div class="wrap hero-grid">
+          <div class="hero-content">
+            <p class="hero-eyebrow">${escapeHtml(t.brandByline)} · Signal Report</p>
+            <p class="brand-mark">${escapeHtml(t.brand)}</p>
+            <h1>${escapeHtml(t.hero.h1)}</h1>
+            <p class="hero-lead">${formatInlineEmphasis(t.hero.lead)}</p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="#subscribe">${escapeHtml(t.hero.ctaPrimary)}</a>
+              <a class="btn btn-secondary" href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.hero.ctaSecondary)}</a>
+            </div>
+            <p class="hero-support">${escapeHtml(t.hero.support)}</p>
           </div>
-          <p class="hero-support">${escapeHtml(t.hero.support)}</p>
+          <div class="hero-visual" data-reveal>
+            ${heroIllustration()}
+          </div>
         </div>
       </section>
 
@@ -551,7 +658,7 @@ function renderHome(ctx) {
         <div class="wrap">
           <span class="section-label">Value</span>
           <h2 id="value-heading" data-reveal>${escapeHtml(t.value.h2)}</h2>
-          <p class="section-intro" data-reveal>${escapeHtml(t.value.body)}</p>
+          <p class="section-intro" data-reveal>${formatInlineEmphasis(t.value.body)}</p>
           <div class="benefit-grid">
             ${t.value.cards
               .map(
@@ -563,7 +670,7 @@ function renderHome(ctx) {
               </article>
             </div>`,
               )
-              .join('\n')}
+              .join("\n")}
           </div>
         </div>
       </section>
@@ -591,7 +698,7 @@ function renderHome(ctx) {
               <p>${escapeHtml(step.text)}</p>
             </li>`,
               )
-              .join('\n')}
+              .join("\n")}
           </ol>
         </div>
       </section>
@@ -601,7 +708,7 @@ function renderHome(ctx) {
           <span class="section-label">Newsletter</span>
           <h2 id="subscribe-heading" data-reveal>${escapeHtml(t.newsletter.h2)}</h2>
           <p class="section-intro" data-reveal>${escapeHtml(t.newsletter.intro)}</p>
-          ${renderNewsletterForm(t, locale, 'home')}
+          ${renderNewsletterForm(t, locale, "home")}
         </div>
       </section>
 
@@ -611,7 +718,7 @@ function renderHome(ctx) {
           <h2 id="audience-heading" data-reveal>${escapeHtml(t.audience.h2)}</h2>
           <p class="section-intro" data-reveal>${escapeHtml(t.audience.intro)}</p>
           <ul class="audience-list">
-            ${t.audience.list.map((item) => `<li data-reveal>${escapeHtml(item)}</li>`).join('\n')}
+            ${t.audience.list.map((item) => `<li data-reveal>${escapeHtml(item)}</li>`).join("\n")}
           </ul>
         </div>
       </section>
@@ -623,7 +730,7 @@ function renderHome(ctx) {
           <p class="section-intro" data-reveal>${escapeHtml(t.about.body)}</p>
           <p class="section-actions" data-reveal>
             <a class="btn btn-secondary" href="${HYPERJUMP_URL}" rel="noopener noreferrer">${escapeHtml(t.about.link)}</a>
-            <a class="btn btn-ghost" href="${href(locale, '/about/')}">${escapeHtml(t.nav.about)}</a>
+            <a class="btn btn-ghost" href="${href(locale, "/about/")}">${escapeHtml(t.nav.about)}</a>
           </p>
         </div>
       </section>
@@ -640,7 +747,7 @@ function renderHome(ctx) {
               <p>${escapeHtml(item.a)}</p>
             </details>`,
               )
-              .join('\n')}
+              .join("\n")}
           </div>
         </div>
       </section>
@@ -658,12 +765,12 @@ function renderHome(ctx) {
     t,
     locale,
     pathForLocale,
-    active: 'home',
+    active: "home",
     head: renderHead({
       locale,
       title: t.meta.title,
       description: t.meta.description,
-      canonical: absoluteUrl(locale, '/'),
+      canonical: absoluteUrl(locale, "/"),
       hreflang: hreflangTags(pathForLocale),
       ogLocale: t.meta.ogLocale,
       jsonLd: [...baseJsonLd(locale, t), faqLd],
@@ -682,7 +789,8 @@ function renderArticle(ctx) {
   const copy = articleCopy(article, locale);
   const topic = topics.find((item) => item.slug === article.topic);
   const topicName = topic ? topicCopy(topic, locale).name : article.topic;
-  const pathForLocale = (code) => `${localePrefix(code)}/articles/${article.slug}/`;
+  const pathForLocale = (code) =>
+    `${localePrefix(code)}/articles/${article.slug}/`;
 
   const related = articles
     .filter((item) => item.slug !== article.slug)
@@ -691,11 +799,11 @@ function renderArticle(ctx) {
       const itemCopy = articleCopy(item, locale);
       return `<li style="margin-bottom:0.75rem"><a href="${href(locale, `/articles/${item.slug}/`)}">${escapeHtml(itemCopy.title)}</a></li>`;
     })
-    .join('');
+    .join("");
 
   const articleLd = {
-    '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
     headline: copy.title,
     description: copy.description,
     datePublished: article.date,
@@ -704,15 +812,15 @@ function renderArticle(ctx) {
     mainEntityOfPage: absoluteUrl(locale, `/articles/${article.slug}/`),
     image: `${SITE_URL}${article.image}`,
     author: {
-      '@type': 'Organization',
-      name: 'Frontier News',
+      "@type": "Organization",
+      name: "Frontier News",
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Hyperjump Technology',
+      "@type": "Organization",
+      name: "Hyperjump Technology",
       url: HYPERJUMP_URL,
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${SITE_URL}/assets/favicon.svg`,
       },
     },
@@ -725,7 +833,7 @@ function renderArticle(ctx) {
         <div>
           <div class="page-hero" style="padding-left:0;padding-right:0">
             <nav class="breadcrumb" aria-label="Breadcrumb">
-              <a href="${href(locale, '/')}">${escapeHtml(t.brand)}</a>
+              <a href="${href(locale, "/")}">${escapeHtml(t.brand)}</a>
               <span>/</span>
               <a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.digests)}</a>
               <span>/</span>
@@ -744,7 +852,7 @@ function renderArticle(ctx) {
             <img src="${article.image}" alt="${escapeHtml(copy.title)}" width="960" height="540">
           </div>
           <div class="article-body">
-            ${copy.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n')}
+            ${copy.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n")}
             <p><a class="btn btn-secondary" href="${escapeHtml(article.source.url)}" rel="noopener noreferrer">${escapeHtml(t.article.watchSource)}<span class="btn-icon" aria-hidden="true">↗</span></a></p>
             <p><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.article.backLatest)}</a></p>
           </div>
@@ -775,14 +883,14 @@ function renderArticle(ctx) {
     t,
     locale,
     pathForLocale,
-    active: 'article',
+    active: "article",
     head: renderHead({
       locale,
       title: `${copy.title} | Frontier News`,
       description: copy.description,
       canonical: absoluteUrl(locale, `/articles/${article.slug}/`),
       hreflang: hreflangTags(pathForLocale),
-      ogType: 'article',
+      ogType: "article",
       ogLocale: t.meta.ogLocale,
       jsonLd: [...baseJsonLd(locale, t), articleLd],
     }),
@@ -822,15 +930,15 @@ function renderTopic(ctx) {
             </div>
           </article>`;
         })
-        .join('\n')
+        .join("\n")
     : `<p class="section-intro">${escapeHtml(t.topics.empty)}</p>`;
 
   const body = `
       <div class="wrap page-hero">
         <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="${href(locale, '/')}">${escapeHtml(t.brand)}</a>
+          <a href="${href(locale, "/")}">${escapeHtml(t.brand)}</a>
           <span>/</span>
-          <a href="${href(locale, '/#topics')}">${escapeHtml(t.nav.topics)}</a>
+          <a href="${href(locale, "/#topics")}">${escapeHtml(t.nav.topics)}</a>
           <span>/</span>
           <span>${escapeHtml(copy.name)}</span>
         </nav>
@@ -846,7 +954,7 @@ function renderTopic(ctx) {
     t,
     locale,
     pathForLocale,
-    active: 'topics',
+    active: "topics",
     head: renderHead({
       locale,
       title: `${copy.name} | Frontier News`,
@@ -888,7 +996,7 @@ function renderDigests(ctx) {
           </div>
         </article>`;
     })
-    .join('\n');
+    .join("\n");
 
   const body = `
       <div class="wrap page-hero">
@@ -904,12 +1012,12 @@ function renderDigests(ctx) {
     t,
     locale,
     pathForLocale,
-    active: 'latest',
+    active: "latest",
     head: renderHead({
       locale,
       title: t.digests.title,
       description: t.digests.description,
-      canonical: absoluteUrl(locale, '/digests/'),
+      canonical: absoluteUrl(locale, "/digests/"),
       hreflang: hreflangTags(pathForLocale),
       ogLocale: t.meta.ogLocale,
       jsonLd: baseJsonLd(locale, t),
@@ -924,20 +1032,23 @@ function renderDigests(ctx) {
  * @returns {string}
  */
 function renderProsePage(ctx) {
-  const { locale, t, localeMeta, pageKey, pathSegment, extraHtml = '' } = ctx;
+  const { locale, t, localeMeta, pageKey, pathSegment, extraHtml = "" } = ctx;
   const page = t[pageKey];
   const pathForLocale = (code) => `${localePrefix(code)}/${pathSegment}/`;
 
   const sections = (page.sections || [])
-    .map((section) => `<h2>${escapeHtml(section.h2)}</h2><p>${escapeHtml(section.p)}</p>`)
-    .join('\n');
+    .map(
+      (section) =>
+        `<h2>${escapeHtml(section.h2)}</h2><p>${escapeHtml(section.p)}</p>`,
+    )
+    .join("\n");
 
   const body = `
       <div class="wrap page-hero">
         <h1>${escapeHtml(page.h1)}</h1>
-        ${page.updated ? `<p class="date-note">${escapeHtml(page.updated)}</p>` : ''}
-        ${page.intro ? `<p class="prose-lead">${escapeHtml(page.intro)}</p>` : ''}
-        ${page.note ? `<p class="prose-lead">${escapeHtml(page.note)}</p>` : ''}
+        ${page.updated ? `<p class="date-note">${escapeHtml(page.updated)}</p>` : ""}
+        ${page.intro ? `<p class="prose-lead">${escapeHtml(page.intro)}</p>` : ""}
+        ${page.note ? `<p class="prose-lead">${escapeHtml(page.note)}</p>` : ""}
       </div>
       <div class="wrap prose-page">
         ${sections}
@@ -994,7 +1105,7 @@ function renderSitemap(urls) {
     <changefreq>daily</changefreq>
   </url>`,
     )
-    .join('\n');
+    .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries}
@@ -1010,30 +1121,32 @@ function build() {
   fs.rmSync(DIST, { recursive: true, force: true });
   ensureDir(DIST);
 
-  const articles = readJson(path.join(ROOT, 'content/articles.json'));
-  const topics = readJson(path.join(ROOT, 'content/topics.json'));
+  const articles = readJson(path.join(ROOT, "content/articles.json"));
+  const topics = readJson(path.join(ROOT, "content/topics.json"));
   /** @type {Record<string, any>} */
   const i18n = {};
   for (const locale of LOCALES) {
-    i18n[locale.code] = readJson(path.join(ROOT, `content/i18n/${locale.code}.json`));
+    i18n[locale.code] = readJson(
+      path.join(ROOT, `content/i18n/${locale.code}.json`),
+    );
   }
 
-  copyDir(path.join(ROOT, 'public'), DIST);
+  copyDir(path.join(ROOT, "public"), DIST);
 
   const svgSpecs = [
-    ['ai-realtime.svg', 'Realtime API'],
-    ['k8s-release.svg', 'Kubernetes 1.33'],
-    ['rust-async.svg', 'Rust Async'],
-    ['oidc-aws.svg', 'OIDC + AWS'],
-    ['zero-trust.svg', 'Zero Trust'],
-    ['sqlite-edge.svg', 'SQLite Edge'],
+    ["ai-realtime.svg", "Realtime API"],
+    ["k8s-release.svg", "Kubernetes 1.33"],
+    ["rust-async.svg", "Rust Async"],
+    ["oidc-aws.svg", "OIDC + AWS"],
+    ["zero-trust.svg", "Zero Trust"],
+    ["sqlite-edge.svg", "SQLite Edge"],
   ];
   for (const [filename, label] of svgSpecs) {
-    writeFile(path.join(DIST, 'assets/articles', filename), articleSvg(label));
+    writeFile(path.join(DIST, "assets/articles", filename), articleSvg(label));
   }
 
   writeFile(
-    path.join(DIST, 'assets/favicon.svg'),
+    path.join(DIST, "assets/favicon.svg"),
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <rect width="32" height="32" fill="#fbfaf7"/>
   <rect x="5.8" y="1.6" width="3.6" height="3.6" rx="1" fill="#3975F4"></rect>
@@ -1053,11 +1166,14 @@ function build() {
 </svg>`,
   );
 
-  writeFile(path.join(DIST, 'assets/og-cover.svg'), articleSvg('Curated Tech News'));
+  writeFile(
+    path.join(DIST, "assets/og-cover.svg"),
+    articleSvg("Curated Tech News"),
+  );
 
   writeFile(
-    path.join(DIST, 'assets/styles.css'),
-    fs.readFileSync(path.join(ROOT, 'public/assets/styles.css'), 'utf8') +
+    path.join(DIST, "assets/styles.css"),
+    fs.readFileSync(path.join(ROOT, "public/assets/styles.css"), "utf8") +
       `\n.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}\n`,
   );
 
@@ -1067,28 +1183,34 @@ function build() {
   for (const localeMeta of LOCALES) {
     const locale = localeMeta.code;
     const t = i18n[locale];
-    const outRoot = locale === 'en' ? DIST : path.join(DIST, locale);
-
-    writeFile(path.join(outRoot, 'index.html'), renderHome({ locale, t, articles, topics, localeMeta }));
-    sitemapUrls.push(absoluteUrl(locale, '/'));
-
-    writeFile(path.join(outRoot, 'digests/index.html'), renderDigests({ locale, t, articles, topics, localeMeta }));
-    sitemapUrls.push(absoluteUrl(locale, '/digests/'));
+    const outRoot = locale === "en" ? DIST : path.join(DIST, locale);
 
     writeFile(
-      path.join(outRoot, 'about/index.html'),
+      path.join(outRoot, "index.html"),
+      renderHome({ locale, t, articles, topics, localeMeta }),
+    );
+    sitemapUrls.push(absoluteUrl(locale, "/"));
+
+    writeFile(
+      path.join(outRoot, "digests/index.html"),
+      renderDigests({ locale, t, articles, topics, localeMeta }),
+    );
+    sitemapUrls.push(absoluteUrl(locale, "/digests/"));
+
+    writeFile(
+      path.join(outRoot, "about/index.html"),
       renderProsePage({
         locale,
         t,
         localeMeta,
-        pageKey: 'about',
-        pathSegment: 'about',
+        pageKey: "about",
+        pathSegment: "about",
         extraHtml: `<p><a class="btn btn-secondary" href="${HYPERJUMP_URL}" rel="noopener noreferrer">${escapeHtml(t.about.link)}<span class="btn-icon" aria-hidden="true">↗</span></a></p>`,
       }),
     );
-    sitemapUrls.push(absoluteUrl(locale, '/about/'));
+    sitemapUrls.push(absoluteUrl(locale, "/about/"));
 
-    for (const pageKey of ['privacy', 'terms', 'contact', 'preferences']) {
+    for (const pageKey of ["privacy", "terms", "contact", "preferences"]) {
       writeFile(
         path.join(outRoot, `${pageKey}/index.html`),
         renderProsePage({
@@ -1098,11 +1220,11 @@ function build() {
           pageKey,
           pathSegment: pageKey,
           extraHtml:
-            pageKey === 'contact'
+            pageKey === "contact"
               ? `<p><strong>${escapeHtml(t.contact.emailLabel)}:</strong> <a href="mailto:${escapeHtml(t.contact.email)}">${escapeHtml(t.contact.email)}</a></p><p>${escapeHtml(t.contact.company)}</p>`
-              : pageKey === 'preferences'
-                ? renderNewsletterForm(t, locale, 'pref')
-                : '',
+              : pageKey === "preferences"
+                ? renderNewsletterForm(t, locale, "pref")
+                : "",
         }),
       );
       sitemapUrls.push(absoluteUrl(locale, `/${pageKey}/`));
@@ -1127,20 +1249,20 @@ function build() {
 
   const en404 = i18n.en.notFound;
   writeFile(
-    path.join(DIST, '404.html'),
+    path.join(DIST, "404.html"),
     layout({
       localeMeta: LOCALES[0],
       t: i18n.en,
-      locale: 'en',
+      locale: "en",
       pathForLocale: (code) => `${localePrefix(code)}/`,
-      active: '404',
+      active: "404",
       head: renderHead({
-        locale: 'en',
+        locale: "en",
         title: en404.title,
         description: en404.text,
         canonical: `${SITE_URL}/404.html`,
-        hreflang: '',
-        ogLocale: 'en_US',
+        hreflang: "",
+        ogLocale: "en_US",
         jsonLd: [],
       }),
       body: `<div class="wrap page-hero" style="text-align:center;padding-bottom:5rem">
@@ -1152,7 +1274,7 @@ function build() {
   );
 
   writeFile(
-    path.join(DIST, 'robots.txt'),
+    path.join(DIST, "robots.txt"),
     `User-agent: *
 Allow: /
 
@@ -1160,11 +1282,11 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `,
   );
 
-  writeFile(path.join(DIST, 'sitemap.xml'), renderSitemap(sitemapUrls));
-  writeFile(path.join(DIST, 'CNAME'), 'frontiernews.tech\n');
+  writeFile(path.join(DIST, "sitemap.xml"), renderSitemap(sitemapUrls));
+  writeFile(path.join(DIST, "CNAME"), "frontiernews.tech\n");
 
   // GitHub Pages: prevent Jekyll processing
-  writeFile(path.join(DIST, '.nojekyll'), '');
+  writeFile(path.join(DIST, ".nojekyll"), "");
 
   console.log(`Built ${sitemapUrls.length} URLs into ${DIST}`);
 }
