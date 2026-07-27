@@ -1034,7 +1034,9 @@ html.js .hero.is-ready [data-hero-enter] {
 
 .steps li {
   position: relative;
-  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem 1.25rem 1.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
@@ -1044,11 +1046,40 @@ html.js .hero.is-ready [data-hero-enter] {
 .steps li::before {
   content: "[" counter(step, decimal-leading-zero) "]";
   display: block;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--accent);
   letter-spacing: 0.08em;
+}
+
+.step-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.25rem 0.15rem;
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(
+      ellipse 70% 80% at 50% 40%,
+      color-mix(in srgb, var(--accent) 6%, transparent),
+      transparent 72%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper) 55%, #f0ebe3) 0%,
+      transparent 100%
+    );
+  pointer-events: none;
+  user-select: none;
+}
+
+.step-illustration {
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+  overflow: visible;
 }
 
 .steps h3 {
@@ -1060,6 +1091,99 @@ html.js .hero.is-ready [data-hero-enter] {
 .steps p {
   margin: 0;
   color: var(--ink-muted);
+}
+
+/* Process illustration motion */
+.step-illu-sweep {
+  transform-origin: 168px 72px;
+  animation: step-radar-sweep 3.6s var(--ease) infinite;
+}
+
+.step-illu-ring {
+  transform-origin: 168px 72px;
+  animation: step-radar-pulse 3.6s var(--ease) infinite;
+}
+
+.step-illu-ring-mid {
+  animation-delay: 0.35s;
+}
+
+.step-illu-ring-outer {
+  animation-delay: 0.7s;
+}
+
+.step-illu-scan {
+  animation: step-scan 2.8s var(--ease) infinite;
+}
+
+.step-illu-stream {
+  stroke-dasharray: 5 7;
+  animation: hero-stream 1.6s linear infinite;
+}
+
+.step-illu-digest-card {
+  transform-origin: 120px 61px;
+  animation: step-digest-settle 4.5s var(--ease) infinite;
+}
+
+.step-illu-chip-mid {
+  animation: step-chip-glow 3.2s var(--ease) infinite;
+}
+
+@keyframes step-radar-sweep {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(42deg);
+  }
+}
+
+@keyframes step-radar-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.12;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes step-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(42px);
+    opacity: 0.15;
+  }
+}
+
+@keyframes step-digest-settle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes step-chip-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
 }
 
 /* Newsletter form */
@@ -1531,7 +1655,13 @@ html.js .hero.is-ready [data-hero-enter] {
   .hero-illu-play,
   .hero-illu-stream,
   .hero-illu-digest,
-  .hero-illu-bloom {
+  .hero-illu-bloom,
+  .step-illu-sweep,
+  .step-illu-ring,
+  .step-illu-scan,
+  .step-illu-stream,
+  .step-illu-digest-card,
+  .step-illu-chip-mid {
     transition: none !important;
     animation: none !important;
   }

@@ -414,6 +414,129 @@ function heroIllustration() {
 </svg>`;
 }
 
+/**
+ * Decorative process-step illustrations for the how-it-works section.
+ * Same editorial signal-report language as the hero (paper, ink, oxblood).
+ * @param {number} index Zero-based step index (0 monitor, 1 analyze, 2 digest)
+ * @returns {string}
+ */
+function processIllustration(index) {
+  const illustrations = [
+    // Monitor selected channels — radar sweep over a channel stack
+    `<svg class="step-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="step-paper-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7f3ec"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="168" cy="72" rx="58" ry="46" fill="#8b2a2a" opacity="0.04"/>
+  <g class="step-illu-channels">
+    <rect x="28" y="34" width="92" height="58" rx="5" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.25"/>
+    <rect x="36" y="42" width="92" height="58" rx="5" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.25"/>
+    <g>
+      <rect x="44" y="50" width="92" height="58" rx="5" fill="url(#step-paper-a)" stroke="#1a1a1a" stroke-width="1.5"/>
+      <rect x="44" y="50" width="92" height="8" rx="5" fill="#efe8df"/>
+      <circle cx="72" cy="82" r="11" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.25"/>
+      <path d="M69 76 L78 82 L69 88 Z" fill="#8b2a2a"/>
+      <rect x="92" y="72" width="34" height="4" rx="2" fill="#e4e0d8"/>
+      <rect x="92" y="82" width="26" height="4" rx="2" fill="#e4e0d8"/>
+    </g>
+  </g>
+  <g class="step-illu-radar" fill="none" stroke="#8b2a2a" stroke-linecap="round">
+    <circle class="step-illu-ring" cx="168" cy="72" r="18" stroke-width="1.25" opacity="0.35"/>
+    <circle class="step-illu-ring step-illu-ring-mid" cx="168" cy="72" r="28" stroke-width="1.15" opacity="0.22"/>
+    <circle class="step-illu-ring step-illu-ring-outer" cx="168" cy="72" r="38" stroke-width="1" opacity="0.12"/>
+    <path class="step-illu-sweep" d="M168 72 L196 54" stroke-width="1.75"/>
+    <circle cx="168" cy="72" r="4" fill="#8b2a2a" stroke="none"/>
+  </g>
+  <text x="120" y="128" text-anchor="middle" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="9" font-weight="700" letter-spacing="0.12em">MONITORING</text>
+</svg>`,
+
+    // Analyze the content — transcript lines condensed into takeaways
+    `<svg class="step-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="step-paper-b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7f3ec"/>
+    </linearGradient>
+    <linearGradient id="step-scan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b2a2a" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#8b2a2a" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#8b2a2a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="68" rx="88" ry="42" fill="#0a0678" opacity="0.035"/>
+  <g>
+    <rect x="28" y="28" width="100" height="84" rx="5" fill="url(#step-paper-b)" stroke="#1a1a1a" stroke-width="1.5"/>
+    <text x="40" y="46" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="8" font-weight="700" letter-spacing="0.08em">TRANSCRIPT</text>
+    <g class="step-illu-transcript" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round">
+      <line x1="40" y1="58" x2="112" y2="58"/>
+      <line x1="40" y1="70" x2="104" y2="70"/>
+      <line x1="40" y1="82" x2="110" y2="82"/>
+      <line x1="40" y1="94" x2="96" y2="94"/>
+    </g>
+    <rect class="step-illu-scan" x="32" y="52" width="92" height="10" fill="url(#step-scan)" opacity="0.55"/>
+  </g>
+  <g class="step-illu-flow" fill="none" stroke="#8b2a2a" stroke-width="1.6" stroke-linecap="round" opacity="0.55">
+    <path class="step-illu-stream" d="M136 58 C148 58, 148 48, 160 48"/>
+    <path class="step-illu-stream" d="M136 72 C150 72, 150 72, 160 72"/>
+    <path class="step-illu-stream" d="M136 86 C148 86, 148 96, 160 96"/>
+  </g>
+  <g class="step-illu-takeaways">
+    <rect x="164" y="36" width="48" height="18" rx="3" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.25"/>
+    <rect x="170" y="43" width="28" height="4" rx="2" fill="#8b2a2a"/>
+    <rect x="164" y="62" width="48" height="18" rx="3" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.25"/>
+    <rect x="170" y="69" width="22" height="4" rx="2" fill="#1a1a1a"/>
+    <rect x="164" y="88" width="48" height="18" rx="3" fill="#ffffff" stroke="#e4e0d8" stroke-width="1.25"/>
+    <rect x="170" y="95" width="26" height="4" rx="2" fill="#6b6b6b"/>
+  </g>
+  <text x="120" y="128" text-anchor="middle" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="9" font-weight="700" letter-spacing="0.12em">EXTRACTING</text>
+</svg>`,
+
+    // Concise digest — digest card with delivery channels
+    `<svg class="step-illustration" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="step-paper-c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7f3ec"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="64" rx="78" ry="48" fill="#3f7a3a" opacity="0.05"/>
+  <g class="step-illu-digest-card">
+    <rect x="58" y="22" width="124" height="78" rx="5" fill="url(#step-paper-c)" stroke="#1a1a1a" stroke-width="1.5"/>
+    <rect x="58" y="22" width="124" height="16" rx="5" fill="#8b2a2a"/>
+    <rect x="58" y="32" width="124" height="6" fill="#8b2a2a"/>
+    <text x="120" y="35" text-anchor="middle" fill="#ffffff" font-family="Courier New, Courier, monospace" font-size="8" font-weight="700" letter-spacing="0.12em">DIGEST</text>
+    <rect x="72" y="50" width="6" height="6" rx="1.5" fill="#3975F4"/>
+    <rect x="72" y="64" width="6" height="6" rx="1.5" fill="#41A8FB"/>
+    <rect x="72" y="78" width="6" height="6" rx="1.5" fill="#3AD6FC"/>
+    <g stroke="#1a1a1a" stroke-width="1.85" stroke-linecap="round">
+      <line x1="86" y1="53" x2="162" y2="53"/>
+      <line x1="86" y1="67" x2="148" y2="67" stroke="#6b6b6b"/>
+      <line x1="86" y1="81" x2="156" y2="81" stroke="#6b6b6b"/>
+    </g>
+  </g>
+  <g class="step-illu-channels-out" font-family="Courier New, Courier, monospace" font-size="7.5" font-weight="700" letter-spacing="0.06em">
+    <g class="step-illu-chip">
+      <rect x="36" y="108" width="48" height="16" rx="3" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.15"/>
+      <text x="60" y="119" text-anchor="middle" fill="#1a1a1a">WEB</text>
+    </g>
+    <g class="step-illu-chip step-illu-chip-mid">
+      <rect x="96" y="108" width="48" height="16" rx="3" fill="#f3ebe9" stroke="#8b2a2a" stroke-width="1.15"/>
+      <text x="120" y="119" text-anchor="middle" fill="#8b2a2a">EMAIL</text>
+    </g>
+    <g class="step-illu-chip">
+      <rect x="156" y="108" width="48" height="16" rx="3" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.15"/>
+      <text x="180" y="119" text-anchor="middle" fill="#1a1a1a">TEAMS</text>
+    </g>
+  </g>
+</svg>`,
+  ];
+
+  return illustrations[index] ?? "";
+}
+
 function renderHeader({ t, locale, pathForLocale, active }) {
   const home = href(locale, "/");
   return `<header class="site-header" data-site-header>
@@ -714,7 +837,8 @@ function renderHome(ctx) {
           <ol class="steps">
             ${t.how.steps
               .map(
-                (step) => `<li data-reveal>
+                (step, i) => `<li data-reveal>
+              <div class="step-visual">${processIllustration(i)}</div>
               <h3>${escapeHtml(step.title)}</h3>
               <p>${escapeHtml(step.text)}</p>
             </li>`,
