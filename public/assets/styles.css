@@ -121,18 +121,20 @@ a:hover {
   max-width: 40rem;
 }
 
-/* Header — sticky paper bar with hairline rule */
+/* Header — sticky paper bar with hairline rule.
+   No backdrop-filter: it creates a containing block that traps
+   position:fixed descendants (mobile menu) to the header height. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--paper) 92%, white);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--paper);
 }
 
 .nav-island {
+  position: relative;
+  z-index: 36;
   width: min(100% - clamp(1.5rem, 5vw, 3rem), var(--max));
   max-width: 100%;
   margin: 0 auto;
@@ -302,9 +304,10 @@ a:hover {
   display: grid;
   place-items: center;
   padding: 6rem 1.5rem 2rem;
-  background: color-mix(in srgb, var(--paper) 94%, white);
+  background: var(--paper);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition:
     opacity 350ms var(--ease),
     visibility 350ms var(--ease);
@@ -313,6 +316,7 @@ a:hover {
 .nav-open .mobile-nav {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-nav ul {
