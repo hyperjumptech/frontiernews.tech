@@ -8,7 +8,6 @@
   "brandByline": "di Hyperjump",
   "nav": {
     "latest": "Ultime notizie",
-    "topics": "Argomenti",
     "how": "Come funziona",
     "about": "Chi siamo",
     "subscribe": "Iscriviti gratis",
@@ -41,20 +40,6 @@
         "text": "Concentrati su tecniche e idee utilizzabili, non su titoli vuoti."
       }
     ]
-  },
-  "latest": {
-    "h2": "Ultime notizie e riassunti tecnologici",
-    "readSummary": "Leggi il riassunto",
-    "source": "Fonte",
-    "published": "Pubblicato",
-    "updated": "Aggiornato"
-  },
-  "topics": {
-    "h2": "Argomenti tecnologici che seguiamo",
-    "intro": "Frontier News segue gli sviluppi che contano per sviluppatori, leader tecnici e chi costruisce prodotti software.",
-    "viewTopic": "Vedi argomento",
-    "articlesInTopic": "riassunti in questo argomento",
-    "empty": "Nuovi riassunti per questo argomento appariranno qui quando pubblicati."
   },
   "how": {
     "h2": "Dai video tecnologici a notizie utili",
@@ -145,7 +130,6 @@
   "footer": {
     "latest": "Ultime notizie",
     "digests": "Archivio digest",
-    "topics": "Argomenti",
     "about": "Su Hyperjump",
     "privacy": "Privacy policy",
     "terms": "Termini",
@@ -153,18 +137,6 @@
     "preferences": "Preferenze di iscrizione",
     "publisher": "Frontier News di Hyperjump Technology",
     "rights": "Tutti i diritti riservati."
-  },
-  "article": {
-    "backLatest": "Torna alle ultime notizie",
-    "watchSource": "Guarda il video originale",
-    "relatedTopic": "Argomento",
-    "readAlso": "Altri riassunti"
-  },
-  "digests": {
-    "title": "Archivio digest | Frontier News",
-    "description": "Sfoglia l’archivio digest di Frontier News.",
-    "h1": "Archivio digest",
-    "intro": "Tutti i riassunti pubblicati in un unico posto, i più recenti prima."
   },
   "privacy": {
     "title": "Privacy policy | Frontier News",

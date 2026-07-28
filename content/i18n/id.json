@@ -8,7 +8,6 @@
   "brandByline": "oleh Hyperjump",
   "nav": {
     "latest": "Berita terbaru",
-    "topics": "Topik",
     "how": "Cara kerja",
     "about": "Tentang",
     "subscribe": "Berlangganan gratis",
@@ -41,20 +40,6 @@
         "text": "Fokus pada teknik dan ide yang bisa dipakai, bukan judul kosong."
       }
     ]
-  },
-  "latest": {
-    "h2": "Berita dan ringkasan teknologi terbaru",
-    "readSummary": "Baca ringkasan",
-    "source": "Sumber",
-    "published": "Dipublikasikan",
-    "updated": "Diperbarui"
-  },
-  "topics": {
-    "h2": "Topik teknologi yang kami ikuti",
-    "intro": "Frontier News mengikuti perkembangan yang penting bagi developer, pemimpin teknis, dan orang yang membangun produk perangkat lunak.",
-    "viewTopic": "Lihat topik",
-    "articlesInTopic": "ringkasan di topik ini",
-    "empty": "Ringkasan baru untuk topik ini akan muncul di sini saat dipublikasikan."
   },
   "how": {
     "h2": "Dari video teknologi menjadi berita berguna",
@@ -145,7 +130,6 @@
   "footer": {
     "latest": "Berita terbaru",
     "digests": "Arsip digest",
-    "topics": "Topik",
     "about": "Tentang Hyperjump",
     "privacy": "Kebijakan privasi",
     "terms": "Ketentuan",
@@ -153,18 +137,6 @@
     "preferences": "Preferensi langganan",
     "publisher": "Frontier News oleh Hyperjump Technology",
     "rights": "Hak cipta dilindungi."
-  },
-  "article": {
-    "backLatest": "Kembali ke berita terbaru",
-    "watchSource": "Tonton video asli",
-    "relatedTopic": "Topik",
-    "readAlso": "Ringkasan lainnya"
-  },
-  "digests": {
-    "title": "Arsip digest | Frontier News",
-    "description": "Jelajahi arsip digest Frontier News — ringkasan teknologi kurasi dari saluran YouTube terpercaya.",
-    "h1": "Arsip digest",
-    "intro": "Semua ringkasan yang dipublikasikan di satu tempat, terbaru dulu."
   },
   "privacy": {
     "title": "Kebijakan privasi | Frontier News",

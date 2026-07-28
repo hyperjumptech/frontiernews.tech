@@ -30,12 +30,12 @@ You can also publish `dist/` manually to the `gh-pages` branch if you prefer.
 
 ## Content
 
-| Path                    | Purpose                   |
-| ----------------------- | ------------------------- |
-| `content/articles.json` | Digest/summary records    |
-| `content/topics.json`   | Topic archive definitions |
-| `content/i18n/*.json`   | UI copy per language      |
-| `public/assets/`        | CSS, JS, static assets    |
+| Path                  | Purpose                |
+| --------------------- | ---------------------- |
+| `content/i18n/*.json` | UI copy per language   |
+| `public/assets/`      | CSS, JS, static assets |
+
+Digest and article pages live on the app at [app.frontiernews.tech/digest](https://app.frontiernews.tech/digest).
 
 After editing content, run `npm run build`.
 

@@ -8,7 +8,6 @@
   "brandByline": "ku Hyperjump",
   "nav": {
     "latest": "Warta panganyarna",
-    "topics": "Topik",
     "how": "Cara digawé",
     "about": "Ngeunaan",
     "subscribe": "Langganan gratis",
@@ -41,20 +40,6 @@
         "text": "Fokus kana téknik jeung gagasan anu bisa dipaké, lain judul kosong."
       }
     ]
-  },
-  "latest": {
-    "h2": "Warta jeung ringkesan téknologi panganyarna",
-    "readSummary": "Baca ringkesan",
-    "source": "Sumber",
-    "published": "Diterbitkeun",
-    "updated": "Diapdét"
-  },
-  "topics": {
-    "h2": "Topik téknologi anu urang turutan",
-    "intro": "Frontier News nuturkeun kamajuan anu penting pikeun developer, pamimpin téknis, jeung jalma anu ngawangun produk software.",
-    "viewTopic": "Témbongkeun topik",
-    "articlesInTopic": "ringkesan dina topik ieu",
-    "empty": "Ringkesan anyar pikeun topik ieu bakal muncul di dieu nalika diterbitkeun."
   },
   "how": {
     "h2": "Ti vidéo téknologi jadi warta mangpaat",
@@ -145,7 +130,6 @@
   "footer": {
     "latest": "Warta panganyarna",
     "digests": "Arsip digest",
-    "topics": "Topik",
     "about": "Ngeunaan Hyperjump",
     "privacy": "Kawijakan privasi",
     "terms": "Katangtuan",
@@ -153,18 +137,6 @@
     "preferences": "Preferensi langganan",
     "publisher": "Frontier News ku Hyperjump Technology",
     "rights": "Hak cipta ditangtayungan."
-  },
-  "article": {
-    "backLatest": "Balik ka warta panganyarna",
-    "watchSource": "Tonton vidéo asli",
-    "relatedTopic": "Topik",
-    "readAlso": "Ringkesan séjén"
-  },
-  "digests": {
-    "title": "Arsip digest | Frontier News",
-    "description": "Jelajah arsip digest Frontier News.",
-    "h1": "Arsip digest",
-    "intro": "Sadaya ringkesan anu diterbitkeun dina hiji tempat, panganyarna heula."
   },
   "privacy": {
     "title": "Kawijakan privasi | Frontier News",

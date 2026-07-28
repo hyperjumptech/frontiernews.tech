@@ -8,7 +8,6 @@
   "brandByline": "by Hyperjump",
   "nav": {
     "latest": "Latest news",
-    "topics": "Topics",
     "how": "How it works",
     "about": "About",
     "subscribe": "Subscribe free",
@@ -41,20 +40,6 @@
         "text": "Focus on techniques and ideas you can use, rather than empty headlines."
       }
     ]
-  },
-  "latest": {
-    "h2": "Latest technology news and summaries",
-    "readSummary": "Read the summary",
-    "source": "Source",
-    "published": "Published",
-    "updated": "Updated"
-  },
-  "topics": {
-    "h2": "Technology topics we follow",
-    "intro": "Frontier News follows developments that matter to developers, technical leaders, and people building software products.",
-    "viewTopic": "View topic",
-    "articlesInTopic": "summaries in this topic",
-    "empty": "New summaries for this topic will appear here as they are published."
   },
   "how": {
     "h2": "From technology videos to useful news",
@@ -145,7 +130,6 @@
   "footer": {
     "latest": "Latest news",
     "digests": "Digest archive",
-    "topics": "Topics",
     "about": "About Hyperjump",
     "privacy": "Privacy policy",
     "terms": "Terms",
@@ -153,18 +137,6 @@
     "preferences": "Subscription preferences",
     "publisher": "Frontier News by Hyperjump Technology",
     "rights": "All rights reserved."
-  },
-  "article": {
-    "backLatest": "Back to latest news",
-    "watchSource": "Watch the original video",
-    "relatedTopic": "Topic",
-    "readAlso": "More summaries"
-  },
-  "digests": {
-    "title": "Digest archive | Frontier News",
-    "description": "Browse the Frontier News digest archive — curated technology summaries from trusted YouTube channels.",
-    "h1": "Digest archive",
-    "intro": "Every published summary in one place, newest first."
   },
   "privacy": {
     "title": "Privacy policy | Frontier News",
