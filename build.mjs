@@ -54,11 +54,9 @@ const PROMO_ACTIVE = Number.isFinite(PROMO_NOW) && PROMO_NOW < PROMO_END;
 
 /**
  * Where "Latest news" (and related digest CTAs) point.
- * TEMPORARY: live archive. To use the local static /digests/ again, set to "".
  * Override at build time with LATEST_NEWS_URL.
  */
-const LATEST_NEWS_URL =
-  process.env.LATEST_NEWS_URL !== undefined ? process.env.LATEST_NEWS_URL : 'https://app.frontiernews.tech/digest';
+const LATEST_NEWS_URL = process.env.LATEST_NEWS_URL || 'https://app.frontiernews.tech/digest';
 /** Digest languages accepted by the subscribe API (matches Hyperjump). */
 const DIGEST_LOCALES = [
   { code: 'en', name: 'English' },
@@ -189,11 +187,11 @@ function href(locale, pathname = '/') {
 
 /**
  * Href for Latest news / digest archive links.
- * @param {string} locale
+ * @param {string} [_locale] Unused; digests live on the app host.
  * @returns {string}
  */
-function latestNewsHref(locale) {
-  return LATEST_NEWS_URL || href(locale, '/digests/');
+function latestNewsHref(_locale) {
+  return LATEST_NEWS_URL;
 }
 
 /**
@@ -201,7 +199,7 @@ function latestNewsHref(locale) {
  * @returns {string}
  */
 function latestNewsExternalAttrs() {
-  return LATEST_NEWS_URL ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return ' target="_blank" rel="noopener noreferrer"';
 }
 
 /**
@@ -216,44 +214,6 @@ function hreflangTags(pathForLocale) {
   });
   tags.push(`<link rel="alternate" hreflang="x-default" href="${SITE_URL}${pathForLocale('en')}">`);
   return tags.join('\n    ');
-}
-
-/**
- * Formats an ISO date for display.
- * @param {string} iso
- * @param {string} locale
- * @returns {string}
- */
-function formatDate(iso, locale) {
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    }).format(new Date(`${iso}T12:00:00Z`));
-  } catch {
-    return iso;
-  }
-}
-
-/**
- * Resolves article localized fields (falls back to English).
- * @param {any} article
- * @param {string} locale
- * @returns {{ title: string, description: string, summary: string, body: string[] }}
- */
-function articleCopy(article, locale) {
-  return article[locale] || article.en;
-}
-
-/**
- * Resolves topic localized fields.
- * @param {any} topic
- * @param {string} locale
- * @returns {{ name: string, description: string }}
- */
-function topicCopy(topic, locale) {
-  return topic[locale] || topic.en;
 }
 
 /**
@@ -539,8 +499,7 @@ function renderHeader({ t, locale, pathForLocale, active }) {
         </a>
         <nav aria-label="Primary">
           <ul class="nav-links">
-            <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}${!LATEST_NEWS_URL && active === 'latest' ? ' aria-current="page"' : ''}>${escapeHtml(t.nav.latest)}</a></li>
-            <li><a href="${href(locale, '/#topics')}" ${active === 'topics' ? 'aria-current="page"' : ''}>${escapeHtml(t.nav.topics)}</a></li>
+            <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.nav.latest)}</a></li>
             <li><a href="${href(locale, '/#how-it-works')}" ${active === 'how' ? 'aria-current="page"' : ''}>${escapeHtml(t.nav.how)}</a></li>
             <li><a href="${href(locale, '/about/')}">${escapeHtml(t.nav.about)}</a></li>
           </ul>
@@ -559,7 +518,6 @@ function renderHeader({ t, locale, pathForLocale, active }) {
       <div class="mobile-nav" id="mobile-nav" data-mobile-nav>
         <ul>
           <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.nav.latest)}</a></li>
-          <li><a href="${href(locale, '/#topics')}">${escapeHtml(t.nav.topics)}</a></li>
           <li><a href="${href(locale, '/#how-it-works')}">${escapeHtml(t.nav.how)}</a></li>
           <li><a href="${href(locale, '/about/')}">${escapeHtml(t.nav.about)}</a></li>
           <li><a href="${href(locale, '/#subscribe')}">${escapeHtml(t.nav.subscribe)}</a></li>
@@ -586,7 +544,6 @@ function renderFooter({ t, locale }) {
             <ul>
               <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.latest)}</a></li>
               <li><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.digests)}</a></li>
-              <li><a href="${href(locale, '/#topics')}">${escapeHtml(t.footer.topics)}</a></li>
             </ul>
           </div>
           <div>
@@ -846,7 +803,7 @@ function baseJsonLd(locale, t) {
  * @returns {string}
  */
 function renderHome(ctx) {
-  const { locale, t, articles, topics, localeMeta } = ctx;
+  const { locale, t, localeMeta } = ctx;
   const pathForLocale = (code) => `${localePrefix(code)}/`;
   const faqLd = {
     '@context': 'https://schema.org',
@@ -857,17 +814,6 @@ function renderHome(ctx) {
       acceptedAnswer: { '@type': 'Answer', text: item.a },
     })),
   };
-
-  const topicLinks = topics
-    .map((topic) => {
-      const copy = topicCopy(topic, locale);
-      const count = articles.filter((article) => article.topic === topic.slug).length;
-      return `<a class="topic-link" href="${href(locale, `/topics/${topic.slug}/`)}" data-reveal>
-            <strong>${escapeHtml(copy.name)}</strong>
-            <span>${count} ${escapeHtml(t.topics.articlesInTopic)}</span>
-          </a>`;
-    })
-    .join('\n');
 
   const body = `
       ${renderPromo(t, locale)}
@@ -916,17 +862,6 @@ function renderHome(ctx) {
             </div>`,
               )
               .join('\n')}
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="topics" aria-labelledby="topics-heading">
-        <div class="wrap">
-          <span class="section-label">Topics</span>
-          <h2 id="topics-heading" data-reveal>${escapeHtml(t.topics.h2)}</h2>
-          <p class="section-intro" data-reveal>${escapeHtml(t.topics.intro)}</p>
-          <div class="topic-grid">
-            ${topicLinks}
           </div>
         </div>
       </section>
@@ -1026,252 +961,6 @@ function renderHome(ctx) {
 }
 
 /**
- * Renders an article detail page.
- * @param {object} ctx
- * @returns {string}
- */
-function renderArticle(ctx) {
-  const { locale, t, article, topics, articles, localeMeta } = ctx;
-  const copy = articleCopy(article, locale);
-  const topic = topics.find((item) => item.slug === article.topic);
-  const topicName = topic ? topicCopy(topic, locale).name : article.topic;
-  const pathForLocale = (code) => `${localePrefix(code)}/articles/${article.slug}/`;
-
-  const related = articles
-    .filter((item) => item.slug !== article.slug)
-    .slice(0, 3)
-    .map((item) => {
-      const itemCopy = articleCopy(item, locale);
-      return `<li style="margin-bottom:0.75rem"><a href="${href(locale, `/articles/${item.slug}/`)}">${escapeHtml(itemCopy.title)}</a></li>`;
-    })
-    .join('');
-
-  const articleLd = {
-    '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
-    headline: copy.title,
-    description: copy.description,
-    datePublished: article.date,
-    dateModified: article.updated || article.date,
-    inLanguage: locale,
-    mainEntityOfPage: absoluteUrl(locale, `/articles/${article.slug}/`),
-    image: `${SITE_URL}${article.image}`,
-    author: {
-      '@type': 'Organization',
-      name: 'Frontier News',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Hyperjump Technology',
-      url: HYPERJUMP_URL,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/assets/favicon.svg`,
-      },
-    },
-    isBasedOn: article.source.url,
-    about: topicName,
-  };
-
-  const body = `
-      <article class="wrap article-layout">
-        <div>
-          <div class="page-hero" style="padding-left:0;padding-right:0">
-            <nav class="breadcrumb" aria-label="Breadcrumb">
-              <a href="${href(locale, '/')}">${escapeHtml(t.brand)}</a>
-              <span>/</span>
-              <a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.footer.digests)}</a>
-              <span>/</span>
-              <span>${escapeHtml(copy.title)}</span>
-            </nav>
-            <p class="section-label">${escapeHtml(topicName)}</p>
-            <h1>${escapeHtml(copy.title)}</h1>
-            <p class="prose-lead">${escapeHtml(copy.summary)}</p>
-            <p class="date-note">
-              <span>${escapeHtml(t.latest.published)}: <time datetime="${article.date}">${escapeHtml(formatDate(article.date, locale))}</time></span>
-              ·
-              <span>${escapeHtml(t.latest.updated)}: <time datetime="${article.updated || article.date}">${escapeHtml(formatDate(article.updated || article.date, locale))}</time></span>
-            </p>
-          </div>
-          <div class="story-media" style="margin-bottom:1.75rem;max-width:42rem">
-            <img src="${article.image}" alt="${escapeHtml(copy.title)}" width="960" height="540">
-          </div>
-          <div class="article-body">
-            ${copy.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n')}
-            <p><a class="btn btn-secondary" href="${escapeHtml(article.source.url)}" rel="noopener noreferrer">${escapeHtml(t.article.watchSource)}<span class="btn-icon" aria-hidden="true">↗</span></a></p>
-            <p><a href="${latestNewsHref(locale)}"${latestNewsExternalAttrs()}>${escapeHtml(t.article.backLatest)}</a></p>
-          </div>
-        </div>
-        <aside class="article-aside" data-reveal>
-          <h2>${escapeHtml(t.article.relatedTopic)}</h2>
-          <dl>
-            <div>
-              <dt>${escapeHtml(t.article.relatedTopic)}</dt>
-              <dd><a href="${href(locale, `/topics/${article.topic}/`)}">${escapeHtml(topicName)}</a></dd>
-            </div>
-            <div>
-              <dt>${escapeHtml(t.latest.source)}</dt>
-              <dd><a href="${escapeHtml(article.source.url)}" rel="noopener noreferrer">${escapeHtml(article.source.name)}</a></dd>
-            </div>
-            <div>
-              <dt>${escapeHtml(t.latest.published)}</dt>
-              <dd><time datetime="${article.date}">${escapeHtml(formatDate(article.date, locale))}</time></dd>
-            </div>
-          </dl>
-          <h2 style="margin-top:1.5rem">${escapeHtml(t.article.readAlso)}</h2>
-          <ul style="margin:0;padding-left:1.1rem;color:var(--ink-muted)">${related}</ul>
-        </aside>
-      </article>`;
-
-  return layout({
-    localeMeta,
-    t,
-    locale,
-    pathForLocale,
-    active: 'article',
-    head: renderHead({
-      locale,
-      title: `${copy.title} | Frontier News`,
-      description: copy.description,
-      canonical: absoluteUrl(locale, `/articles/${article.slug}/`),
-      hreflang: hreflangTags(pathForLocale),
-      ogType: 'article',
-      ogLocale: t.meta.ogLocale,
-      jsonLd: [...baseJsonLd(locale, t), articleLd],
-    }),
-    body,
-  });
-}
-
-/**
- * Renders a topic archive page.
- * @param {object} ctx
- * @returns {string}
- */
-function renderTopic(ctx) {
-  const { locale, t, topic, articles, localeMeta } = ctx;
-  const copy = topicCopy(topic, locale);
-  const pathForLocale = (code) => `${localePrefix(code)}/topics/${topic.slug}/`;
-  const filtered = articles.filter((article) => article.topic === topic.slug);
-
-  const cards = filtered.length
-    ? filtered
-        .map((article) => {
-          const articleText = articleCopy(article, locale);
-          return `<article class="story-shell" data-reveal>
-            <div class="story-card">
-              <div class="story-media">
-                <img src="${article.image}" alt="${escapeHtml(articleText.title)}" width="640" height="360" loading="lazy">
-              </div>
-              <div>
-                <div class="story-meta">
-                  <time datetime="${article.date}">${escapeHtml(formatDate(article.date, locale))}</time>
-                  <span>${escapeHtml(article.source.name)}</span>
-                </div>
-                <h3><a href="${href(locale, `/articles/${article.slug}/`)}" style="color:inherit;text-decoration:none">${escapeHtml(articleText.title)}</a></h3>
-                <p>${escapeHtml(articleText.summary)}</p>
-                <a class="story-link" href="${href(locale, `/articles/${article.slug}/`)}">${escapeHtml(t.latest.readSummary)} →</a>
-              </div>
-            </div>
-          </article>`;
-        })
-        .join('\n')
-    : `<p class="section-intro">${escapeHtml(t.topics.empty)}</p>`;
-
-  const body = `
-      <div class="wrap page-hero">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="${href(locale, '/')}">${escapeHtml(t.brand)}</a>
-          <span>/</span>
-          <a href="${href(locale, '/#topics')}">${escapeHtml(t.nav.topics)}</a>
-          <span>/</span>
-          <span>${escapeHtml(copy.name)}</span>
-        </nav>
-        <h1>${escapeHtml(copy.name)}</h1>
-        <p class="prose-lead">${escapeHtml(copy.description)}</p>
-      </div>
-      <section class="wrap" style="padding-bottom:4rem">
-        <div class="story-list">${cards}</div>
-      </section>`;
-
-  return layout({
-    localeMeta,
-    t,
-    locale,
-    pathForLocale,
-    active: 'topics',
-    head: renderHead({
-      locale,
-      title: `${copy.name} | Frontier News`,
-      description: copy.description,
-      canonical: absoluteUrl(locale, `/topics/${topic.slug}/`),
-      hreflang: hreflangTags(pathForLocale),
-      ogLocale: t.meta.ogLocale,
-      jsonLd: baseJsonLd(locale, t),
-    }),
-    body,
-  });
-}
-
-/**
- * Renders digest archive page.
- * @param {object} ctx
- * @returns {string}
- */
-function renderDigests(ctx) {
-  const { locale, t, articles, topics, localeMeta } = ctx;
-  const pathForLocale = (code) => `${localePrefix(code)}/digests/`;
-  const cards = articles
-    .map((article) => {
-      const copy = articleCopy(article, locale);
-      const topic = topics.find((item) => item.slug === article.topic);
-      const topicName = topic ? topicCopy(topic, locale).name : article.topic;
-      return `<article class="story-shell" data-reveal>
-          <div class="story-card">
-            <div>
-              <div class="story-meta">
-                <a class="story-topic" href="${href(locale, `/topics/${article.topic}/`)}">${escapeHtml(topicName)}</a>
-                <time datetime="${article.date}">${escapeHtml(formatDate(article.date, locale))}</time>
-                <span>${escapeHtml(article.source.name)}</span>
-              </div>
-              <h3><a href="${href(locale, `/articles/${article.slug}/`)}" style="color:inherit;text-decoration:none">${escapeHtml(copy.title)}</a></h3>
-              <p>${escapeHtml(copy.summary)}</p>
-              <a class="story-link" href="${href(locale, `/articles/${article.slug}/`)}">${escapeHtml(t.latest.readSummary)} →</a>
-            </div>
-          </div>
-        </article>`;
-    })
-    .join('\n');
-
-  const body = `
-      <div class="wrap page-hero">
-        <h1>${escapeHtml(t.digests.h1)}</h1>
-        <p class="prose-lead">${escapeHtml(t.digests.intro)}</p>
-      </div>
-      <section class="wrap" style="padding-bottom:4rem">
-        <div class="story-list">${cards}</div>
-      </section>`;
-
-  return layout({
-    localeMeta,
-    t,
-    locale,
-    pathForLocale,
-    active: 'latest',
-    head: renderHead({
-      locale,
-      title: t.digests.title,
-      description: t.digests.description,
-      canonical: absoluteUrl(locale, '/digests/'),
-      hreflang: hreflangTags(pathForLocale),
-      ogLocale: t.meta.ogLocale,
-      jsonLd: baseJsonLd(locale, t),
-    }),
-    body,
-  });
-}
-
-/**
  * Renders a simple prose/legal page.
  * @param {object} ctx
  * @returns {string}
@@ -1317,24 +1006,6 @@ function renderProsePage(ctx) {
 }
 
 /**
- * Generates SVG cover art for an article.
- * @param {string} label
- * @param {string} accent
- * @returns {string}
- */
-function articleSvg(label) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="${escapeHtml(label)}">
-  <rect width="960" height="540" fill="#fbfaf7"/>
-  <rect x="48" y="48" width="864" height="2" fill="#1a1a1a"/>
-  <rect x="48" y="56" width="864" height="2" fill="#1a1a1a"/>
-  <text x="64" y="120" fill="#8b2a2a" font-family="Courier New, Courier, monospace" font-size="18" font-weight="700" letter-spacing="4">SIGNAL REPORT</text>
-  <text x="64" y="300" fill="#1a1a1a" font-family="Georgia, Times New Roman, serif" font-size="44" font-weight="700">${escapeHtml(label)}</text>
-  <text x="64" y="350" fill="#6b6b6b" font-family="Courier New, Courier, monospace" font-size="18">Frontier News · by Hyperjump</text>
-  <rect x="48" y="490" width="864" height="1" fill="#e4e0d8"/>
-</svg>`;
-}
-
-/**
  * Builds sitemap.xml contents.
  * @param {string[]} urls
  * @returns {string}
@@ -1363,8 +1034,6 @@ function build() {
   fs.rmSync(DIST, { recursive: true, force: true });
   ensureDir(DIST);
 
-  const articles = readJson(path.join(ROOT, 'content/articles.json'));
-  const topics = readJson(path.join(ROOT, 'content/topics.json'));
   /** @type {Record<string, any>} */
   const i18n = {};
   for (const locale of LOCALES) {
@@ -1372,18 +1041,6 @@ function build() {
   }
 
   copyDir(path.join(ROOT, 'public'), DIST);
-
-  const svgSpecs = [
-    ['ai-realtime.svg', 'Realtime API'],
-    ['k8s-release.svg', 'Kubernetes 1.33'],
-    ['rust-async.svg', 'Rust Async'],
-    ['oidc-aws.svg', 'OIDC + AWS'],
-    ['zero-trust.svg', 'Zero Trust'],
-    ['sqlite-edge.svg', 'SQLite Edge'],
-  ];
-  for (const [filename, label] of svgSpecs) {
-    writeFile(path.join(DIST, 'assets/articles', filename), articleSvg(label));
-  }
 
   writeFile(
     path.join(DIST, 'assets/favicon.svg'),
@@ -1420,11 +1077,8 @@ function build() {
     const t = i18n[locale];
     const outRoot = locale === 'en' ? DIST : path.join(DIST, locale);
 
-    writeFile(path.join(outRoot, 'index.html'), renderHome({ locale, t, articles, topics, localeMeta }));
+    writeFile(path.join(outRoot, 'index.html'), renderHome({ locale, t, localeMeta }));
     sitemapUrls.push(absoluteUrl(locale, '/'));
-
-    writeFile(path.join(outRoot, 'digests/index.html'), renderDigests({ locale, t, articles, topics, localeMeta }));
-    sitemapUrls.push(absoluteUrl(locale, '/digests/'));
 
     writeFile(
       path.join(outRoot, 'about/index.html'),
@@ -1452,27 +1106,11 @@ function build() {
             pageKey === 'contact'
               ? `<p><strong>${escapeHtml(t.contact.emailLabel)}:</strong> <a href="mailto:${escapeHtml(t.contact.email)}">${escapeHtml(t.contact.email)}</a></p><p>${escapeHtml(t.contact.company)}</p>`
               : pageKey === 'preferences'
-                ? renderNewsletterForm(t, locale, 'pref') + renderConsentSettings(t)
+                ? renderNewsletterForm(t, locale, 'pref')
                 : '',
         }),
       );
       sitemapUrls.push(absoluteUrl(locale, `/${pageKey}/`));
-    }
-
-    for (const topic of topics) {
-      writeFile(
-        path.join(outRoot, `topics/${topic.slug}/index.html`),
-        renderTopic({ locale, t, topic, articles, localeMeta }),
-      );
-      sitemapUrls.push(absoluteUrl(locale, `/topics/${topic.slug}/`));
-    }
-
-    for (const article of articles) {
-      writeFile(
-        path.join(outRoot, `articles/${article.slug}/index.html`),
-        renderArticle({ locale, t, article, topics, articles, localeMeta }),
-      );
-      sitemapUrls.push(absoluteUrl(locale, `/articles/${article.slug}/`));
     }
   }
 
