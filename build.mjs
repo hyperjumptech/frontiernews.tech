@@ -40,6 +40,17 @@ const HYPERJUMP_URL = 'https://hyperjump.tech';
 const API_URL =
   process.env.NEXT_PUBLIC_FRONTIERNOTES_API_URL || process.env.FRONTIERNOTES_API_URL || 'https://app.frontiernews.tech';
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process.env.TURNSTILE_SITE_KEY || '';
+const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || process.env.GA4_MEASUREMENT_ID || '';
+
+/**
+ * Hydra8 "Merdeka 2026" promo — homepage-only, time-boxed.
+ * PROMO_END is an explicit UTC instant: 2026-08-18T23:59:59 Jakarta time (UTC+7)
+ * converted to 16:59:59Z. PROMO_NOW is test-only (see .env.example) — never set in CI.
+ */
+const PROMO_URL = 'https://hydra8.hyperjump.tech/merdeka-2026';
+const PROMO_END = Date.parse('2026-08-18T16:59:59Z');
+const PROMO_NOW = process.env.PROMO_NOW ? Date.parse(process.env.PROMO_NOW) : Date.now();
+const PROMO_ACTIVE = Number.isFinite(PROMO_NOW) && PROMO_NOW < PROMO_END;
 
 /**
  * Where "Latest news" (and related digest CTAs) point.
@@ -288,6 +299,7 @@ function renderHead(options) {
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    ${GA4_MEASUREMENT_ID ? '<link rel="preconnect" href="https://www.googletagmanager.com">' : ''}
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/styles.css">
     ${jsonLd.map((data) => `<script type="application/ld+json">${JSON.stringify(data)}</script>`).join('\n    ')}`;
@@ -646,6 +658,117 @@ function renderNewsletterForm(t, locale, idPrefix = 'nl') {
 }
 
 /**
+ * Renders the Consent Mode v2 bootstrap script: default-denied signals plus a
+ * hoisted `gtag` function so site.js can queue events before gtag.js loads.
+ * Inline and synchronous (no defer/async) — must run before anything that
+ * could otherwise send a hit. Empty string when GA4 is not configured, so
+ * dist/ contains zero trace of gtag when the build is unconfigured.
+ * @returns {string}
+ */
+function renderConsentScript() {
+  if (!GA4_MEASUREMENT_ID) return '';
+  return `<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
+      gtag('config', ${JSON.stringify(GA4_MEASUREMENT_ID)});
+    </script>`;
+}
+
+/**
+ * Renders the GDPR/§25 TDDDG consent banner. Not a modal (no focus trap, no
+ * page block) — a fixed bottom bar. Hidden by default in markup so
+ * decided visitors never see a flash. Reject precedes Accept in DOM order
+ * for visual + tab-order parity. Empty string when GA4 is not configured.
+ * @param {object} t
+ * @param {string} locale
+ * @returns {string}
+ */
+function renderConsentBanner(t, locale) {
+  if (!GA4_MEASUREMENT_ID) return '';
+  const c = t.consent;
+  return `<div class="consent-banner" data-consent-banner hidden role="dialog" aria-modal="false" aria-labelledby="consent-title">
+      <div class="consent-body">
+        <p id="consent-title" class="consent-title">${escapeHtml(c.title)}</p>
+        <p class="consent-text">${escapeHtml(c.body)} <a href="${href(locale, '/privacy/')}">${escapeHtml(c.privacyLink)}</a></p>
+      </div>
+      <div class="consent-actions">
+        <button type="button" class="btn btn-secondary btn-sm" data-consent-reject>${escapeHtml(c.reject)}</button>
+        <button type="button" class="btn btn-primary btn-sm" data-consent-accept>${escapeHtml(c.accept)}</button>
+      </div>
+    </div>`;
+}
+
+/**
+ * Renders the analytics consent status + toggle block for /preferences.
+ * Empty string when GA4 is not configured.
+ * @param {object} t
+ * @returns {string}
+ */
+function renderConsentSettings(t) {
+  if (!GA4_MEASUREMENT_ID) return '';
+  const s = t.consent.settings;
+  return `<div class="consent-settings" data-consent-settings
+      data-status-granted="${escapeHtml(s.statusGranted)}"
+      data-status-denied="${escapeHtml(s.statusDenied)}"
+      data-status-undecided="${escapeHtml(s.statusUndecided)}"
+      data-opt-in="${escapeHtml(s.optIn)}"
+      data-opt-out="${escapeHtml(s.optOut)}">
+      <h2>${escapeHtml(s.h2)}</h2>
+      <p>${escapeHtml(s.p)}</p>
+      <p class="consent-status" data-consent-status role="status" aria-live="polite"></p>
+      <button type="button" class="btn btn-secondary btn-sm" data-consent-toggle></button>
+    </div>`;
+}
+
+/**
+ * Renders the Hydra8 "Merdeka 2026" promo section (homepage only).
+ * Time-boxed via PROMO_ACTIVE. Degrades to '' for any locale missing the
+ * required i18n keys, so an untranslated locale never breaks the build.
+ * @param {object} t
+ * @param {string} locale
+ * @returns {string}
+ */
+function renderPromo(t, locale) {
+  if (!PROMO_ACTIVE) return '';
+  const p = t.promo;
+  if (!p || !p.h2 || !p.cta || !p.badge) return '';
+  const facts = Array.isArray(p.facts) ? p.facts : [];
+  return `<section class="promo" id="promo" aria-labelledby="promo-heading">
+        <div class="wrap">
+          <div class="promo-inner" data-reveal>
+            <div class="promo-text">
+              <span class="promo-badge">${escapeHtml(p.badge)}</span>
+              <div class="promo-heading-group">
+                <h2 id="promo-heading">${escapeHtml(p.h2)}</h2>
+              </div>
+              <p class="promo-body">${formatInlineEmphasis(p.body)}</p>
+              ${
+                facts.length
+                  ? `<dl class="promo-facts">
+                ${facts.map((fact) => `<div><dt>${escapeHtml(fact.k)}</dt><dd>${escapeHtml(fact.v)}</dd></div>`).join('\n')}
+              </dl>`
+                  : ''
+              }
+            </div>
+            <div class="promo-trailing">
+              <a class="btn btn-primary" href="${PROMO_URL}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.cta)}</a>
+            </div>
+          </div>
+        </div>
+      </section>`;
+}
+
+/**
  * Renders a full HTML document shell.
  * @param {object} options
  * @returns {string}
@@ -657,9 +780,11 @@ function layout(options) {
 <html lang="${locale}" dir="${dir}">
   <head>
     ${head}
+    ${renderConsentScript()}
     <script>document.documentElement.classList.add("js");window.__FN_CONFIG__=${JSON.stringify({
       apiUrl: API_URL,
       turnstileSiteKey: TURNSTILE_SITE_KEY,
+      ga4Id: GA4_MEASUREMENT_ID,
     })};</script>
   </head>
   <body>
@@ -669,6 +794,7 @@ function layout(options) {
       ${body}
     </main>
     ${renderFooter({ t, locale })}
+    ${renderConsentBanner(t, locale)}
     <script src="/assets/site.js" defer></script>
   </body>
 </html>
@@ -744,6 +870,8 @@ function renderHome(ctx) {
     .join('\n');
 
   const body = `
+      ${renderPromo(t, locale)}
+
       <section class="hero" data-hero>
         <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="wrap hero-grid">
@@ -771,7 +899,7 @@ function renderHome(ctx) {
         </div>
       </section>
 
-      <section class="section" id="value" aria-labelledby="value-heading">
+      <section class="section section-raised" id="value" aria-labelledby="value-heading">
         <div class="wrap">
           <span class="section-label">Value</span>
           <h2 id="value-heading" data-reveal>${escapeHtml(t.value.h2)}</h2>
@@ -803,7 +931,7 @@ function renderHome(ctx) {
         </div>
       </section>
 
-      <section class="section" id="how-it-works" aria-labelledby="how-heading">
+      <section class="section section-raised" id="how-it-works" aria-labelledby="how-heading">
         <div class="wrap">
           <span class="section-label">Process</span>
           <h2 id="how-heading" data-reveal>${escapeHtml(t.how.h2)}</h2>
@@ -830,7 +958,7 @@ function renderHome(ctx) {
         </div>
       </section>
 
-      <section class="section section-centered" id="audience" aria-labelledby="audience-heading">
+      <section class="section section-centered section-raised" id="audience" aria-labelledby="audience-heading">
         <div class="wrap">
           <span class="section-label">Audience</span>
           <h2 id="audience-heading" data-reveal>${escapeHtml(t.audience.h2)}</h2>
@@ -853,7 +981,7 @@ function renderHome(ctx) {
         </div>
       </section>
 
-      <section class="section" id="faq" aria-labelledby="faq-heading">
+      <section class="section section-raised" id="faq" aria-labelledby="faq-heading">
         <div class="wrap">
           <span class="section-label">FAQ</span>
           <h2 id="faq-heading" data-reveal>${escapeHtml(t.faq.h2)}</h2>
@@ -1324,7 +1452,7 @@ function build() {
             pageKey === 'contact'
               ? `<p><strong>${escapeHtml(t.contact.emailLabel)}:</strong> <a href="mailto:${escapeHtml(t.contact.email)}">${escapeHtml(t.contact.email)}</a></p><p>${escapeHtml(t.contact.company)}</p>`
               : pageKey === 'preferences'
-                ? renderNewsletterForm(t, locale, 'pref')
+                ? renderNewsletterForm(t, locale, 'pref') + renderConsentSettings(t)
                 : '',
         }),
       );

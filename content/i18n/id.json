@@ -142,6 +142,18 @@
     "text": "Dapatkan berita teknologi ringkas dan ringkasan praktis sesuai jadwal Anda.",
     "cta": "Berlangganan Frontier News"
   },
+  "promo": {
+    "badge": "Promosi",
+    "h2": "Tim Hyperjump mengadakan Lomba Agustusan 2026 di Hydra8",
+    "body": "Dalam rangka HUT RI ke-81, dari 11 hingga 17 Agustus 2026 tim Hydra8 mengadakan \"Lomba Agustusan 2026 — Adu System Prompt\". Tulis system prompt di Hydra8, beri nama chat kamu diawali **[MERDEKA-2026]**, lalu sebarkan link-nya. Chat paling ramai jadi pemenang.",
+    "facts": [
+      { "k": "Periode lomba", "v": "11–17 Agustus 2026, tutup pukul 23.59 waktu Jakarta (UTC+7)" },
+      { "k": "Pengumuman pemenang", "v": "18 Agustus 2026, pukul 16.00 waktu Jakarta (UTC+7)" },
+      { "k": "Hadiah", "v": "Claude Pro 1 bulan ($20), satu pemenang" },
+      { "k": "Biaya", "v": "Gratis, tanpa kartu kredit, tanpa pendaftaran terpisah" }
+    ],
+    "cta": "Ikuti lomba di Hydra8"
+  },
   "footer": {
     "latest": "Berita terbaru",
     "digests": "Arsip digest",
@@ -170,7 +182,7 @@
     "title": "Kebijakan privasi | Frontier News",
     "description": "Bagaimana Frontier News oleh Hyperjump Technology mengumpulkan, menggunakan, dan melindungi informasi pelanggan.",
     "h1": "Kebijakan privasi",
-    "updated": "Terakhir diperbarui: 15 Juli 2026",
+    "updated": "Terakhir diperbarui: 10 Agustus 2026",
     "sections": [
       {
         "h2": "Who we are",
@@ -183,6 +195,10 @@
       {
         "h2": "How we use information",
         "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Analitik dan cookie",
+        "p": "Kami menggunakan Google Analytics 4 untuk memahami cara pengunjung menggunakan situs ini, tetapi hanya setelah Anda menerima cookie analitik di banner persetujuan. Menerima akan menyimpan pilihan ini dalam cookie dan memuat skrip pelacakan Google, yang mengirim alamat IP Anda yang telah dipersingkat ke Google untuk diproses. Jika Anda menolak atau mengabaikan banner, tidak ada skrip analitik yang dimuat dan tidak ada data yang dikirim ke Google. Anda dapat mengubah keputusan ini kapan saja di halaman preferensi langganan."
       },
       {
         "h2": "Email confirmation and unsubscribe",
@@ -233,6 +249,22 @@
     "h1": "Preferensi langganan",
     "intro": "Ubah cara Anda menerima Frontier News, atau hentikan email sepenuhnya.",
     "note": "Perubahan preferensi memerlukan email pelanggan yang dikonfirmasi. Gunakan tautan di setiap pesan Frontier News untuk membuka tampilan preferensi yang dipersonalisasi."
+  },
+  "consent": {
+    "title": "Kami menggunakan cookie analitik",
+    "body": "Kami ingin menggunakan Google Analytics untuk memahami cara pengunjung menggunakan situs ini. Hal ini hanya terjadi jika Anda menyetujuinya.",
+    "privacyLink": "Baca kebijakan privasi kami",
+    "accept": "Terima",
+    "reject": "Tolak",
+    "settings": {
+      "h2": "Cookie analitik",
+      "p": "Atur apakah Frontier News boleh menggunakan Google Analytics untuk memahami cara Anda menggunakan situs ini.",
+      "statusGranted": "Status: cookie analitik aktif.",
+      "statusDenied": "Status: cookie analitik nonaktif.",
+      "statusUndecided": "Status: Anda belum membuat pilihan.",
+      "optIn": "Aktifkan cookie analitik",
+      "optOut": "Nonaktifkan cookie analitik"
+    }
   },
   "notFound": {
     "title": "Halaman tidak ditemukan | Frontier News",

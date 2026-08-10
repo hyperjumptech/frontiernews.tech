@@ -740,7 +740,7 @@ html.js .hero.is-ready [data-hero-enter] {
   border-top: 1px solid var(--line);
 }
 
-.section:nth-child(even) {
+.section-raised {
   background: var(--paper-raised);
 }
 
@@ -1407,6 +1407,140 @@ html.js .hero.is-ready [data-hero-enter] {
   max-width: 32rem;
 }
 
+/* Promo — sticky notification bar, red-white Indonesia theme */
+.promo {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 30;
+  padding: 0.35rem 0;
+  background: #fff;
+  border-bottom: 2px solid var(--accent);
+}
+
+.promo.is-sticky {
+  box-shadow: 0 2px 8px rgba(139, 42, 42, 0.12);
+}
+
+.promo-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: min(100% - clamp(1.5rem, 5vw, 3rem), 62rem);
+  margin-inline: auto;
+}
+
+.promo-text {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.6rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .promo-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .promo-trailing {
+    justify-content: flex-end;
+  }
+}
+
+.promo-leading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.promo-badge {
+  display: inline-block;
+  padding: 0.12rem 0.4rem;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+}
+
+.promo-heading-group {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.promo-heading-group h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--accent);
+}
+
+.promo-body {
+  margin: 0;
+  color: color-mix(in srgb, var(--accent) 70%, #000);
+  font-size: 0.78rem;
+  flex: 1 1 auto;
+}
+
+.promo-facts {
+  display: none;
+}
+
+.promo-trailing {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.promo-trailing .btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.72rem;
+}
+
+@media (min-width: 640px) {
+  .promo-body {
+    flex: 0 1 auto;
+  }
+
+  .promo-facts {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    row-gap: 0.4rem;
+    column-gap: 0.75rem;
+    flex: 1 1 100%;
+    margin: 0;
+  }
+
+  .promo-facts > div {
+    display: contents;
+  }
+
+  .promo-facts dt {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .promo-facts dd {
+    margin: 0;
+    color: var(--ink);
+    font-size: 0.8rem;
+  }
+}
+
 /* Footer */
 .site-footer {
   border-top: 2px solid var(--line-strong);
@@ -1644,6 +1778,81 @@ html.js .hero.is-ready [data-hero-enter] {
   }
 }
 
+/* Consent */
+.consent-banner {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 45;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 1.75rem);
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  background: var(--paper-raised);
+  border-top: 1px solid var(--line-strong);
+  box-shadow: 0 -8px 24px rgba(26, 26, 26, 0.08);
+}
+
+.consent-body {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.consent-title {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.consent-text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.consent-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.consent-settings {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.consent-settings h2 {
+  margin-top: 0;
+}
+
+.consent-status {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .consent-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .consent-actions {
+    width: 100%;
+  }
+
+  .consent-actions .btn {
+    flex: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1661,7 +1870,8 @@ html.js .hero.is-ready [data-hero-enter] {
   .step-illu-scan,
   .step-illu-stream,
   .step-illu-digest-card,
-  .step-illu-chip-mid {
+  .step-illu-chip-mid,
+  .consent-banner {
     transition: none !important;
     animation: none !important;
   }

@@ -142,6 +142,18 @@
     "text": "Meunangkeun warta téknologi ringkes jeung ringkesan praktis nurutkeun jadwal anjeun.",
     "cta": "Langganan Frontier News"
   },
+  "promo": {
+    "badge": "Promosi",
+    "h2": "Tim Hyperjump ngayakeun Lomba Agustusan 2026 di Hydra8",
+    "body": "Dina raraga HUT RI ka-81, ti tanggal 11 nepi ka 17 Agustus 2026 tim Hydra8 ngayakeun \"Lomba Agustusan 2026 — Adu System Prompt\". Tulis system prompt di Hydra8, ngaran chat anjeun kudu diawalan **[MERDEKA-2026]**, tuluy sebarkeun linkna. Chat pangraramena meunang.",
+    "facts": [
+      { "k": "Periode lomba", "v": "11–17 Agustus 2026, tutup jam 23.59 waktos Jakarta (UTC+7)" },
+      { "k": "Pengumuman pemenang", "v": "18 Agustus 2026, jam 16.00 waktos Jakarta (UTC+7)" },
+      { "k": "Hadiah", "v": "Claude Pro 1 bulan ($20), hiji pemenang" },
+      { "k": "Biaya", "v": "Gratis, tanpa kartu kredit, tanpa pendaptaran misah" }
+    ],
+    "cta": "Miluan lomba di Hydra8"
+  },
   "footer": {
     "latest": "Warta panganyarna",
     "digests": "Arsip digest",
@@ -170,7 +182,7 @@
     "title": "Kawijakan privasi | Frontier News",
     "description": "Kumaha Frontier News ngolah data.",
     "h1": "Kawijakan privasi",
-    "updated": "Panganyarna diapdét: 15 Juli 2026",
+    "updated": "Panganyarna diapdét: 10 Agustus 2026",
     "sections": [
       {
         "h2": "Who we are",
@@ -183,6 +195,10 @@
       {
         "h2": "How we use information",
         "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Analitik jeung cookie",
+        "p": "Urang ngagunakeun Google Analytics 4 pikeun ngarti kumaha pangunjung ngagunakeun situs ieu, tapi ngan sanggeus anjeun nampi cookie analitik dina banner idin. Nampi bakal nyimpen pilihan ieu dina cookie sarta ngamuat skrip pelacak Google, anu ngirim alamat IP anjeun anu geus dipondokkeun ka Google pikeun diolah. Lamun anjeun nolak atawa henteu milih, teu aya skrip analitik anu dimuat sarta teu aya data anu dikirim ka Google. Anjeun bisa ngarobah kaputusan ieu iraha waé di kaca preferensi langganan."
       },
       {
         "h2": "Email confirmation and unsubscribe",
@@ -233,6 +249,22 @@
     "h1": "Preferensi langganan",
     "intro": "Robah cara nampi Frontier News, atawa eureunkeun email.",
     "note": "Parobahan merlukeun email pelanggan anu dikonfirmasi."
+  },
+  "consent": {
+    "title": "Urang ngagunakeun cookie analitik",
+    "body": "Urang hoyong ngagunakeun Google Analytics pikeun ngarti kumaha pangunjung ngagunakeun situs ieu. Ieu ngan lumangsung lamun anjeun satuju.",
+    "privacyLink": "Baca kawijakan privasi urang",
+    "accept": "Satuju",
+    "reject": "Tolak",
+    "settings": {
+      "h2": "Cookie analitik",
+      "p": "Atur naha Frontier News meunang ngagunakeun Google Analytics pikeun ngarti kumaha anjeun ngagunakeun situs ieu.",
+      "statusGranted": "Status: cookie analitik aktip.",
+      "statusDenied": "Status: cookie analitik pareum.",
+      "statusUndecided": "Status: anjeun acan milih.",
+      "optIn": "Aktipkeun cookie analitik",
+      "optOut": "Pareumkeun cookie analitik"
+    }
   },
   "notFound": {
     "title": "Kaca teu kapanggih | Frontier News",
