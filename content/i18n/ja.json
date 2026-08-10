@@ -8,7 +8,6 @@
   "brandByline": "by Hyperjump",
   "nav": {
     "latest": "最新ニュース",
-    "topics": "トピック",
     "how": "仕組み",
     "about": "について",
     "subscribe": "無料で購読",
@@ -41,20 +40,6 @@
         "text": "空虚な見出しではなく、使える手法とアイデアに焦点。"
       }
     ]
-  },
-  "latest": {
-    "h2": "最新の技術ニュースと要約",
-    "readSummary": "要約を読む",
-    "source": "ソース",
-    "published": "公開",
-    "updated": "更新"
-  },
-  "topics": {
-    "h2": "追っている技術トピック",
-    "intro": "Frontier Newsは、開発者、技術リーダー、ソフトウェア製品を作る人にとって重要な動きを追います。",
-    "viewTopic": "トピックを見る",
-    "articlesInTopic": "件の要約",
-    "empty": "このトピックの新しい要約は公開され次第ここに表示されます。"
   },
   "how": {
     "h2": "技術動画から役立つニュースへ",
@@ -145,7 +130,6 @@
   "footer": {
     "latest": "最新ニュース",
     "digests": "ダイジェスト一覧",
-    "topics": "トピック",
     "about": "Hyperjumpについて",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
@@ -153,18 +137,6 @@
     "preferences": "購読設定",
     "publisher": "Frontier News by Hyperjump Technology",
     "rights": "All rights reserved."
-  },
-  "article": {
-    "backLatest": "最新ニュースに戻る",
-    "watchSource": "元の動画を見る",
-    "relatedTopic": "トピック",
-    "readAlso": "その他の要約"
-  },
-  "digests": {
-    "title": "ダイジェスト一覧 | Frontier News",
-    "description": "Frontier Newsのダイジェストアーカイブ。",
-    "h1": "ダイジェスト一覧",
-    "intro": "公開済み要約をすべて、新しい順に。"
   },
   "privacy": {
     "title": "プライバシーポリシー | Frontier News",

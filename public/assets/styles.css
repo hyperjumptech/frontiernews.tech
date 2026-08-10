@@ -36,6 +36,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -48,6 +49,7 @@ body {
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 /* Subtle paper grain — fixed, non-interactive */
@@ -119,24 +121,28 @@ a:hover {
   max-width: 40rem;
 }
 
-/* Header — sticky paper bar with hairline rule */
+/* Header — sticky paper bar with hairline rule.
+   No backdrop-filter: it creates a containing block that traps
+   position:fixed descendants (mobile menu) to the header height. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--paper) 92%, white);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--paper);
 }
 
 .nav-island {
+  position: relative;
+  z-index: 36;
   width: min(100% - clamp(1.5rem, 5vw, 3rem), var(--max));
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
+  min-width: 0;
   min-height: var(--header-h);
   padding: 0.5rem 0;
 }
@@ -145,6 +151,8 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
+  min-width: 0;
+  flex: 0 1 auto;
   text-decoration: none;
   color: var(--ink);
   line-height: 1.1;
@@ -209,11 +217,19 @@ a:hover {
 .nav-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 .lang-select {
   appearance: none;
+  /* Native <select> sizes to the longest <option>; cap it so the header
+     cannot overflow the viewport and force mobile browsers to zoom out. */
+  width: auto;
+  max-width: 8.75rem;
+  min-width: 0;
   background-color: var(--paper-raised);
   border: 1px solid var(--line);
   color: var(--ink-muted);
@@ -288,9 +304,10 @@ a:hover {
   display: grid;
   place-items: center;
   padding: 6rem 1.5rem 2rem;
-  background: color-mix(in srgb, var(--paper) 94%, white);
+  background: var(--paper);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition:
     opacity 350ms var(--ease),
     visibility 350ms var(--ease);
@@ -299,6 +316,7 @@ a:hover {
 .nav-open .mobile-nav {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-nav ul {
@@ -853,166 +871,6 @@ html.js .hero.is-ready [data-hero-enter] {
   margin: 0;
   color: var(--ink-muted);
   font-size: 0.98rem;
-}
-
-/* Story list — digest-like entries */
-.story-list {
-  display: grid;
-  gap: 0;
-}
-
-.story-shell {
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  border-top: 1px solid var(--line);
-  transition: none;
-}
-
-.story-shell:first-child {
-  border-top: 2px solid var(--line-strong);
-}
-
-.story-shell:hover {
-  border-color: var(--line);
-}
-
-.story-card {
-  display: grid;
-  gap: 1rem;
-  padding: 1.75rem 0;
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
-  height: 100%;
-}
-
-@media (min-width: 900px) {
-  .story-list .story-shell:first-child .story-card {
-    grid-template-columns: minmax(12rem, 18rem) 1fr;
-    align-items: stretch;
-  }
-}
-
-.story-media {
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: var(--paper-raised);
-  min-height: 9rem;
-  border: 1px solid var(--line);
-}
-
-.story-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 9rem;
-}
-
-.story-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.85rem;
-  margin-bottom: 0.55rem;
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.story-topic {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.story-topic:hover {
-  color: var(--accent-hover);
-}
-
-.story-card h3 {
-  margin: 0 0 0.5rem;
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  color: var(--ink);
-}
-
-.story-card h3 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.story-card h3 a:hover {
-  text-decoration: underline;
-  color: var(--ink);
-}
-
-.story-list .story-shell:first-child .story-card h3 {
-  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
-}
-
-.story-card p {
-  margin: 0 0 0.85rem;
-  color: var(--ink-muted);
-  font-size: 0.98rem;
-}
-
-.story-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-}
-
-.story-link:hover {
-  color: var(--accent-hover);
-}
-
-/* Topics */
-.topic-grid {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  margin-top: 1.75rem;
-}
-
-.topic-link {
-  display: block;
-  padding: 1.1rem 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--paper);
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 200ms var(--ease);
-}
-
-.topic-link:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-.topic-link strong {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  margin-bottom: 0.3rem;
-}
-
-.topic-link span {
-  color: var(--ink-dim);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
 }
 
 /* How it works */
@@ -1641,88 +1499,6 @@ html.js .hero.is-ready [data-hero-enter] {
   line-height: 1.15;
 }
 
-.breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-bottom: 1.15rem;
-  font-size: 0.72rem;
-  color: var(--ink-dim);
-  font-family: var(--font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.breadcrumb a {
-  color: var(--ink-muted);
-  text-decoration: none;
-}
-
-.breadcrumb a:hover {
-  color: var(--accent);
-}
-
-.article-layout {
-  display: grid;
-  gap: 2.5rem;
-  padding: 2.5rem 0 4rem;
-}
-
-@media (min-width: 960px) {
-  .article-layout {
-    grid-template-columns: minmax(0, 1fr) 15rem;
-    align-items: start;
-  }
-}
-
-.article-body {
-  max-width: 40rem;
-}
-
-.article-body p {
-  color: var(--ink-muted);
-  margin: 0 0 1.15rem;
-}
-
-.article-aside {
-  position: sticky;
-  top: calc(var(--header-h) + 1rem);
-  padding: 1.15rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--paper-raised);
-}
-
-.article-aside h2 {
-  margin: 0 0 0.75rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-dim);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  max-width: none;
-}
-
-.article-aside dl {
-  margin: 0;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.article-aside dt {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-dim);
-  font-family: var(--font-mono);
-}
-
-.article-aside dd {
-  margin: 0.25rem 0 0;
-  color: var(--ink);
-}
-
 .prose-page {
   padding: 2.5rem 0 4rem;
   max-width: 40rem;
@@ -1762,6 +1538,18 @@ html.js .hero.is-ready [data-hero-enter] {
   transform: translateY(0);
 }
 
+@media (max-width: 899px) {
+  /* Subscribe is already in the hamburger menu; drop the header CTA so
+     brand + language + menu fit without horizontal overflow. */
+  .nav-actions > .btn {
+    display: none;
+  }
+
+  .lang-select {
+    max-width: 7.25rem;
+  }
+}
+
 @media (min-width: 900px) {
   .nav-links {
     display: flex;
@@ -1769,6 +1557,10 @@ html.js .hero.is-ready [data-hero-enter] {
 
   .menu-toggle {
     display: none;
+  }
+
+  .lang-select {
+    max-width: none;
   }
 }
 
