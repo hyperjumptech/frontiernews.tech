@@ -137,7 +137,8 @@
       { "k": "Preis", "v": "1 Monat Claude Pro (20 $), ein Gewinner" },
       { "k": "Kosten", "v": "Kostenlos, keine Kreditkarte, keine separate Anmeldung" }
     ],
-    "cta": "Am Wettbewerb auf Hydra8 teilnehmen"
+    "cta": "Am Wettbewerb auf Hydra8 teilnehmen",
+    "dismiss": "Werbung schließen"
   },
   "footer": {
     "latest": "Neueste Nachrichten",

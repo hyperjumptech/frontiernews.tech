@@ -137,7 +137,8 @@
       { "k": "Hadiah", "v": "Claude Pro 1 bulan ($20), satu pemenang" },
       { "k": "Biaya", "v": "Gratis, tanpa kartu kredit, tanpa pendaftaran terpisah" }
     ],
-    "cta": "Ikuti lomba di Hydra8"
+    "cta": "Ikuti lomba di Hydra8",
+    "dismiss": "Tutup promo"
   },
   "footer": {
     "latest": "Berita terbaru",

@@ -137,7 +137,8 @@
       { "k": "Prize", "v": "1 month of Claude Pro ($20), one winner" },
       { "k": "Cost", "v": "Free, no credit card, no separate registration" }
     ],
-    "cta": "Enter the contest on Hydra8"
+    "cta": "Enter the contest on Hydra8",
+    "dismiss": "Dismiss promotion"
   },
   "footer": {
     "latest": "Latest news",

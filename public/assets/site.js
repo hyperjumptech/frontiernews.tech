@@ -26,6 +26,7 @@ function initSite() {
   initReveal();
   initLanguageSelect();
   initConsent();
+  initPromoDismiss();
   initPromoSticky();
 }
 
@@ -472,13 +473,65 @@ function initConsent() {
   });
 }
 
+/** sessionStorage key marking the promo bar as dismissed for this browser session. */
+const PROMO_DISMISS_KEY = "fn_promo_dismissed";
+
+/**
+ * Reads whether the promo bar was dismissed earlier in this session.
+ * @returns {boolean}
+ */
+function readPromoDismissed() {
+  try {
+    return window.sessionStorage.getItem(PROMO_DISMISS_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Persists the promo dismissal for the current session only. Failures
+ * (Safari private mode, ITP) are swallowed — the promo still hides for
+ * this page view via the in-memory `hidden` attribute change.
+ * @returns {void}
+ */
+function writePromoDismissed() {
+  try {
+    window.sessionStorage.setItem(PROMO_DISMISS_KEY, "1");
+  } catch {
+    // Storage unavailable — dismissal still applied to the current page view.
+  }
+}
+
+/**
+ * Wires the promo bar's close button. Dismissal persists via sessionStorage
+ * only (cleared when the browser session ends), never localStorage.
+ * @returns {void}
+ */
+function initPromoDismiss() {
+  const promo = document.querySelector(".promo");
+  if (!promo) return;
+
+  if (readPromoDismissed()) {
+    promo.hidden = true;
+    return;
+  }
+
+  const dismissBtn = promo.querySelector("[data-promo-dismiss]");
+  if (!dismissBtn) return;
+
+  dismissBtn.addEventListener("click", () => {
+    promo.hidden = true;
+    writePromoDismissed();
+  });
+}
+
 /**
  * Toggles .is-sticky on the promo bar when it becomes position:fixed.
  * @returns {void}
  */
 function initPromoSticky() {
   const promo = document.querySelector(".promo");
-  if (!promo) return;
+  if (!promo || promo.hidden) return;
 
   const headerH = parseInt(
     getComputedStyle(document.documentElement).getPropertyValue("--header-h") ||

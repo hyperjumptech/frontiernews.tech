@@ -1366,6 +1366,26 @@ html.js .hero.is-ready [data-hero-enter] {
   font-size: 0.72rem;
 }
 
+.promo-dismiss {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+
+.promo-dismiss:hover,
+.promo-dismiss:focus-visible {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
 @media (min-width: 640px) {
   .promo-body {
     flex: 0 1 auto;

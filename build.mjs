@@ -43,7 +43,7 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || process
 const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || process.env.GA4_MEASUREMENT_ID || '';
 
 /**
- * Hydra8 "Merdeka 2026" promo — homepage-only, time-boxed.
+ * Hydra8 "Merdeka 2026" promo — site-wide sticky bar, time-boxed.
  * PROMO_END is an explicit UTC instant: 2026-08-18T23:59:59 Jakarta time (UTC+7)
  * converted to 16:59:59Z. PROMO_NOW is test-only (see .env.example) — never set in CI.
  */
@@ -688,9 +688,12 @@ function renderConsentSettings(t) {
 }
 
 /**
- * Renders the Hydra8 "Merdeka 2026" promo section (homepage only).
+ * Renders the Hydra8 "Merdeka 2026" promo bar. Site-wide (rendered once in
+ * `layout()`, directly under the header) so it appears on every page.
  * Time-boxed via PROMO_ACTIVE. Degrades to '' for any locale missing the
  * required i18n keys, so an untranslated locale never breaks the build.
+ * Dismissal is handled client-side via sessionStorage (see `initPromoDismiss`
+ * in site.js) — the markup always renders when active; JS hides it.
  * @param {object} t
  * @param {string} locale
  * @returns {string}
@@ -698,7 +701,7 @@ function renderConsentSettings(t) {
 function renderPromo(t, locale) {
   if (!PROMO_ACTIVE) return '';
   const p = t.promo;
-  if (!p || !p.h2 || !p.cta || !p.badge) return '';
+  if (!p || !p.h2 || !p.cta || !p.badge || !p.dismiss) return '';
   const facts = Array.isArray(p.facts) ? p.facts : [];
   return `<section class="promo" id="promo" aria-labelledby="promo-heading">
         <div class="wrap">
@@ -719,6 +722,11 @@ function renderPromo(t, locale) {
             </div>
             <div class="promo-trailing">
               <a class="btn btn-primary" href="${PROMO_URL}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.cta)}</a>
+              <button type="button" class="promo-dismiss" data-promo-dismiss aria-label="${escapeHtml(p.dismiss)}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1.5 1.5l11 11M12.5 1.5l-11 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -747,6 +755,7 @@ function layout(options) {
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     ${renderHeader({ t, locale, pathForLocale, active })}
+    ${renderPromo(t, locale)}
     <main id="main">
       ${body}
     </main>
@@ -816,8 +825,6 @@ function renderHome(ctx) {
   };
 
   const body = `
-      ${renderPromo(t, locale)}
-
       <section class="hero" data-hero>
         <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="wrap hero-grid">
