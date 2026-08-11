@@ -4,13 +4,14 @@
 
 /**
  * Reads runtime config injected by the build.
- * @returns {{ apiUrl: string, turnstileSiteKey: string }}
+ * @returns {{ apiUrl: string, turnstileSiteKey: string, ga4Id: string }}
  */
 function getConfig() {
   const config = window.__FN_CONFIG__ || {};
   return {
     apiUrl: config.apiUrl || "https://app.frontiernews.tech",
     turnstileSiteKey: config.turnstileSiteKey || "",
+    ga4Id: config.ga4Id || "",
   };
 }
 
@@ -24,6 +25,9 @@ function initSite() {
   initHeroEnter();
   initReveal();
   initLanguageSelect();
+  initConsent();
+  initPromoDismiss();
+  initPromoSticky();
 }
 
 /**
@@ -78,6 +82,34 @@ function loadTurnstileScript() {
   });
 
   return window.__FN_TURNSTILE_LOADING__;
+}
+
+/**
+ * Loads the GA4 gtag.js script once. Only ever called after consent is
+ * granted — this is the "lazy transport" half of the Consent Mode setup.
+ * @param {string} id GA4 measurement ID
+ * @returns {Promise<void>}
+ */
+function loadGtagScript(id) {
+  if (window.__FN_GTAG_LOADED__) return Promise.resolve();
+  if (window.__FN_GTAG_LOADING__) return window.__FN_GTAG_LOADING__;
+
+  window.__FN_GTAG_LOADING__ = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+    script.async = true;
+    script.onload = () => {
+      window.__FN_GTAG_LOADED__ = true;
+      resolve();
+    };
+    script.onerror = () => {
+      window.__FN_GTAG_LOADING__ = null;
+      reject(new Error("Failed to load gtag.js"));
+    };
+    document.head.appendChild(script);
+  });
+
+  return window.__FN_GTAG_LOADING__;
 }
 
 /**
@@ -305,6 +337,216 @@ function initLanguageSelect() {
       }
     });
   });
+}
+
+/** localStorage key for the consent record. */
+const CONSENT_KEY = "fn_consent";
+/** Bump to invalidate all stored consent decisions (re-prompts everyone). */
+const CONSENT_VERSION = 1;
+/** Days after which a "denied" decision expires and the banner reappears. */
+const REJECT_TTL_DAYS = 180;
+
+/**
+ * Reads the stored consent record. Returns null when absent, invalid,
+ * wrong version, or expired (denied only — granted never expires).
+ * @returns {{ v: number, analytics: "granted"|"denied", ts: number }|null}
+ */
+function readConsent() {
+  try {
+    const raw = window.localStorage.getItem(CONSENT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || parsed.v !== CONSENT_VERSION) return null;
+    if (parsed.analytics !== "granted" && parsed.analytics !== "denied") return null;
+    if (parsed.analytics === "denied") {
+      const ageDays = (Date.now() - Number(parsed.ts || 0)) / 86400000;
+      if (!(ageDays <= REJECT_TTL_DAYS)) return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Persists a consent decision. Failures (Safari private mode, ITP) are
+ * swallowed — callers should still act on the in-memory decision.
+ * @param {"granted"|"denied"} analytics
+ * @returns {void}
+ */
+function writeConsent(analytics) {
+  try {
+    window.localStorage.setItem(
+      CONSENT_KEY,
+      JSON.stringify({ v: CONSENT_VERSION, analytics, ts: Date.now() }),
+    );
+  } catch {
+    // Storage unavailable — decision still applied in-memory for this page view.
+  }
+}
+
+/**
+ * Wires the GDPR/§25 TDDDG consent banner and the /preferences toggle.
+ * Defaults to denied; only an explicit Accept loads gtag.js.
+ * @returns {void}
+ */
+function initConsent() {
+  const { ga4Id } = getConfig();
+  if (!ga4Id || typeof window.gtag !== "function") return;
+
+  const banner = document.querySelector("[data-consent-banner]");
+  const settings = document.querySelector("[data-consent-settings]");
+  const statusEl = document.querySelector("[data-consent-status]");
+  const toggleBtn = document.querySelector("[data-consent-toggle]");
+
+  /** @type {"granted"|"denied"|null} In-memory fallback when storage fails. */
+  let memoryDecision = null;
+
+  const currentDecision = () => (readConsent() || {}).analytics || memoryDecision || null;
+
+  /**
+   * @param {"granted"|"denied"} analytics
+   * @returns {void}
+   */
+  const applyDecision = (analytics) => {
+    window.gtag("consent", "update", { analytics_storage: analytics });
+    if (analytics === "granted") {
+      loadGtagScript(ga4Id).catch(() => {});
+      window[`ga-disable-${ga4Id}`] = false;
+    } else {
+      window[`ga-disable-${ga4Id}`] = true;
+    }
+  };
+
+  /**
+   * @param {"granted"|"denied"} analytics
+   * @returns {void}
+   */
+  const decide = (analytics) => {
+    memoryDecision = analytics;
+    writeConsent(analytics);
+    applyDecision(analytics);
+    if (banner) banner.hidden = true;
+    syncSettingsUi();
+  };
+
+  const syncSettingsUi = () => {
+    if (!settings || !statusEl || !toggleBtn) return;
+    const decision = currentDecision();
+    if (decision === "granted") {
+      statusEl.textContent = settings.getAttribute("data-status-granted") || "";
+      toggleBtn.textContent = settings.getAttribute("data-opt-out") || "";
+    } else if (decision === "denied") {
+      statusEl.textContent = settings.getAttribute("data-status-denied") || "";
+      toggleBtn.textContent = settings.getAttribute("data-opt-in") || "";
+    } else {
+      statusEl.textContent = settings.getAttribute("data-status-undecided") || "";
+      toggleBtn.textContent = settings.getAttribute("data-opt-in") || "";
+    }
+  };
+
+  const stored = readConsent();
+  if (stored) {
+    applyDecision(stored.analytics);
+    if (banner) banner.hidden = true;
+  } else if (banner) {
+    banner.hidden = false;
+  }
+  syncSettingsUi();
+
+  document.addEventListener("click", (event) => {
+    const target = /** @type {HTMLElement} */ (event.target);
+    if (target.closest("[data-consent-accept]")) {
+      decide("granted");
+    } else if (target.closest("[data-consent-reject]")) {
+      decide("denied");
+    } else if (target.closest("[data-consent-toggle]")) {
+      const decision = currentDecision();
+      decide(decision === "granted" ? "denied" : "granted");
+    }
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== CONSENT_KEY) return;
+    if (banner) banner.hidden = Boolean(readConsent());
+    syncSettingsUi();
+  });
+}
+
+/** sessionStorage key marking the promo bar as dismissed for this browser session. */
+const PROMO_DISMISS_KEY = "fn_promo_dismissed";
+
+/**
+ * Reads whether the promo bar was dismissed earlier in this session.
+ * @returns {boolean}
+ */
+function readPromoDismissed() {
+  try {
+    return window.sessionStorage.getItem(PROMO_DISMISS_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Persists the promo dismissal for the current session only. Failures
+ * (Safari private mode, ITP) are swallowed — the promo still hides for
+ * this page view via the in-memory `hidden` attribute change.
+ * @returns {void}
+ */
+function writePromoDismissed() {
+  try {
+    window.sessionStorage.setItem(PROMO_DISMISS_KEY, "1");
+  } catch {
+    // Storage unavailable — dismissal still applied to the current page view.
+  }
+}
+
+/**
+ * Wires the promo bar's close button. Dismissal persists via sessionStorage
+ * only (cleared when the browser session ends), never localStorage.
+ * @returns {void}
+ */
+function initPromoDismiss() {
+  const promo = document.querySelector(".promo");
+  if (!promo) return;
+
+  if (readPromoDismissed()) {
+    promo.hidden = true;
+    return;
+  }
+
+  const dismissBtn = promo.querySelector("[data-promo-dismiss]");
+  if (!dismissBtn) return;
+
+  dismissBtn.addEventListener("click", () => {
+    promo.hidden = true;
+    writePromoDismissed();
+  });
+}
+
+/**
+ * Toggles .is-sticky on the promo bar when it becomes position:fixed.
+ * @returns {void}
+ */
+function initPromoSticky() {
+  const promo = document.querySelector(".promo");
+  if (!promo || promo.hidden) return;
+
+  const headerH = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--header-h") ||
+      "68",
+    10
+  );
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      promo.classList.toggle("is-sticky", entry.intersectionRatio < 1);
+    },
+    { threshold: [1], rootMargin: `-${headerH}px 0px 0px 0px` }
+  );
+
+  observer.observe(promo);
 }
 
 if (document.readyState === "loading") {

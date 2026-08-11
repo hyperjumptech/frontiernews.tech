@@ -127,6 +127,19 @@
     "text": "Get concise technology news and practical summaries delivered on your schedule.",
     "cta": "Subscribe to Frontier News"
   },
+  "promo": {
+    "badge": "Promotion",
+    "h2": "Hyperjump's team is running a prompt-writing contest on Hydra8",
+    "body": "From August 11 to August 17, 2026, the Hydra8 team is running \"Merdeka 2026 — System Prompt Battle.\" Write a system prompt on Hydra8, name your chat starting with **[MERDEKA-2026]**, and share the link. The busiest chat wins.",
+    "facts": [
+      { "k": "Entry period", "v": "Aug 11–17, 2026, closes 11:59 PM Jakarta time (UTC+7)" },
+      { "k": "Winner announced", "v": "Aug 18, 2026, 4:00 PM Jakarta time (UTC+7)" },
+      { "k": "Prize", "v": "1 month of Claude Pro ($20), one winner" },
+      { "k": "Cost", "v": "Free, no credit card, no separate registration" }
+    ],
+    "cta": "Enter the contest on Hydra8",
+    "dismiss": "Dismiss promotion"
+  },
   "footer": {
     "latest": "Latest news",
     "digests": "Digest archive",
@@ -142,7 +155,7 @@
     "title": "Privacy policy | Frontier News",
     "description": "How Frontier News by Hyperjump Technology collects, uses, and protects subscriber information.",
     "h1": "Privacy policy",
-    "updated": "Last updated: July 15, 2026",
+    "updated": "Last updated: August 10, 2026",
     "sections": [
       {
         "h2": "Who we are",
@@ -155,6 +168,10 @@
       {
         "h2": "How we use information",
         "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Analytics and cookies",
+        "p": "We use Google Analytics 4 to understand how visitors use this site, but only after you accept analytics cookies in the consent banner. Accepting sets a cookie to store this choice and loads Google's tracking script, which sends your shortened IP address to Google for processing. If you reject or ignore the banner, no analytics script is loaded and no data is sent to Google. You can change your decision at any time on the subscription preferences page."
       },
       {
         "h2": "Email confirmation and unsubscribe",
@@ -205,6 +222,22 @@
     "h1": "Subscription preferences",
     "intro": "Change how you receive Frontier News, or stop emails entirely.",
     "note": "Preference changes require a confirmed subscriber email. Use the link in any Frontier News message to open a personalized preferences view."
+  },
+  "consent": {
+    "title": "We use analytics cookies",
+    "body": "We'd like to use Google Analytics to understand how visitors use this site. This only happens if you accept.",
+    "privacyLink": "Read our privacy policy",
+    "accept": "Accept",
+    "reject": "Reject",
+    "settings": {
+      "h2": "Analytics cookies",
+      "p": "Control whether Frontier News may use Google Analytics to understand how you use this site.",
+      "statusGranted": "Status: analytics cookies are enabled.",
+      "statusDenied": "Status: analytics cookies are disabled.",
+      "statusUndecided": "Status: you haven't made a choice yet.",
+      "optIn": "Enable analytics cookies",
+      "optOut": "Disable analytics cookies"
+    }
   },
   "notFound": {
     "title": "Page not found | Frontier News",

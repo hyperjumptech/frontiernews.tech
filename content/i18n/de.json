@@ -127,6 +127,19 @@
     "text": "Erhalten Sie knappe Technologiemeldungen und praktische Zusammenfassungen nach Ihrem Zeitplan.",
     "cta": "Frontier News abonnieren"
   },
+  "promo": {
+    "badge": "Werbung",
+    "h2": "Das Hyperjump-Team veranstaltet einen Prompt-Schreibwettbewerb auf Hydra8",
+    "body": "Vom 11. bis 17. August 2026 veranstaltet das Hydra8-Team \"Merdeka 2026 — System Prompt Battle\". Schreiben Sie auf Hydra8 einen System-Prompt, benennen Sie Ihren Chat mit dem Präfix **[MERDEKA-2026]** und teilen Sie den Link. Der Chat mit der meisten Aktivität gewinnt.",
+    "facts": [
+      { "k": "Teilnahmezeitraum", "v": "11.–17. August 2026, endet 23:59 Uhr Jakarta-Zeit (UTC+7)" },
+      { "k": "Gewinnerbekanntgabe", "v": "18. August 2026, 16:00 Uhr Jakarta-Zeit (UTC+7)" },
+      { "k": "Preis", "v": "1 Monat Claude Pro (20 $), ein Gewinner" },
+      { "k": "Kosten", "v": "Kostenlos, keine Kreditkarte, keine separate Anmeldung" }
+    ],
+    "cta": "Am Wettbewerb auf Hydra8 teilnehmen",
+    "dismiss": "Werbung schließen"
+  },
   "footer": {
     "latest": "Neueste Nachrichten",
     "digests": "Digest-Archiv",
@@ -142,7 +155,7 @@
     "title": "Datenschutzrichtlinie | Frontier News",
     "description": "Wie Frontier News personenbezogene Daten handhabt.",
     "h1": "Datenschutzrichtlinie",
-    "updated": "Zuletzt aktualisiert: 15. Juli 2026",
+    "updated": "Zuletzt aktualisiert: 10. August 2026",
     "sections": [
       {
         "h2": "Who we are",
@@ -155,6 +168,10 @@
       {
         "h2": "How we use information",
         "p": "We use your details to send the Frontier News digest you requested, confirm subscriptions, manage preferences, and improve delivery reliability. We do not sell personal information."
+      },
+      {
+        "h2": "Analytics und Cookies",
+        "p": "Wir nutzen Google Analytics 4, um zu verstehen, wie Besucher diese Website nutzen — aber nur, nachdem Sie Analytics-Cookies im Consent-Banner akzeptiert haben. Mit der Zustimmung wird diese Entscheidung in einem Cookie gespeichert und Googles Tracking-Skript geladen, das Ihre gekürzte IP-Adresse zur Verarbeitung an Google überträgt. Lehnen Sie ab oder treffen Sie keine Auswahl, wird kein Analytics-Skript geladen und keine Daten an Google gesendet. Sie können Ihre Entscheidung jederzeit auf der Seite Abo-Einstellungen ändern."
       },
       {
         "h2": "Email confirmation and unsubscribe",
@@ -205,6 +222,22 @@
     "h1": "Abo-Einstellungen",
     "intro": "Ändern Sie, wie Sie Frontier News erhalten, oder stoppen Sie E-Mails.",
     "note": "Änderungen erfordern eine bestätigte Abonnenten-E-Mail. Nutzen Sie den Link in jeder Frontier-News-Nachricht."
+  },
+  "consent": {
+    "title": "Wir verwenden Analytics-Cookies",
+    "body": "Wir möchten Google Analytics nutzen, um zu verstehen, wie Besucher diese Website verwenden. Dies geschieht nur, wenn Sie zustimmen.",
+    "privacyLink": "Unsere Datenschutzrichtlinie",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "settings": {
+      "h2": "Analytics-Cookies",
+      "p": "Legen Sie fest, ob Frontier News Google Analytics verwenden darf, um zu verstehen, wie Sie diese Website nutzen.",
+      "statusGranted": "Status: Analytics-Cookies sind aktiviert.",
+      "statusDenied": "Status: Analytics-Cookies sind deaktiviert.",
+      "statusUndecided": "Status: Sie haben noch keine Wahl getroffen.",
+      "optIn": "Analytics-Cookies aktivieren",
+      "optOut": "Analytics-Cookies deaktivieren"
+    }
   },
   "notFound": {
     "title": "Seite nicht gefunden | Frontier News",
