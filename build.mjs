@@ -722,14 +722,14 @@ function renderPromo(t, locale) {
             </div>
             <div class="promo-trailing">
               <a class="btn btn-primary" href="${PROMO_URL}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.cta)}</a>
-              <button type="button" class="promo-dismiss" data-promo-dismiss aria-label="${escapeHtml(p.dismiss)}">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M1.5 1.5l11 11M12.5 1.5l-11 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </button>
             </div>
           </div>
         </div>
+        <button type="button" class="promo-dismiss" data-promo-dismiss aria-label="${escapeHtml(p.dismiss)}">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1.5 1.5l11 11M12.5 1.5l-11 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
       </section>`;
 }
 
