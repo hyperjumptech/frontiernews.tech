@@ -127,19 +127,6 @@
     "text": "Get concise technology news and practical summaries delivered on your schedule.",
     "cta": "Subscribe to Frontier News"
   },
-  "promo": {
-    "badge": "Promotion",
-    "h2": "Hyperjump's team is running a prompt-writing contest on Hydra8",
-    "body": "From August 11 to August 17, 2026, the Hydra8 team is running \"Merdeka 2026 — System Prompt Battle.\" Write a system prompt on Hydra8, name your chat starting with **[MERDEKA-2026]**, and share the link. The busiest chat wins.",
-    "facts": [
-      { "k": "Entry period", "v": "Aug 11–17, 2026, closes 11:59 PM Jakarta time (UTC+7)" },
-      { "k": "Winner announced", "v": "Aug 18, 2026, 4:00 PM Jakarta time (UTC+7)" },
-      { "k": "Prize", "v": "1 month of Claude Pro ($20), one winner" },
-      { "k": "Cost", "v": "Free, no credit card, no separate registration" }
-    ],
-    "cta": "Enter the contest on Hydra8",
-    "dismiss": "Dismiss promotion"
-  },
   "footer": {
     "latest": "Latest news",
     "digests": "Digest archive",

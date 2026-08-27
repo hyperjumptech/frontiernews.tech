@@ -127,19 +127,6 @@
     "text": "Dapatkan berita teknologi ringkas dan ringkasan praktis sesuai jadwal Anda.",
     "cta": "Berlangganan Frontier News"
   },
-  "promo": {
-    "badge": "Promosi",
-    "h2": "Tim Hyperjump mengadakan Lomba Agustusan 2026 di Hydra8",
-    "body": "Dalam rangka HUT RI ke-81, dari 11 hingga 17 Agustus 2026 tim Hydra8 mengadakan \"Lomba Agustusan 2026 — Adu System Prompt\". Tulis system prompt di Hydra8, beri nama chat kamu diawali **[MERDEKA-2026]**, lalu sebarkan link-nya. Chat paling ramai jadi pemenang.",
-    "facts": [
-      { "k": "Periode lomba", "v": "11–17 Agustus 2026, tutup pukul 23.59 waktu Jakarta (UTC+7)" },
-      { "k": "Pengumuman pemenang", "v": "18 Agustus 2026, pukul 16.00 waktu Jakarta (UTC+7)" },
-      { "k": "Hadiah", "v": "Claude Pro 1 bulan ($20), satu pemenang" },
-      { "k": "Biaya", "v": "Gratis, tanpa kartu kredit, tanpa pendaftaran terpisah" }
-    ],
-    "cta": "Ikuti lomba di Hydra8",
-    "dismiss": "Tutup promo"
-  },
   "footer": {
     "latest": "Berita terbaru",
     "digests": "Arsip digest",
