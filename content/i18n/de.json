@@ -127,23 +127,10 @@
     "text": "Erhalten Sie knappe Technologiemeldungen und praktische Zusammenfassungen nach Ihrem Zeitplan.",
     "cta": "Frontier News abonnieren"
   },
-  "promo": {
-    "badge": "Werbung",
-    "h2": "Das Hyperjump-Team veranstaltet einen Prompt-Schreibwettbewerb auf Hydra8",
-    "body": "Vom 11. bis 17. August 2026 veranstaltet das Hydra8-Team \"Merdeka 2026 — System Prompt Battle\". Schreiben Sie auf Hydra8 einen System-Prompt, benennen Sie Ihren Chat mit dem Präfix **[MERDEKA-2026]** und teilen Sie den Link. Der Chat mit der meisten Aktivität gewinnt.",
-    "facts": [
-      { "k": "Teilnahmezeitraum", "v": "11.–17. August 2026, endet 23:59 Uhr Jakarta-Zeit (UTC+7)" },
-      { "k": "Gewinnerbekanntgabe", "v": "18. August 2026, 16:00 Uhr Jakarta-Zeit (UTC+7)" },
-      { "k": "Preis", "v": "1 Monat Claude Pro (20 $), ein Gewinner" },
-      { "k": "Kosten", "v": "Kostenlos, keine Kreditkarte, keine separate Anmeldung" }
-    ],
-    "cta": "Am Wettbewerb auf Hydra8 teilnehmen",
-    "dismiss": "Werbung schließen"
-  },
   "footer": {
     "latest": "Neueste Nachrichten",
     "digests": "Digest-Archiv",
-    "about": "Über Hyperjump",
+    "about": "Über Frontier News",
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
     "contact": "Kontakt",
